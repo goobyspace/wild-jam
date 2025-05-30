@@ -12,4 +12,5 @@ func take_damage(amount: int) -> void:
 
 	if currentHealth < 0:
 		currentHealth = 0
+		print("Player health depleted!")
 		emit_signal("health_depleted")

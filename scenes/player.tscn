@@ -28,6 +28,7 @@ corner_detail = 16
 viewport_path = NodePath("SubViewport")
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("mesh")]
+platform_wall_layers = 1
 script = ExtResource("1_4flbx")
 mesh = NodePath("MeshInstance3D")
 
