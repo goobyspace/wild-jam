@@ -73,4 +73,4 @@ radius = 2.3
 sides = 16
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(0.79653, 0, -0.604599, 0, 1, 0, 0.604599, 0, 0.79653, 0, 0, 0)
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 0, 0, 0)

@@ -12,12 +12,16 @@ var currentSpeed := 0.0
 var dashSpeedTimer := 0.0
 var dashTimer := 0.0
 var dashCooldownTimer := 0.0
+
 var dashDirection := Vector3.ZERO
 
 var dashColorChanged := false
 var cooldownColorChanged := false
 
 var initial_rotation := rotation.y
+
+var rot_x = 0
+var rot_y = 0
 
 var meshMaterial: Material
 func _ready() -> void:
@@ -36,6 +40,15 @@ func getRotationDirection(originalDirection: Vector2) -> Vector3:
 		.rotated(Vector3(0, 1, 0), rotation.y - initial_rotation) \
 		.rotated(Vector3(1, 0, 0), cos(rotation.y) * rotation.x) \
 		.rotated(Vector3(0, 0, 1), -sin(rotation.y) * rotation.x)
+
+func _input(event):
+	if event is InputEventMouseMotion && Input.is_action_pressed("camera_drag"):
+		rot_y = rotation.y - event.relative.x * 0.01
+
+	# Clamp the rotation to prevent flipping
+	rotation.y = rot_y
+	print("Rotation Y: ", rotation.y)
+
 
 func _physics_process(delta: float) -> void:
 	# 2d vector = (x, y) where x -1 is forward, 1 is backward, y -1 is right, 1 is left
