@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdg2kdydr1rqw"]
+
+[ext_resource type="Script" uid="uid://dv1bu7ne71qsh" path="res://scripts/player/attacks/weapons/sword/main.gd" id="1_yd5vb"]
+
+[node name="SwordMain" type="Node"]
+script = ExtResource("1_yd5vb")
+metadata/_custom_type_script = "uid://gj41tpblw1v4"

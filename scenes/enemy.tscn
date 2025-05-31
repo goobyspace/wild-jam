@@ -21,10 +21,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_7p1mj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_md0e3")
 
-[node name="Node" type="Node" parent="." node_paths=PackedStringArray("attacks")]
+[node name="attack_controller" type="Node" parent="." node_paths=PackedStringArray("attacks")]
 script = ExtResource("1_7p1mj")
 attacks = [null]
 
-[node name="explosion" type="Node" parent="Node"]
+[node name="explosion" type="Node" parent="attack_controller"]
 script = ExtResource("2_md0e3")
 explosion_node = ExtResource("3_4ra3w")

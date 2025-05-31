@@ -13,6 +13,6 @@ func attack() -> void:
 	await get_tree().create_timer(attack_cooldown).timeout
 	is_on_cooldown = false
 
-func on_attack():
+func on_attack(): # override this method in subclasses to make attacks
 	await get_tree().create_timer(0).timeout
 	return true
