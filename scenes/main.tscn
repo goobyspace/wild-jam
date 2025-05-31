@@ -41,7 +41,6 @@ points = PackedVector3Array(0.457871, 0.198079, 0.0157824, -0.48874, -0.0916874,
 transform = Transform3D(-1, 5.84973e-08, -6.49678e-08, 3.55271e-15, 0.743145, 0.669131, 8.74228e-08, 0.669131, -0.743145, 0, 27.1, 0)
 light_color = Color(1, 0.906795, 0.885077, 1)
 shadow_enabled = true
-directional_shadow_max_distance = 120.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0xm2m")
@@ -83,8 +82,17 @@ operation = 2
 radius = 2.3
 sides = 16
 
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6, 2.575, 0)
+radius = 1.2
+height = 5.55
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="CSGCombiner3D/CSGCylinder3D"]
+operation = 2
+outer_radius = 1.6
+
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(-0.746638, 0, 0.66523, 0, 1, 0, -0.66523, 0, -0.746638, -7.6, 0.8, -4.1)
+transform = Transform3D(-0.746638, 0, 0.66523, 0, 1, 0, -0.66523, 0, -0.746638, -7.4, 0, -4.1)
 
 [node name="Damaging Collider Test" type="MeshInstance3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 23.5, 1.04308e-07, 22.2)

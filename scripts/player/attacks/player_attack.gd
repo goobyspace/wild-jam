@@ -1,6 +1,8 @@
 class_name PlayerAttack extends Node
 
 @export var attack_cooldown: float = 0.5
+@export var animation_player: AnimationPlayer
+@export var animation: Animation
 
 var is_on_cooldown: bool = false
 

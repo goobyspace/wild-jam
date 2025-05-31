@@ -1,18 +1,19 @@
-[gd_scene load_steps=12 format=3 uid="uid://ccmmifktpgjib"]
+[gd_scene load_steps=17 format=3 uid="uid://ccmmifktpgjib"]
 
 [ext_resource type="Script" uid="uid://b6mge7o3yiv0u" path="res://scripts/player/movement/player_movement.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bj3a4q0fcalg4" path="res://scripts/player/hp/player_hp.gd" id="2_g2els"]
 [ext_resource type="Script" uid="uid://cbwmm7hsi6ade" path="res://scripts/player/hp/hp_bar.gd" id="2_qhqgy"]
 [ext_resource type="Script" uid="uid://cry7gmyp7ch24" path="res://scripts/player/attacks/player_attack_controller.gd" id="4_dqkch"]
+[ext_resource type="PackedScene" uid="uid://c5pmsswu5f7bf" path="res://scripts/player/attacks/weapons/sword/sword_main.tscn" id="5_qlg0r"]
+[ext_resource type="PackedScene" uid="uid://bs616ldd5wkpy" path="res://assets/models/fox_knight.gltf" id="6_tuyoq"]
+[ext_resource type="Animation" uid="uid://upcxm4b2g5a4" path="res://assets/models/animations/tpose.res" id="7_y4r1p"]
+[ext_resource type="Animation" uid="uid://qixm0x3wvrbs" path="res://assets/models/animations/run forward.res" id="8_d2wvv"]
+[ext_resource type="Animation" uid="uid://7ba1wfxtesni" path="res://assets/models/animations/idle.res" id="9_3v2ag"]
+[ext_resource type="Animation" uid="uid://b8iswqochcsyt" path="res://assets/models/animations/attack.res" id="10_jej6c"]
+[ext_resource type="Script" uid="uid://u5jc1fp3va0w" path="res://scripts/player/movement/player_animations.gd" id="11_d2wvv"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_i3pqv"]
-points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vyb7"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_onrkg"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4flbx"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_fjrip"]
+size = Vector3(0.9, 4.7, 0.9)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3vyb7"]
 viewport_path = NodePath("SubViewport")
@@ -28,22 +29,27 @@ bg_color = Color(0.746585, 2.00946e-06, 8.66354e-07, 1)
 skew = Vector2(0.2, 0)
 corner_detail = 16
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "collision", "health_bar")]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f1ej7"]
+_data = {
+&"attack": ExtResource("10_jej6c"),
+&"idle": ExtResource("9_3v2ag"),
+&"run forward": ExtResource("8_d2wvv"),
+&"tpose": ExtResource("7_y4r1p")
+}
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("collision", "model", "health_bar", "animation_player")]
 platform_wall_layers = 1
 script = ExtResource("1_4flbx")
-mesh = NodePath("MeshInstance3D")
 collision = NodePath("CollisionShape3D")
+model = NodePath("model")
 health_bar = NodePath("health_bar")
+animation_player = NodePath("model/animations")
+idle_animation = ExtResource("9_3v2ag")
+move_animation = ExtResource("8_d2wvv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_i3pqv")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-material_overlay = SubResource("StandardMaterial3D_3vyb7")
-lod_bias = 0.001
-visibility_range_fade_mode = 1
-mesh = SubResource("CapsuleMesh_onrkg")
-surface_material_override/0 = SubResource("StandardMaterial3D_4flbx")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 2.3, 0.05)
+shape = SubResource("BoxShape3D_fjrip")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, -0.707107, 0.707107, 0, 0.707107, 0.707107, -1, 3.09086e-08, -3.09086e-08, 75, 75, 0)
@@ -54,9 +60,10 @@ near = 0.001
 far = 1500.0
 
 [node name="health_bar" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, 0)
-pixel_size = 0.005
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.4, 0)
+pixel_size = 0.003
 billboard = 1
+no_depth_test = true
 texture = SubResource("ViewportTexture_3vyb7")
 
 [node name="SubViewport" type="SubViewport" parent="."]
@@ -77,5 +84,22 @@ health = NodePath("../../health")
 [node name="health" type="Node" parent="."]
 script = ExtResource("2_g2els")
 
-[node name="attack_controller" type="Node" parent="."]
+[node name="attack_controller" type="Node" parent="." node_paths=PackedStringArray("mainAttack")]
 script = ExtResource("4_dqkch")
+mainAttack = NodePath("SwordMain")
+
+[node name="SwordMain" parent="attack_controller" node_paths=PackedStringArray("animation_player") instance=ExtResource("5_qlg0r")]
+animation_player = NodePath("../../model/animations")
+animation = ExtResource("10_jej6c")
+
+[node name="model" parent="." instance=ExtResource("6_tuyoq")]
+
+[node name="animations" type="AnimationPlayer" parent="model"]
+libraries = {
+&"player": SubResource("AnimationLibrary_f1ej7")
+}
+autoplay = "player/idle"
+playback_default_blend_time = 0.5
+script = ExtResource("11_d2wvv")
+
+[connection signal="animation_finished" from="model/animations" to="model/animations" method="_on_animation_finished"]

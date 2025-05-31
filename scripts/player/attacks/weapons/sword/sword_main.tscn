@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdg2kdydr1rqw"]
+[gd_scene load_steps=2 format=3 uid="uid://c5pmsswu5f7bf"]
 
 [ext_resource type="Script" uid="uid://dv1bu7ne71qsh" path="res://scripts/player/attacks/weapons/sword/main.gd" id="1_yd5vb"]
 

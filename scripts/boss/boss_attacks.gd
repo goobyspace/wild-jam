@@ -8,8 +8,9 @@ func _ready() -> void:
 	tree = get_tree()
 
 func on_attack() -> bool:
-	await tree.create_timer(delay_time).timeout #
+	await tree.create_timer(delay_time).timeout
 	var result = await attack()
+	await tree.create_timer(recovery_time).timeout
 	return result
 
 func on_finish() -> void:
