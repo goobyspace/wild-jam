@@ -14,4 +14,4 @@ func on_health_changed(new_health: int) -> void:
 	self.show()
 	var newValue = float(new_health) / float(max_health) * 100
 	var tween = create_tween()
-	tween.tween_property(self, "value", newValue, health_decrease_duration)
+	tween.tween_property(self, "value", newValue, health_decrease_duration).set_trans(Tween.TRANS_BOUNCE)

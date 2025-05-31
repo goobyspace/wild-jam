@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dwclbmbobga60"]
+[gd_scene load_steps=12 format=3 uid="uid://dwclbmbobga60"]
 
 [ext_resource type="PackedScene" uid="uid://ccmmifktpgjib" path="res://scenes/player.tscn" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://6yt0nxfnst60" path="res://scripts/damage_collider.gd" id="2_0wfyh"]
+[ext_resource type="Script" uid="uid://dnycc4agcuoos" path="res://scripts/boss/attacks/damage_collider.gd" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://bqth5yqagfvxu" path="res://scenes/enemy.tscn" id="3_sugp2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
 sky_top_color = Color(0.119107, 0.343829, 0.33447, 1)
@@ -83,17 +84,20 @@ radius = 2.3
 sides = 16
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 0, 0, 0)
+transform = Transform3D(-0.746638, 0, 0.66523, 0, 1, 0, -0.66523, 0, -0.746638, -7.6, 0.8, -4.1)
 
 [node name="Damaging Collider Test" type="MeshInstance3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 6.7, -0.0999999, 4)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 23.5, 1.04308e-07, 22.2)
 mesh = SubResource("SphereMesh_sugp2")
 
 [node name="Area3D" type="Area3D" parent="Damaging Collider Test"]
 priority = 1
-script = ExtResource("2_0wfyh")
+script = ExtResource("2_sugp2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Damaging Collider Test/Area3D"]
 shape = SubResource("ConvexPolygonShape3D_jyhfs")
+
+[node name="Enemy" parent="." instance=ExtResource("3_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 
 [connection signal="body_entered" from="Damaging Collider Test/Area3D" to="Damaging Collider Test/Area3D" method="_on_body_entered"]

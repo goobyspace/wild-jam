@@ -13,6 +13,9 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4flbx"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_3vyb7"]
+viewport_path = NodePath("health_bar/SubViewport")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3vyb7"]
 bg_color = Color(0.117647, 0, 0, 1)
 skew = Vector2(0.2, 0)
@@ -24,13 +27,12 @@ bg_color = Color(0.746585, 2.00946e-06, 8.66354e-07, 1)
 skew = Vector2(0.2, 0)
 corner_detail = 16
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_3vyb7"]
-viewport_path = NodePath("SubViewport")
-
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("mesh")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "collision", "health_bar")]
 platform_wall_layers = 1
 script = ExtResource("1_4flbx")
 mesh = NodePath("MeshInstance3D")
+collision = NodePath("CollisionShape3D")
+health_bar = NodePath("health_bar")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_i3pqv")
@@ -50,26 +52,26 @@ size = 30.0
 near = 0.001
 far = 1500.0
 
-[node name="SubViewport" type="SubViewport" parent="."]
-transparent_bg = true
-size = Vector2i(170, 20)
+[node name="health_bar" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, 0)
+pixel_size = 0.005
+billboard = 1
+texture = SubResource("ViewportTexture_3vyb7")
 
-[node name="ProgressBar" type="ProgressBar" parent="SubViewport" node_paths=PackedStringArray("health")]
-offset_left = 3.0
-offset_right = 167.0
-offset_bottom = 20.0
+[node name="SubViewport" type="SubViewport" parent="health_bar"]
+transparent_bg = true
+size = Vector2i(680, 80)
+
+[node name="ProgressBar" type="ProgressBar" parent="health_bar/SubViewport" node_paths=PackedStringArray("health")]
+offset_left = 12.0
+offset_right = 668.0
+offset_bottom = 80.0
 theme_override_styles/background = SubResource("StyleBoxFlat_3vyb7")
 theme_override_styles/fill = SubResource("StyleBoxFlat_g2els")
 value = 10.0
 show_percentage = false
 script = ExtResource("2_qhqgy")
-health = NodePath("../../health")
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, 0)
-pixel_size = 0.025
-billboard = 1
-texture = SubResource("ViewportTexture_3vyb7")
+health = NodePath("../../../health")
 
 [node name="health" type="Node" parent="."]
 script = ExtResource("2_g2els")
