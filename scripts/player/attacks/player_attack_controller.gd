@@ -12,13 +12,13 @@ func _ready() -> void:
 		return
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("attack_main"):
+	if Input.is_action_just_pressed("attack_normal"):
 		mainAttack.attack()
 	elif Input.is_action_just_pressed("attack_primary"):
 		primaryAttack.attack()
 	elif Input.is_action_just_pressed("attack_secondary"):
 		secondaryAttack.attack()
-	elif Input.is_action_just_pressed("spell_primary"):
+	elif Input.is_action_just_pressed("spell_one"):
 		spellPrimary.attack()
-	elif Input.is_action_just_pressed("spell_secondary"):
+	elif Input.is_action_just_pressed("spell_two"):
 		spellSecondary.attack()
