@@ -1,19 +1,17 @@
-[gd_scene load_steps=17 format=3 uid="uid://ccmmifktpgjib"]
+[gd_scene load_steps=31 format=3 uid="uid://ccmmifktpgjib"]
 
 [ext_resource type="Script" uid="uid://b6mge7o3yiv0u" path="res://scripts/player/movement/player_movement.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bj3a4q0fcalg4" path="res://scripts/player/hp/player_hp.gd" id="2_g2els"]
 [ext_resource type="Script" uid="uid://cbwmm7hsi6ade" path="res://scripts/player/hp/hp_bar.gd" id="2_qhqgy"]
-[ext_resource type="Script" uid="uid://cry7gmyp7ch24" path="res://scripts/player/attacks/player_attack_controller.gd" id="4_dqkch"]
-[ext_resource type="PackedScene" uid="uid://c5pmsswu5f7bf" path="res://scripts/player/attacks/weapons/sword/sword_main.tscn" id="5_qlg0r"]
 [ext_resource type="PackedScene" uid="uid://bs616ldd5wkpy" path="res://assets/models/fox_knight.gltf" id="6_tuyoq"]
+[ext_resource type="Script" uid="uid://ou8gmdvp5iyq" path="res://scripts/player/abilities/player_ability_controller.gd" id="6_y4r1p"]
+[ext_resource type="PackedScene" uid="uid://c5pmsswu5f7bf" path="res://scripts/player/abilities/weapons/sword/sword_main.tscn" id="7_d2wvv"]
 [ext_resource type="Animation" uid="uid://upcxm4b2g5a4" path="res://assets/models/animations/tpose.res" id="7_y4r1p"]
+[ext_resource type="Script" uid="uid://ddjqahwbx1afm" path="res://scripts/player/abilities/dash/main_dash.gd" id="8_3v2ag"]
 [ext_resource type="Animation" uid="uid://qixm0x3wvrbs" path="res://assets/models/animations/run forward.res" id="8_d2wvv"]
 [ext_resource type="Animation" uid="uid://7ba1wfxtesni" path="res://assets/models/animations/idle.res" id="9_3v2ag"]
 [ext_resource type="Animation" uid="uid://b8iswqochcsyt" path="res://assets/models/animations/attack.res" id="10_jej6c"]
 [ext_resource type="Script" uid="uid://u5jc1fp3va0w" path="res://scripts/player/movement/player_animations.gd" id="11_d2wvv"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_fjrip"]
-size = Vector3(0.9, 4.7, 0.9)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3vyb7"]
 viewport_path = NodePath("SubViewport")
@@ -29,6 +27,26 @@ bg_color = Color(0.746585, 2.00946e-06, 8.66354e-07, 1)
 skew = Vector2(0.2, 0)
 corner_detail = 16
 
+[sub_resource type="Animation" id="Animation_d2wvv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../AnimationTree:parameters/state/current_state")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3v2ag"]
+_data = {
+&"RESET": SubResource("Animation_d2wvv")
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f1ej7"]
 _data = {
 &"attack": ExtResource("10_jej6c"),
@@ -37,30 +55,113 @@ _data = {
 &"tpose": ExtResource("7_y4r1p")
 }
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("collision", "model", "health_bar", "animation_player")]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d2wvv"]
+animation = &"player/attack"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_d2wvv"]
+filter_enabled = true
+filters = ["Node/root/body/torso2", "Node/root/body/torso2/arm_left", "Node/root/body/torso2/arm_left/left_arm2", "Node/root/body/torso2/arm_right", "Node/root/body/torso2/arm_right/right_arm2", "Node/root/body/torso2/head2", "Node/root/body/torso2/tail2"]
+fadein_time = 0.1
+fadeout_time = 0.1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jej6c"]
+animation = &"player/tpose"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_3v2ag"]
+fadein_time = 0.05
+fadeout_time = 0.05
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qfm1y"]
+animation = &"player/tpose"
+use_custom_timeline = true
+timeline_length = 0.3
+stretch_time_scale = true
+start_offset = 0.2
+loop_mode = 0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3v2ag"]
+animation = &"player/run forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a8ls1"]
+animation = &"player/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f1ej7"]
+animation = &"player/tpose"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oprun"]
+animation = &"player/tpose"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_a8ls1"]
+xfade_time = 0.1
+input_0/name = "forward"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "left"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "right"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+input_3/name = "back"
+input_3/auto_advance = false
+input_3/break_loop_at_end = false
+input_3/reset = true
+input_4/name = "idle"
+input_4/auto_advance = false
+input_4/break_loop_at_end = false
+input_4/reset = true
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_d2wvv"]
+graph_offset = Vector2(-211.65, -80.575)
+nodes/attack_animation/node = SubResource("AnimationNodeAnimation_d2wvv")
+nodes/attack_animation/position = Vector2(620, 380)
+nodes/attack_normal/node = SubResource("AnimationNodeOneShot_d2wvv")
+nodes/attack_normal/position = Vector2(920, 0)
+nodes/back/node = SubResource("AnimationNodeAnimation_jej6c")
+nodes/back/position = Vector2(-380, 380)
+nodes/dash/node = SubResource("AnimationNodeOneShot_3v2ag")
+nodes/dash/position = Vector2(560, 20)
+nodes/dash_animation/node = SubResource("AnimationNodeAnimation_qfm1y")
+nodes/dash_animation/position = Vector2(320, 240)
+nodes/forward/node = SubResource("AnimationNodeAnimation_3v2ag")
+nodes/forward/position = Vector2(-380, -100)
+nodes/idle/node = SubResource("AnimationNodeAnimation_a8ls1")
+nodes/idle/position = Vector2(-380, 540)
+nodes/left/node = SubResource("AnimationNodeAnimation_f1ej7")
+nodes/left/position = Vector2(-380, 60)
+nodes/output/position = Vector2(1180, 40)
+nodes/right/node = SubResource("AnimationNodeAnimation_oprun")
+nodes/right/position = Vector2(-380, 220)
+nodes/walk_direction/node = SubResource("AnimationNodeTransition_a8ls1")
+nodes/walk_direction/position = Vector2(100, 80)
+node_connections = [&"attack_normal", 0, &"dash", &"attack_normal", 1, &"attack_animation", &"dash", 0, &"walk_direction", &"dash", 1, &"dash_animation", &"output", 0, &"attack_normal", &"walk_direction", 0, &"forward", &"walk_direction", 1, &"left", &"walk_direction", 2, &"right", &"walk_direction", 3, &"back", &"walk_direction", 4, &"idle"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_d2wvv"]
+height = 1.95
+radius = 0.4
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("model", "animation_tree")]
+axis_lock_linear_y = true
 platform_wall_layers = 1
 script = ExtResource("1_4flbx")
-collision = NodePath("CollisionShape3D")
 model = NodePath("model")
-health_bar = NodePath("health_bar")
-animation_player = NodePath("model/animations")
+animation_tree = NodePath("AnimationTree")
 idle_animation = ExtResource("9_3v2ag")
 move_animation = ExtResource("8_d2wvv")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 2.3, 0.05)
-shape = SubResource("BoxShape3D_fjrip")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, -0.707107, 0.707107, 0, 0.707107, 0.707107, -1, 3.09086e-08, -3.09086e-08, 75, 75, 0)
 projection = 1
 current = true
-size = 30.0
+size = 12.0
 near = 0.001
 far = 1500.0
 
 [node name="health_bar" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7, 0)
 pixel_size = 0.003
 billboard = 1
 no_depth_test = true
@@ -84,22 +185,50 @@ health = NodePath("../../health")
 [node name="health" type="Node" parent="."]
 script = ExtResource("2_g2els")
 
-[node name="attack_controller" type="Node" parent="." node_paths=PackedStringArray("mainAttack")]
-script = ExtResource("4_dqkch")
-mainAttack = NodePath("SwordMain")
+[node name="attack_controller" type="Node" parent="." node_paths=PackedStringArray("mainAttack", "dash")]
+script = ExtResource("6_y4r1p")
+mainAttack = NodePath("sword_main")
+dash = NodePath("dash")
 
-[node name="SwordMain" parent="attack_controller" node_paths=PackedStringArray("animation_player") instance=ExtResource("5_qlg0r")]
-animation_player = NodePath("../../model/animations")
-animation = ExtResource("10_jej6c")
+[node name="sword_main" parent="attack_controller" node_paths=PackedStringArray("animation_tree") instance=ExtResource("7_d2wvv")]
+animation_tree = NodePath("../../AnimationTree")
+
+[node name="dash" type="Node" parent="attack_controller" node_paths=PackedStringArray("collision", "health_bar", "character", "animation_tree")]
+script = ExtResource("8_3v2ag")
+collision = NodePath("../../CollisionShape3D")
+health_bar = NodePath("../../health_bar")
+character = NodePath("../..")
+animation_tree = NodePath("../../AnimationTree")
+animation = 1
 
 [node name="model" parent="." instance=ExtResource("6_tuyoq")]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)
 
 [node name="animations" type="AnimationPlayer" parent="model"]
 libraries = {
+&"": SubResource("AnimationLibrary_3v2ag"),
 &"player": SubResource("AnimationLibrary_f1ej7")
 }
 autoplay = "player/idle"
 playback_default_blend_time = 0.5
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../model")
+tree_root = SubResource("AnimationNodeBlendTree_d2wvv")
+anim_player = NodePath("../model/animations")
+parameters/attack_normal/active = false
+parameters/attack_normal/internal_active = false
+parameters/attack_normal/request = 0
+parameters/dash/active = false
+parameters/dash/internal_active = false
+parameters/dash/request = 0
+parameters/walk_direction/current_state = "forward"
+parameters/walk_direction/transition_request = ""
+parameters/walk_direction/current_index = 0
 script = ExtResource("11_d2wvv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01693, 0)
+shape = SubResource("CylinderShape3D_d2wvv")
 
 [connection signal="animation_finished" from="model/animations" to="model/animations" method="_on_animation_finished"]

@@ -21,10 +21,10 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7dm0k"]
-size = Vector2(50, 50)
+size = Vector2(500, 500)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ig7tw"]
-points = PackedVector3Array(25.3919, 0.396748, 25.3919, -25.3919, -0.396748, -25.3919, -25.3919, 0.396748, -25.3919, 25.3919, -0.396748, -25.3919, -25.3919, -0.396748, 25.3919, -25.3919, 0.396748, 25.3919, 25.3919, 0.396748, -25.3919, 25.3919, -0.396748, 25.3919)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sugp2"]
+points = PackedVector3Array(253.968, 3.96825, 253.968, -253.968, -3.96825, -253.968, -253.968, 3.96825, -253.968, 253.968, -3.96825, -253.968, -253.968, -3.96825, 253.968, -253.968, 3.96825, 253.968, 253.968, 3.96825, -253.968, 253.968, -3.96825, 253.968)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wfyh"]
 albedo_color = Color(1, 0, 0.258824, 1)
@@ -51,7 +51,7 @@ mesh = SubResource("PlaneMesh_7dm0k")
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_ig7tw")
+shape = SubResource("ConvexPolygonShape3D_sugp2")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 use_collision = true
