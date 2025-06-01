@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var speed := 8.0
+@export var speed := 4.0
 
 @export var model: Node3D
 @export var animation_tree: AnimationTree

@@ -1,7 +1,7 @@
 [gd_scene load_steps=31 format=3 uid="uid://ccmmifktpgjib"]
 
 [ext_resource type="Script" uid="uid://b6mge7o3yiv0u" path="res://scripts/player/movement/player_movement.gd" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://bj3a4q0fcalg4" path="res://scripts/player/hp/player_hp.gd" id="2_g2els"]
+[ext_resource type="Script" uid="uid://bj3a4q0fcalg4" path="res://scripts/hp.gd" id="2_g2els"]
 [ext_resource type="Script" uid="uid://cbwmm7hsi6ade" path="res://scripts/player/hp/hp_bar.gd" id="2_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://bs616ldd5wkpy" path="res://assets/models/fox_knight.gltf" id="6_tuyoq"]
 [ext_resource type="Script" uid="uid://ou8gmdvp5iyq" path="res://scripts/player/abilities/player_ability_controller.gd" id="6_y4r1p"]
@@ -115,7 +115,7 @@ input_4/break_loop_at_end = false
 input_4/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_d2wvv"]
-graph_offset = Vector2(-211.65, -80.575)
+graph_offset = Vector2(-128.013, -130.929)
 nodes/attack_animation/node = SubResource("AnimationNodeAnimation_d2wvv")
 nodes/attack_animation/position = Vector2(620, 380)
 nodes/attack_normal/node = SubResource("AnimationNodeOneShot_d2wvv")
@@ -144,6 +144,7 @@ height = 1.95
 radius = 0.4
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("model", "animation_tree")]
+transform = Transform3D(0.977416, 0, -0.211325, 0, 1, 0, 0.211325, 0, 0.977416, 0, 0, 0)
 axis_lock_linear_y = true
 platform_wall_layers = 1
 script = ExtResource("1_4flbx")
@@ -180,18 +181,15 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_g2els")
 value = 10.0
 show_percentage = false
 script = ExtResource("2_qhqgy")
-health = NodePath("../../health")
+health = NodePath("../../player_health")
 
-[node name="health" type="Node" parent="."]
+[node name="player_health" type="Node" parent="."]
 script = ExtResource("2_g2els")
 
-[node name="attack_controller" type="Node" parent="." node_paths=PackedStringArray("mainAttack", "dash")]
+[node name="attack_controller" type="Node3D" parent="." node_paths=PackedStringArray("mainAttack", "dash")]
 script = ExtResource("6_y4r1p")
-mainAttack = NodePath("sword_main")
+mainAttack = NodePath("../model/sword_main")
 dash = NodePath("dash")
-
-[node name="sword_main" parent="attack_controller" node_paths=PackedStringArray("animation_tree") instance=ExtResource("7_d2wvv")]
-animation_tree = NodePath("../../AnimationTree")
 
 [node name="dash" type="Node" parent="attack_controller" node_paths=PackedStringArray("collision", "health_bar", "character", "animation_tree")]
 script = ExtResource("8_3v2ag")
@@ -211,6 +209,10 @@ libraries = {
 }
 autoplay = "player/idle"
 playback_default_blend_time = 0.5
+
+[node name="sword_main" parent="model" node_paths=PackedStringArray("animation_tree") instance=ExtResource("7_d2wvv")]
+transform = Transform3D(2.22222, 0, -2.98023e-08, 0, 2.22222, 0, 2.98023e-08, 0, 2.22222, 0, 0, 0)
+animation_tree = NodePath("../../AnimationTree")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../model")
