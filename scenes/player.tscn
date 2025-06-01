@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ccmmifktpgjib"]
+[gd_scene load_steps=33 format=3 uid="uid://ccmmifktpgjib"]
 
 [ext_resource type="Script" uid="uid://b6mge7o3yiv0u" path="res://scripts/player/movement/player_movement.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bj3a4q0fcalg4" path="res://scripts/hp.gd" id="2_g2els"]
@@ -12,6 +12,8 @@
 [ext_resource type="Animation" uid="uid://7ba1wfxtesni" path="res://assets/models/animations/idle.res" id="9_3v2ag"]
 [ext_resource type="Animation" uid="uid://b8iswqochcsyt" path="res://assets/models/animations/attack.res" id="10_jej6c"]
 [ext_resource type="Script" uid="uid://u5jc1fp3va0w" path="res://scripts/player/movement/player_animations.gd" id="11_d2wvv"]
+[ext_resource type="Animation" uid="uid://x5das8no1435" path="res://assets/models/animations/run backwards.res" id="11_f1ej7"]
+[ext_resource type="Animation" uid="uid://dfwy182bkmi10" path="res://assets/models/animations/strafe_left.res" id="12_oprun"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3vyb7"]
 viewport_path = NodePath("SubViewport")
@@ -51,7 +53,9 @@ _data = {
 _data = {
 &"attack": ExtResource("10_jej6c"),
 &"idle": ExtResource("9_3v2ag"),
+&"run backwards": ExtResource("11_f1ej7"),
 &"run forward": ExtResource("8_d2wvv"),
+&"strafe_left": ExtResource("12_oprun"),
 &"tpose": ExtResource("7_y4r1p")
 }
 
@@ -65,7 +69,7 @@ fadein_time = 0.1
 fadeout_time = 0.1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jej6c"]
-animation = &"player/tpose"
+animation = &"player/run backwards"
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_3v2ag"]
 fadein_time = 0.05
@@ -86,7 +90,7 @@ animation = &"player/run forward"
 animation = &"player/idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f1ej7"]
-animation = &"player/tpose"
+animation = &"player/strafe_left"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oprun"]
 animation = &"player/tpose"
@@ -115,7 +119,7 @@ input_4/break_loop_at_end = false
 input_4/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_d2wvv"]
-graph_offset = Vector2(-128.013, -130.929)
+graph_offset = Vector2(-566.24, -26.4903)
 nodes/attack_animation/node = SubResource("AnimationNodeAnimation_d2wvv")
 nodes/attack_animation/position = Vector2(620, 380)
 nodes/attack_normal/node = SubResource("AnimationNodeOneShot_d2wvv")
@@ -150,8 +154,6 @@ platform_wall_layers = 1
 script = ExtResource("1_4flbx")
 model = NodePath("model")
 animation_tree = NodePath("AnimationTree")
-idle_animation = ExtResource("9_3v2ag")
-move_animation = ExtResource("8_d2wvv")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, -0.707107, 0.707107, 0, 0.707107, 0.707107, -1, 3.09086e-08, -3.09086e-08, 75, 75, 0)
@@ -196,6 +198,7 @@ script = ExtResource("8_3v2ag")
 collision = NodePath("../../CollisionShape3D")
 health_bar = NodePath("../../health_bar")
 character = NodePath("../..")
+ability_cooldown = 1.5
 animation_tree = NodePath("../../AnimationTree")
 animation = 1
 

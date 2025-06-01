@@ -1,6 +1,6 @@
 class_name PlayerAbility extends Node
 
-@export var ability_cooldown: float = 0.5
+@export var ability_cooldown: float = 1.0
 @export var animation_tree: AnimationTree
 @export var animation: PlayerAnimations.ActionAnimations
 

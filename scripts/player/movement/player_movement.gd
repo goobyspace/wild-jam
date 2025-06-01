@@ -4,10 +4,8 @@ extends CharacterBody3D
 
 @export var model: Node3D
 @export var animation_tree: AnimationTree
-@export var idle_animation: Animation
-@export var move_animation: Animation
 
-var current_animation: Animation = idle_animation
+var current_animation := PlayerAnimations.WalkAnimations.idle
 var camera: Camera3D
 var speed_adjusted := speed
 var initial_rotation := rotation.y
@@ -44,6 +42,50 @@ func adjust_speed(new_speed: float, duration: float) -> void:
 	await get_tree().create_timer(duration).timeout
 	speed_adjusted = speed
 
+const rotations = {
+	-314: "forward",
+	314: "forward",
+	0: "back",
+	157: "right",
+	-157: "left",
+}
+func set_walking_animation():
+		# if the player isnt moving, set the idle animation to play, otherwise do the running animation
+	if direction == Vector3.ZERO:
+		if current_animation != PlayerAnimations.WalkAnimations.idle:
+			animation_tree.set_passive(PlayerAnimations.WalkAnimations.idle)
+			current_animation = PlayerAnimations.WalkAnimations.idle
+	else:
+		var angle = int(model.global_basis.z.angle_to(direction) * 100)
+		var cross = model.global_basis.z.cross(direction)
+		var dot = cross.dot(Vector3.UP)
+		if dot < 0:
+			angle = - angle
+
+		var closest_angle = 0
+		for key in rotations:
+			if abs(angle - key) < abs(angle - closest_angle):
+				closest_angle = key
+		print(rotations[closest_angle])
+		match rotations[closest_angle]:
+			"left":
+				if current_animation != PlayerAnimations.WalkAnimations.left:
+					animation_tree.set_passive(PlayerAnimations.WalkAnimations.left)
+					current_animation = PlayerAnimations.WalkAnimations.left
+			"right":
+				if current_animation != PlayerAnimations.WalkAnimations.right:
+					animation_tree.set_passive(PlayerAnimations.WalkAnimations.right)
+					current_animation = PlayerAnimations.WalkAnimations.right
+			"back":
+				if current_animation != PlayerAnimations.WalkAnimations.back:
+					animation_tree.set_passive(PlayerAnimations.WalkAnimations.back)
+					current_animation = PlayerAnimations.WalkAnimations.back
+			"forward":
+				if current_animation != PlayerAnimations.WalkAnimations.forward:
+					animation_tree.set_passive(PlayerAnimations.WalkAnimations.forward)
+					current_animation = PlayerAnimations.WalkAnimations.forward
+
+
 func _physics_process(delta: float) -> void:
 	# 2d vector = (x, y) where x -1 is forward, 1 is backward, y -1 is right, 1 is left
 	var input_vectors := Input.get_vector("move_forward", "move_back", "move_right", "move_left")
@@ -57,24 +99,14 @@ func _physics_process(delta: float) -> void:
 	# and you cannot dash again until the cooldown is over
 	var current_speed = speed_adjusted * delta * 100;
 
-	# if the player isnt moving, set the idle animation to play, otherwise do the running animation
-	if direction == Vector3.ZERO:
-		if current_animation != idle_animation:
-			animation_tree.set_passive(PlayerAnimations.WalkAnimations.idle)
-			current_animation = idle_animation
-
-	else:
-		if current_animation != move_animation:
-			animation_tree.set_passive(PlayerAnimations.WalkAnimations.forward)
-			current_animation = move_animation
-
-
 	velocity.x = direction.x * current_speed
 	velocity.z = direction.z * current_speed
 
 	# move and slide moves the player in the direction of the velocity vector and handles collisions by having the player slide along walls
-
 	move_and_slide()
+
+	# set the appropriate walking animation based on the direction the player is moving
+	set_walking_animation()
 
 var rot_y = 0
 # if right click is pressed and you're dragging the mouse we'll rotate the player

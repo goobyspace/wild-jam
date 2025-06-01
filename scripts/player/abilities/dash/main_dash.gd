@@ -1,6 +1,6 @@
 extends PlayerAbility
 
-@export var dash_speed := 16
+@export var dash_speed := 12
 @export var dash_duration := 0.3
 @export var dash_speed_duration := 0.2
 @export var collision: CollisionShape3D
