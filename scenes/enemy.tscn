@@ -1,18 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://bqth5yqagfvxu"]
+[gd_scene load_steps=11 format=3 uid="uid://bqth5yqagfvxu"]
 
 [ext_resource type="Script" uid="uid://dxkpnugcif1tb" path="res://scripts/boss/boss_attack_controller.gd" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://c48qofkpgix3f" path="res://scripts/boss/attacks/explosion/explosion.gd" id="2_md0e3"]
 [ext_resource type="PackedScene" uid="uid://brlbm87anu7d3" path="res://scripts/boss/attacks/explosion/explosion_bubble.tscn" id="3_4ra3w"]
 [ext_resource type="Script" uid="uid://bj3a4q0fcalg4" path="res://scripts/hp.gd" id="4_5uy6h"]
 [ext_resource type="Script" uid="uid://cbwmm7hsi6ade" path="res://scripts/player/hp/hp_bar.gd" id="5_c4w8v"]
+[ext_resource type="PackedScene" uid="uid://bc0nodven5dkp" path="res://assets/models/hound_wizard.gltf" id="6_xwavj"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_8tegq"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7p1mj"]
-albedo_color = Color(0.724159, 0.223474, 0, 1)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_md0e3"]
-points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_nenq2"]
+height = 3.1
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_c4w8v"]
 viewport_path = NodePath("SubViewport")
@@ -29,13 +25,11 @@ skew = Vector2(0.2, 0)
 corner_detail = 16
 
 [node name="Enemy" type="CharacterBody3D"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_8tegq")
-surface_material_override/0 = SubResource("StandardMaterial3D_7p1mj")
+axis_lock_linear_y = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_md0e3")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, 0)
+shape = SubResource("CylinderShape3D_nenq2")
 
 [node name="attack_controller" type="Node" parent="." node_paths=PackedStringArray("attacks")]
 script = ExtResource("1_7p1mj")
@@ -49,7 +43,7 @@ explosion_node = ExtResource("3_4ra3w")
 script = ExtResource("4_5uy6h")
 
 [node name="health_bar" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6, 0)
 pixel_size = 0.006
 billboard = 1
 no_depth_test = true
@@ -69,3 +63,5 @@ value = 10.0
 show_percentage = false
 script = ExtResource("5_c4w8v")
 health = NodePath("../../enemy_health")
+
+[node name="blockbench_export" parent="." instance=ExtResource("6_xwavj")]
