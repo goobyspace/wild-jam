@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dwclbmbobga60"]
+[gd_scene load_steps=13 format=3 uid="uid://dwclbmbobga60"]
 
 [ext_resource type="PackedScene" uid="uid://ccmmifktpgjib" path="res://scenes/player.tscn" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://dnycc4agcuoos" path="res://scripts/boss/attacks/damage_collider.gd" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://bqth5yqagfvxu" path="res://scenes/enemy.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://bpp55gui2f1h5" path="res://ui/main.tscn" id="4_jyhfs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
 sky_top_color = Color(0.119107, 0.343829, 0.33447, 1)
@@ -107,5 +108,9 @@ shape = SubResource("ConvexPolygonShape3D_jyhfs")
 
 [node name="Enemy" parent="." instance=ExtResource("3_sugp2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Main" parent="CanvasLayer" instance=ExtResource("4_jyhfs")]
 
 [connection signal="body_entered" from="Damaging Collider Test/Area3D" to="Damaging Collider Test/Area3D" method="_on_body_entered"]

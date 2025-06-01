@@ -56,6 +56,13 @@ func set_walking_animation():
 			animation_tree.set_passive(PlayerAnimations.WalkAnimations.idle)
 			current_animation = PlayerAnimations.WalkAnimations.idle
 	else:
+		# we use angle to determine the angle the model is facing (aka the mouse) vs the direction the player is moving
+		# this gives us the forwards and backwards directions, but the angle doesnt do negative values so we dont know when its left/right
+		# so we use the cross/dot product here to determine if the angle is negative or positive
+		# positive = right, negative = left
+		# we then figure out which of the four directions the current angle is closest to
+		# and set the animation to the most appropriate one
+		# check the animation tree node on the player for the actual animations and blending
 		var angle = int(model.global_basis.z.angle_to(direction) * 100)
 		var cross = model.global_basis.z.cross(direction)
 		var dot = cross.dot(Vector3.UP)
@@ -66,7 +73,6 @@ func set_walking_animation():
 		for key in rotations:
 			if abs(angle - key) < abs(angle - closest_angle):
 				closest_angle = key
-		print(rotations[closest_angle])
 		match rotations[closest_angle]:
 			"left":
 				if current_animation != PlayerAnimations.WalkAnimations.left:

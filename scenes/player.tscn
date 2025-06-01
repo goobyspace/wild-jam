@@ -99,51 +99,51 @@ animation = &"player/strafe right"
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_a8ls1"]
 xfade_time = 0.1
-input_0/name = "forward"
+input_0/name = "idle"
 input_0/auto_advance = false
 input_0/break_loop_at_end = false
 input_0/reset = true
-input_1/name = "left"
+input_1/name = "forward"
 input_1/auto_advance = false
 input_1/break_loop_at_end = false
 input_1/reset = true
-input_2/name = "right"
+input_2/name = "left"
 input_2/auto_advance = false
 input_2/break_loop_at_end = false
 input_2/reset = true
-input_3/name = "back"
+input_3/name = "right"
 input_3/auto_advance = false
 input_3/break_loop_at_end = false
 input_3/reset = true
-input_4/name = "idle"
+input_4/name = "back"
 input_4/auto_advance = false
 input_4/break_loop_at_end = false
 input_4/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_d2wvv"]
-graph_offset = Vector2(-563.235, -14.7775)
+graph_offset = Vector2(-833.444, -87.5249)
 nodes/attack_animation/node = SubResource("AnimationNodeAnimation_d2wvv")
 nodes/attack_animation/position = Vector2(620, 380)
 nodes/attack_normal/node = SubResource("AnimationNodeOneShot_d2wvv")
 nodes/attack_normal/position = Vector2(920, 0)
 nodes/back/node = SubResource("AnimationNodeAnimation_jej6c")
-nodes/back/position = Vector2(-380, 380)
+nodes/back/position = Vector2(-360, 540)
 nodes/dash/node = SubResource("AnimationNodeOneShot_3v2ag")
 nodes/dash/position = Vector2(560, 20)
 nodes/dash_animation/node = SubResource("AnimationNodeAnimation_qfm1y")
 nodes/dash_animation/position = Vector2(320, 240)
 nodes/forward/node = SubResource("AnimationNodeAnimation_3v2ag")
-nodes/forward/position = Vector2(-380, -100)
+nodes/forward/position = Vector2(-360, 60)
 nodes/idle/node = SubResource("AnimationNodeAnimation_a8ls1")
-nodes/idle/position = Vector2(-380, 540)
+nodes/idle/position = Vector2(-360, -100)
 nodes/left/node = SubResource("AnimationNodeAnimation_f1ej7")
-nodes/left/position = Vector2(-380, 60)
+nodes/left/position = Vector2(-360, 220)
 nodes/output/position = Vector2(1180, 40)
 nodes/right/node = SubResource("AnimationNodeAnimation_oprun")
-nodes/right/position = Vector2(-380, 220)
+nodes/right/position = Vector2(-360, 380)
 nodes/walk_direction/node = SubResource("AnimationNodeTransition_a8ls1")
 nodes/walk_direction/position = Vector2(100, 80)
-node_connections = [&"attack_normal", 0, &"dash", &"attack_normal", 1, &"attack_animation", &"dash", 0, &"walk_direction", &"dash", 1, &"dash_animation", &"output", 0, &"attack_normal", &"walk_direction", 0, &"forward", &"walk_direction", 1, &"left", &"walk_direction", 2, &"right", &"walk_direction", 3, &"back", &"walk_direction", 4, &"idle"]
+node_connections = [&"attack_normal", 0, &"dash", &"attack_normal", 1, &"attack_animation", &"dash", 0, &"walk_direction", &"dash", 1, &"dash_animation", &"output", 0, &"attack_normal", &"walk_direction", 0, &"idle", &"walk_direction", 1, &"forward", &"walk_direction", 2, &"left", &"walk_direction", 3, &"right", &"walk_direction", 4, &"back"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_d2wvv"]
 height = 1.95
@@ -190,9 +190,13 @@ health = NodePath("../../player_health")
 [node name="player_health" type="Node" parent="."]
 script = ExtResource("2_g2els")
 
-[node name="attack_controller" type="Node3D" parent="." node_paths=PackedStringArray("mainAttack", "dash")]
+[node name="attack_controller" type="Node3D" parent="." node_paths=PackedStringArray("mainAttack", "primaryAttack", "secondaryAttack", "spellPrimary", "spellSecondary", "dash")]
 script = ExtResource("6_y4r1p")
 mainAttack = NodePath("../model/sword_main")
+primaryAttack = NodePath("dash")
+secondaryAttack = NodePath("dash")
+spellPrimary = NodePath("dash")
+spellSecondary = NodePath("dash")
 dash = NodePath("dash")
 
 [node name="dash" type="Node" parent="attack_controller" node_paths=PackedStringArray("collision", "health_bar", "character", "animation_tree")]
@@ -229,7 +233,7 @@ parameters/attack_normal/request = 0
 parameters/dash/active = false
 parameters/dash/internal_active = false
 parameters/dash/request = 0
-parameters/walk_direction/current_state = "forward"
+parameters/walk_direction/current_state = "idle"
 parameters/walk_direction/transition_request = ""
 parameters/walk_direction/current_index = 0
 script = ExtResource("11_d2wvv")

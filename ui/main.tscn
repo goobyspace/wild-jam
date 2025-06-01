@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpp55gui2f1h5"]
+
+[ext_resource type="PackedScene" uid="uid://dc1k6mcy2cnt" path="res://ui/cooldown.tscn" id="1_fblgx"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="cooldown bars" type="Control" parent="."]
+layout_mode = 1
+anchor_right = 0.021
+anchor_bottom = 0.037
+offset_right = -0.320004
+offset_bottom = 0.0400009
+
+[node name="Cooldown" parent="cooldown bars" instance=ExtResource("1_fblgx")]
+layout_mode = 1
+offset_left = -919.0
+offset_top = -499.0
+offset_right = -920.68
+offset_bottom = -501.96
