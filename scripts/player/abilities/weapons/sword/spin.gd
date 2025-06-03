@@ -25,18 +25,15 @@ func _on_body_entered(body: Node) -> void:
 	if health_node and health_node.has_method("take_damage"):
 		health_node.take_damage(damage)
 
-func tween_animation(blend_amount: float) -> void:
-	if animation_tree:
-		animation_tree.set_blend_action_animation(PlayerAnimations.ActionAnimations.spin, blend_amount)
-
 func _on_use() -> bool:
 	var tween_start = get_tree().create_tween()
-	tween_start.tween_method(tween_animation, 0.0, 1.0, 0.1)
+	tween_start.tween_method(func(blend): animation_tree.set_blend_action_animation(PlayerAnimations.ActionAnimations.spin, blend), 0.0, 1.0, 0.1)
+	tween_start.tween_method(func(speed): character.adjust_speed(speed, active_time), character.speed, spin_speed, 0.1)
 	for i in range(hits):
 		area_hitbox.monitoring = true
 		await get_tree().create_timer(active_time / hits).timeout
 		area_hitbox.monitoring = false
 	var tween_end = get_tree().create_tween()
-	tween_end.tween_method(tween_animation, 1.0, 0.0, 0.3)
+	tween_end.tween_method(func(blend): animation_tree.set_blend_action_animation(PlayerAnimations.ActionAnimations.spin, blend), 1.0, 0.0, 0.3)
 	await tween_end.finished
 	return true

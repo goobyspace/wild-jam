@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://ccmmifktpgjib"]
+[gd_scene load_steps=51 format=3 uid="uid://ccmmifktpgjib"]
 
 [ext_resource type="Script" uid="uid://b6mge7o3yiv0u" path="res://scripts/player/movement/player_movement.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bj3a4q0fcalg4" path="res://scripts/hp.gd" id="2_g2els"]
@@ -22,6 +22,8 @@
 [ext_resource type="Animation" uid="uid://c4vh5rwtcebty" path="res://assets/models/characters/animations/spell 2.res" id="18_l71n6"]
 [ext_resource type="Animation" uid="uid://ch3ltayi4bovy" path="res://assets/models/characters/animations/roll.res" id="19_i4ail"]
 [ext_resource type="PackedScene" uid="uid://bbfn0xoov1gdk" path="res://scripts/player/abilities/weapons/sword/spin.tscn" id="21_a38lo"]
+[ext_resource type="PackedScene" uid="uid://bti1ia18i2cs3" path="res://scripts/player/abilities/weapons/sword/lunge.tscn" id="22_4ni07"]
+[ext_resource type="PackedScene" uid="uid://cg4pp21nhmd5h" path="res://scripts/player/abilities/magic/thunder/thunderstrike.tscn" id="23_l71n6"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3vyb7"]
 viewport_path = NodePath("SubViewport")
@@ -257,9 +259,9 @@ script = ExtResource("2_g2els")
 script = ExtResource("6_y4r1p")
 mainAttack = NodePath("../model/sword_main")
 primaryAttack = NodePath("../model/spin")
-secondaryAttack = NodePath("dash")
+secondaryAttack = NodePath("../model/lunge")
 spellPrimary = NodePath("dash")
-spellSecondary = NodePath("dash")
+spellSecondary = NodePath("../model/thunderstrike")
 dash = NodePath("dash")
 
 [node name="dash" type="Node" parent="attack_controller" node_paths=PackedStringArray("collision", "health_bar", "character", "animation_tree")]
@@ -290,6 +292,19 @@ animation_tree = NodePath("../../AnimationTree")
 hits = 8
 active_time = 2.0
 character = NodePath("../..")
+ability_cooldown = 7.0
+animation_tree = NodePath("../../AnimationTree")
+
+[node name="lunge" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("22_4ni07")]
+character = NodePath("../..")
+ability_cooldown = 6.0
+animation_tree = NodePath("../../AnimationTree")
+animation = 3
+
+[node name="thunderstrike" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("23_l71n6")]
+stun_time = 1.4
+character = NodePath("../..")
+ability_cooldown = 1.0
 animation_tree = NodePath("../../AnimationTree")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
