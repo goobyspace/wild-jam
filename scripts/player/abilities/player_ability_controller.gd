@@ -9,6 +9,7 @@ extends Node
 @export var dash: PlayerAbility
 
 var _cooldown_timer: float = 0.0
+var abilities: Array[PlayerAbility] = [mainAttack, primaryAttack, secondaryAttack, spellPrimary, spellSecondary, dash]
 
 func _ready() -> void:
 	if dash == null or mainAttack == null or primaryAttack == null or secondaryAttack == null or spellPrimary == null or spellSecondary == null:
