@@ -6,6 +6,15 @@ class_name PlayerAbility extends Node
 
 var is_on_cooldown: bool = false
 
+func _ready() -> void:
+	if animation_tree == null:
+		push_error("Animation tree is not assigned in the PlayerAbility.")
+		return
+
+	if animation == null:
+		push_error("Animation is not assigned in the PlayerAbility.")
+		return
+		
 func use() -> void:
 	if is_on_cooldown:
 		return

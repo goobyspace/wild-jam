@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://ccmmifktpgjib"]
+[gd_scene load_steps=49 format=3 uid="uid://ccmmifktpgjib"]
 
 [ext_resource type="Script" uid="uid://b6mge7o3yiv0u" path="res://scripts/player/movement/player_movement.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bj3a4q0fcalg4" path="res://scripts/hp.gd" id="2_g2els"]
@@ -21,6 +21,7 @@
 [ext_resource type="Animation" uid="uid://blo8pmic5rany" path="res://assets/models/characters/animations/spell 1.res" id="17_4ni07"]
 [ext_resource type="Animation" uid="uid://c4vh5rwtcebty" path="res://assets/models/characters/animations/spell 2.res" id="18_l71n6"]
 [ext_resource type="Animation" uid="uid://ch3ltayi4bovy" path="res://assets/models/characters/animations/roll.res" id="19_i4ail"]
+[ext_resource type="PackedScene" uid="uid://bbfn0xoov1gdk" path="res://scripts/player/abilities/weapons/sword/spin.tscn" id="21_a38lo"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3vyb7"]
 viewport_path = NodePath("SubViewport")
@@ -168,7 +169,7 @@ input_4/break_loop_at_end = false
 input_4/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_d2wvv"]
-graph_offset = Vector2(-65.9141, -33.006)
+graph_offset = Vector2(-114.976, -18.4425)
 nodes/attack_animation/node = SubResource("AnimationNodeAnimation_d2wvv")
 nodes/attack_animation/position = Vector2(480, 320)
 nodes/attack_normal/node = SubResource("AnimationNodeOneShot_d2wvv")
@@ -255,7 +256,7 @@ script = ExtResource("2_g2els")
 [node name="attack_controller" type="Node3D" parent="." node_paths=PackedStringArray("mainAttack", "primaryAttack", "secondaryAttack", "spellPrimary", "spellSecondary", "dash")]
 script = ExtResource("6_y4r1p")
 mainAttack = NodePath("../model/sword_main")
-primaryAttack = NodePath("dash")
+primaryAttack = NodePath("../model/spin")
 secondaryAttack = NodePath("dash")
 spellPrimary = NodePath("dash")
 spellSecondary = NodePath("dash")
@@ -285,6 +286,12 @@ playback_default_blend_time = 0.5
 transform = Transform3D(2.22222, 0, -2.98023e-08, 0, 2.22222, 0, 2.98023e-08, 0, 2.22222, 0, 0, 0)
 animation_tree = NodePath("../../AnimationTree")
 
+[node name="spin" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("21_a38lo")]
+hits = 8
+active_time = 2.0
+character = NodePath("../..")
+animation_tree = NodePath("../../AnimationTree")
+
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../model")
 tree_root = SubResource("AnimationNodeBlendTree_d2wvv")
@@ -301,7 +308,7 @@ parameters/lunge/request = 0
 parameters/spell/active = false
 parameters/spell/internal_active = false
 parameters/spell/request = 0
-parameters/spin/blend_amount = 0
+parameters/spin/blend_amount = 0.0
 parameters/thunder/active = false
 parameters/thunder/internal_active = false
 parameters/thunder/request = 0

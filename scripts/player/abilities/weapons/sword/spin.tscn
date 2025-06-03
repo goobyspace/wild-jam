@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbfn0xoov1gdk"]
+
+[ext_resource type="Script" uid="uid://clljnfm8gt4uv" path="res://scripts/player/abilities/weapons/sword/spin.gd" id="1_qumpm"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qumpm"]
+height = 7.075
+radius = 4.6
+
+[node name="spin" type="Node3D" node_paths=PackedStringArray("area_hitbox")]
+script = ExtResource("1_qumpm")
+area_hitbox = NodePath("Area3D")
+ability_cooldown = 1.5
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3125, 0)
+shape = SubResource("CylinderShape3D_qumpm")
