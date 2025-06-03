@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbfn0xoov1gdk"]
+
+[ext_resource type="Script" uid="uid://dv1bu7ne71qsh" path="res://scripts/player/abilities/weapons/sword/main.gd" id="1_p2lti"]
+
+[node name="sword_main" type="Node3D" node_paths=PackedStringArray("area_hitbox")]
+script = ExtResource("1_p2lti")
+area_hitbox = NodePath("Area3D")
+ability_cooldown = 1.5
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+polygon = PackedVector2Array(-1, 0, 1.2, 0, 1, 1.5, -1, 1.5)
+debug_color = Color(0, 0.592157, 0.690196, 1)

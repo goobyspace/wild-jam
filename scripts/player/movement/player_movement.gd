@@ -29,7 +29,7 @@ func getRotationDirection(originalDirection: Vector2) -> Vector3:
 		.rotated(Vector3(0, 0, 1), -sin(rotation.y) * rotation.x)
 
 
-func set_direction(knockback_direction: Vector3, knockback_speed: float, duration: float, lock: bool) -> void:
+func set_direction(knockback_direction: Vector3, knockback_speed: float, duration: float, lock: bool = false) -> void:
 	if knockback_direction == Vector3.ZERO:
 		knockback_direction = direction
 	knockback_vectors.append(knockback.new(knockback_direction, knockback_speed, duration, lock))

@@ -22,6 +22,10 @@ const WalkAnimTranslation = {
 enum ActionAnimations {
 	attack_normal,
 	dash,
+	spin,
+	lunge,
+	spell_cast,
+	thunder,
 }
 
 const ActionAnimTranslation = {

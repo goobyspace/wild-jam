@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://ccmmifktpgjib"]
+[gd_scene load_steps=48 format=3 uid="uid://ccmmifktpgjib"]
 
 [ext_resource type="Script" uid="uid://b6mge7o3yiv0u" path="res://scripts/player/movement/player_movement.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bj3a4q0fcalg4" path="res://scripts/hp.gd" id="2_g2els"]
@@ -78,7 +78,7 @@ animation = &"player/attack"
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_d2wvv"]
 filter_enabled = true
-filters = ["Node/root/body/torso2/arm_left", "Node/root/body/torso2/arm_left/left_arm2", "Node/root/body/torso2/arm_right", "Node/root/body/torso2/arm_right/right_arm2", "Node/root/body/torso2/head2", "Node/root/body/torso2/tail2"]
+filters = ["Node/root/body/torso2/arm_left", "Node/root/body/torso2/arm_left/left_arm2", "Node/root/body/torso2/arm_right", "Node/root/body/torso2/arm_right/right_arm2", "Node/root/body/torso2/arm_right/right_arm2/sword2", "Node/root/body/torso2/head2", "Node/root/body/torso2/tail2"]
 fadein_time = 0.1
 fadeout_time = 0.1
 
@@ -94,7 +94,7 @@ animation = &"player/roll"
 use_custom_timeline = true
 timeline_length = 0.6
 stretch_time_scale = true
-start_offset = 0.2
+start_offset = 0.0
 loop_mode = 0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3v2ag"]
@@ -106,8 +106,43 @@ animation = &"player/idle"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f1ej7"]
 animation = &"player/strafe left"
 
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_i4ail"]
+filter_enabled = true
+filters = ["Node/root/body/torso2", "Node/root/body/torso2/arm_left", "Node/root/body/torso2/arm_left/left_arm2", "Node/root/body/torso2/arm_right", "Node/root/body/torso2/arm_right/right_arm2", "Node/root/body/torso2/arm_right/right_arm2/sword2", "Node/root/body/torso2/head2", "Node/root/body/torso2/tail2"]
+fadein_time = 0.1
+fadeout_time = 0.1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a38lo"]
+animation = &"player/lunge"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oprun"]
 animation = &"player/strafe right"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_a38lo"]
+filter_enabled = true
+filters = ["Node/root/body/torso2", "Node/root/body/torso2/arm_left", "Node/root/body/torso2/arm_left/left_arm2", "Node/root/body/torso2/arm_right", "Node/root/body/torso2/arm_right/right_arm2", "Node/root/body/torso2/arm_right/right_arm2/sword2", "Node/root/body/torso2/head2", "Node/root/body/torso2/tail2"]
+fadein_time = 0.1
+fadeout_time = 0.2
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4ni07"]
+animation = &"player/spell 1"
+use_custom_timeline = true
+timeline_length = 0.9
+stretch_time_scale = false
+start_offset = 0.0
+loop_mode = 0
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_l71n6"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ke2ow"]
+animation = &"player/bladestorm"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_4ni07"]
+fadein_time = 0.1
+fadeout_time = 0.1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l71n6"]
+animation = &"player/spell 2"
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_a8ls1"]
 xfade_time = 0.1
@@ -133,29 +168,45 @@ input_4/break_loop_at_end = false
 input_4/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_d2wvv"]
-graph_offset = Vector2(-176.902, 8.83005)
+graph_offset = Vector2(-65.9141, -33.006)
 nodes/attack_animation/node = SubResource("AnimationNodeAnimation_d2wvv")
-nodes/attack_animation/position = Vector2(620, 380)
+nodes/attack_animation/position = Vector2(480, 320)
 nodes/attack_normal/node = SubResource("AnimationNodeOneShot_d2wvv")
-nodes/attack_normal/position = Vector2(920, 0)
+nodes/attack_normal/position = Vector2(500, 40)
 nodes/back/node = SubResource("AnimationNodeAnimation_jej6c")
 nodes/back/position = Vector2(-360, 540)
 nodes/dash/node = SubResource("AnimationNodeOneShot_3v2ag")
-nodes/dash/position = Vector2(520, 20)
+nodes/dash/position = Vector2(320, 40)
 nodes/dash_animation/node = SubResource("AnimationNodeAnimation_qfm1y")
-nodes/dash_animation/position = Vector2(320, 240)
+nodes/dash_animation/position = Vector2(300, 320)
 nodes/forward/node = SubResource("AnimationNodeAnimation_3v2ag")
 nodes/forward/position = Vector2(-360, 60)
 nodes/idle/node = SubResource("AnimationNodeAnimation_a8ls1")
 nodes/idle/position = Vector2(-360, -100)
 nodes/left/node = SubResource("AnimationNodeAnimation_f1ej7")
 nodes/left/position = Vector2(-360, 220)
-nodes/output/position = Vector2(1180, 40)
+nodes/lunge/node = SubResource("AnimationNodeOneShot_i4ail")
+nodes/lunge/position = Vector2(680, 40)
+nodes/lunge_animation/node = SubResource("AnimationNodeAnimation_a38lo")
+nodes/lunge_animation/position = Vector2(660, 320)
+nodes/output/position = Vector2(1540, 60)
 nodes/right/node = SubResource("AnimationNodeAnimation_oprun")
 nodes/right/position = Vector2(-360, 380)
+nodes/spell/node = SubResource("AnimationNodeOneShot_a38lo")
+nodes/spell/position = Vector2(1100, 40)
+nodes/spell_animation/node = SubResource("AnimationNodeAnimation_4ni07")
+nodes/spell_animation/position = Vector2(1080, 320)
+nodes/spin/node = SubResource("AnimationNodeBlend2_l71n6")
+nodes/spin/position = Vector2(1320, 60)
+nodes/spin_animation/node = SubResource("AnimationNodeAnimation_ke2ow")
+nodes/spin_animation/position = Vector2(1260, 320)
+nodes/thunder/node = SubResource("AnimationNodeOneShot_4ni07")
+nodes/thunder/position = Vector2(880, 40)
+nodes/thunder_animation/node = SubResource("AnimationNodeAnimation_l71n6")
+nodes/thunder_animation/position = Vector2(840, 320)
 nodes/walk_direction/node = SubResource("AnimationNodeTransition_a8ls1")
 nodes/walk_direction/position = Vector2(100, 80)
-node_connections = [&"attack_normal", 0, &"dash", &"attack_normal", 1, &"attack_animation", &"dash", 0, &"walk_direction", &"dash", 1, &"dash_animation", &"output", 0, &"attack_normal", &"walk_direction", 0, &"idle", &"walk_direction", 1, &"forward", &"walk_direction", 2, &"left", &"walk_direction", 3, &"right", &"walk_direction", 4, &"back"]
+node_connections = [&"attack_normal", 0, &"dash", &"attack_normal", 1, &"attack_animation", &"dash", 0, &"walk_direction", &"dash", 1, &"dash_animation", &"lunge", 0, &"attack_normal", &"lunge", 1, &"lunge_animation", &"output", 0, &"spin", &"spell", 0, &"thunder", &"spell", 1, &"spell_animation", &"spin", 0, &"spell", &"spin", 1, &"spin_animation", &"thunder", 0, &"lunge", &"thunder", 1, &"thunder_animation", &"walk_direction", 0, &"idle", &"walk_direction", 1, &"forward", &"walk_direction", 2, &"left", &"walk_direction", 3, &"right", &"walk_direction", 4, &"back"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_d2wvv"]
 height = 1.95
@@ -244,6 +295,16 @@ parameters/attack_normal/request = 0
 parameters/dash/active = false
 parameters/dash/internal_active = false
 parameters/dash/request = 0
+parameters/lunge/active = false
+parameters/lunge/internal_active = false
+parameters/lunge/request = 0
+parameters/spell/active = false
+parameters/spell/internal_active = false
+parameters/spell/request = 0
+parameters/spin/blend_amount = 0
+parameters/thunder/active = false
+parameters/thunder/internal_active = false
+parameters/thunder/request = 0
 parameters/walk_direction/current_state = "idle"
 parameters/walk_direction/transition_request = ""
 parameters/walk_direction/current_index = 0
