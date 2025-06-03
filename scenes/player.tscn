@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://ccmmifktpgjib"]
+[gd_scene load_steps=52 format=3 uid="uid://ccmmifktpgjib"]
 
 [ext_resource type="Script" uid="uid://b6mge7o3yiv0u" path="res://scripts/player/movement/player_movement.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bj3a4q0fcalg4" path="res://scripts/hp.gd" id="2_g2els"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://bbfn0xoov1gdk" path="res://scripts/player/abilities/weapons/sword/spin.tscn" id="21_a38lo"]
 [ext_resource type="PackedScene" uid="uid://bti1ia18i2cs3" path="res://scripts/player/abilities/weapons/sword/lunge.tscn" id="22_4ni07"]
 [ext_resource type="PackedScene" uid="uid://cg4pp21nhmd5h" path="res://scripts/player/abilities/magic/thunder/thunderstrike.tscn" id="23_l71n6"]
+[ext_resource type="PackedScene" uid="uid://dtiju5n5lgk81" path="res://scripts/player/abilities/magic/thunder/lightningbolt.tscn" id="24_ke2ow"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3vyb7"]
 viewport_path = NodePath("SubViewport")
@@ -260,7 +261,7 @@ script = ExtResource("6_y4r1p")
 mainAttack = NodePath("../model/sword_main")
 primaryAttack = NodePath("../model/spin")
 secondaryAttack = NodePath("../model/lunge")
-spellPrimary = NodePath("dash")
+spellPrimary = NodePath("../model/lightningbolt")
 spellSecondary = NodePath("../model/thunderstrike")
 dash = NodePath("dash")
 
@@ -305,6 +306,10 @@ animation = 3
 stun_time = 1.4
 character = NodePath("../..")
 ability_cooldown = 1.0
+animation_tree = NodePath("../../AnimationTree")
+
+[node name="lightningbolt" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("24_ke2ow")]
+character = NodePath("../..")
 animation_tree = NodePath("../../AnimationTree")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

@@ -131,6 +131,7 @@ func _physics_process(delta: float) -> void:
 	model.rotation.x = 0
 	model.rotation.z = 0
 
+
 	velocity.x = direction.x;
 	velocity.z = direction.z;
 
