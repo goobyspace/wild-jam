@@ -1,20 +1,25 @@
-[gd_scene load_steps=34 format=3 uid="uid://ccmmifktpgjib"]
+[gd_scene load_steps=39 format=3 uid="uid://ccmmifktpgjib"]
 
 [ext_resource type="Script" uid="uid://b6mge7o3yiv0u" path="res://scripts/player/movement/player_movement.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bj3a4q0fcalg4" path="res://scripts/hp.gd" id="2_g2els"]
 [ext_resource type="Script" uid="uid://cbwmm7hsi6ade" path="res://scripts/player/hp/hp_bar.gd" id="2_qhqgy"]
-[ext_resource type="PackedScene" uid="uid://bs616ldd5wkpy" path="res://assets/models/fox_knight.gltf" id="6_tuyoq"]
+[ext_resource type="PackedScene" uid="uid://be2nf424vokic" path="res://assets/models/characters/fox_knight.gltf" id="6_tuyoq"]
 [ext_resource type="Script" uid="uid://ou8gmdvp5iyq" path="res://scripts/player/abilities/player_ability_controller.gd" id="6_y4r1p"]
 [ext_resource type="PackedScene" uid="uid://c5pmsswu5f7bf" path="res://scripts/player/abilities/weapons/sword/sword_main.tscn" id="7_d2wvv"]
-[ext_resource type="Animation" uid="uid://upcxm4b2g5a4" path="res://assets/models/animations/tpose.res" id="7_y4r1p"]
+[ext_resource type="Animation" uid="uid://upcxm4b2g5a4" path="res://assets/models/characters/animations/tpose.res" id="7_y4r1p"]
 [ext_resource type="Script" uid="uid://ddjqahwbx1afm" path="res://scripts/player/abilities/dash/main_dash.gd" id="8_3v2ag"]
-[ext_resource type="Animation" uid="uid://qixm0x3wvrbs" path="res://assets/models/animations/run forward.res" id="8_d2wvv"]
-[ext_resource type="Animation" uid="uid://7ba1wfxtesni" path="res://assets/models/animations/idle.res" id="9_3v2ag"]
-[ext_resource type="Animation" uid="uid://b8iswqochcsyt" path="res://assets/models/animations/attack.res" id="10_jej6c"]
+[ext_resource type="Animation" uid="uid://qixm0x3wvrbs" path="res://assets/models/characters/animations/run forward.res" id="8_d2wvv"]
+[ext_resource type="Animation" uid="uid://7ba1wfxtesni" path="res://assets/models/characters/animations/idle.res" id="9_3v2ag"]
+[ext_resource type="Animation" uid="uid://b8iswqochcsyt" path="res://assets/models/characters/animations/attack.res" id="10_jej6c"]
 [ext_resource type="Script" uid="uid://u5jc1fp3va0w" path="res://scripts/player/movement/player_animations.gd" id="11_d2wvv"]
-[ext_resource type="Animation" uid="uid://x5das8no1435" path="res://assets/models/animations/run backwards.res" id="11_f1ej7"]
-[ext_resource type="Animation" uid="uid://ddyf46a24wokg" path="res://assets/models/animations/strafe left.res" id="12_oprun"]
-[ext_resource type="Animation" uid="uid://fsnxgt8gs7n8" path="res://assets/models/animations/strafe right.res" id="13_a8ls1"]
+[ext_resource type="Animation" uid="uid://x5das8no1435" path="res://assets/models/characters/animations/run backwards.res" id="11_f1ej7"]
+[ext_resource type="Animation" uid="uid://ddyf46a24wokg" path="res://assets/models/characters/animations/strafe left.res" id="12_oprun"]
+[ext_resource type="Animation" uid="uid://fsnxgt8gs7n8" path="res://assets/models/characters/animations/strafe right.res" id="13_a8ls1"]
+[ext_resource type="Animation" uid="uid://bg66p0m4wy78u" path="res://assets/models/characters/animations/bladestorm.res" id="14_60mlk"]
+[ext_resource type="Animation" uid="uid://b48037u6um5hd" path="res://assets/models/characters/animations/dash.res" id="15_i4ail"]
+[ext_resource type="Animation" uid="uid://dsw61brf7g4ba" path="res://assets/models/characters/animations/lunge.res" id="16_a38lo"]
+[ext_resource type="Animation" uid="uid://blo8pmic5rany" path="res://assets/models/characters/animations/spell 1.res" id="17_4ni07"]
+[ext_resource type="Animation" uid="uid://c4vh5rwtcebty" path="res://assets/models/characters/animations/spell 2.res" id="18_l71n6"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3vyb7"]
 viewport_path = NodePath("SubViewport")
@@ -53,9 +58,14 @@ _data = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f1ej7"]
 _data = {
 &"attack": ExtResource("10_jej6c"),
+&"bladestorm": ExtResource("14_60mlk"),
+&"dash": ExtResource("15_i4ail"),
 &"idle": ExtResource("9_3v2ag"),
+&"lunge": ExtResource("16_a38lo"),
 &"run backwards": ExtResource("11_f1ej7"),
 &"run forward": ExtResource("8_d2wvv"),
+&"spell 1": ExtResource("17_4ni07"),
+&"spell 2": ExtResource("18_l71n6"),
 &"strafe left": ExtResource("12_oprun"),
 &"strafe right": ExtResource("13_a8ls1"),
 &"tpose": ExtResource("7_y4r1p")
@@ -78,7 +88,7 @@ fadein_time = 0.05
 fadeout_time = 0.05
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qfm1y"]
-animation = &"player/tpose"
+animation = &"player/dash"
 use_custom_timeline = true
 timeline_length = 0.3
 stretch_time_scale = true
@@ -121,7 +131,7 @@ input_4/break_loop_at_end = false
 input_4/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_d2wvv"]
-graph_offset = Vector2(-833.444, -87.5249)
+graph_offset = Vector2(-37.9955, 17.1089)
 nodes/attack_animation/node = SubResource("AnimationNodeAnimation_d2wvv")
 nodes/attack_animation/position = Vector2(620, 380)
 nodes/attack_normal/node = SubResource("AnimationNodeOneShot_d2wvv")
@@ -150,7 +160,6 @@ height = 1.95
 radius = 0.4
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("model", "animation_tree")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 axis_lock_linear_y = true
 platform_wall_layers = 1
 script = ExtResource("1_4flbx")
@@ -158,7 +167,7 @@ model = NodePath("model")
 animation_tree = NodePath("AnimationTree")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, -0.707107, 0.707107, 0, 0.707107, 0.707107, -1, 3.09086e-08, -3.09086e-08, 75, 75, 0)
+transform = Transform3D(-1, 6.18173e-08, -6.18173e-08, 0, 0.707107, 0.707107, 8.74228e-08, 0.707107, -0.707107, 0, 75, -75)
 projection = 1
 current = true
 size = 19.0
@@ -209,7 +218,7 @@ animation_tree = NodePath("../../AnimationTree")
 animation = 1
 
 [node name="model" parent="." instance=ExtResource("6_tuyoq")]
-transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 
 [node name="animations" type="AnimationPlayer" parent="model"]
 libraries = {

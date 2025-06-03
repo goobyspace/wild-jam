@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://brlbm87anu7d3" path="res://scripts/boss/attacks/explosion/explosion_bubble.tscn" id="3_4ra3w"]
 [ext_resource type="Script" uid="uid://bj3a4q0fcalg4" path="res://scripts/hp.gd" id="4_5uy6h"]
 [ext_resource type="Script" uid="uid://cbwmm7hsi6ade" path="res://scripts/player/hp/hp_bar.gd" id="5_c4w8v"]
-[ext_resource type="PackedScene" uid="uid://bc0nodven5dkp" path="res://assets/models/hound_wizard.gltf" id="6_xwavj"]
+[ext_resource type="PackedScene" uid="uid://cnt2hcyivpago" path="res://assets/models/characters/hound_wizard.gltf" id="6_xwavj"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_nenq2"]
 height = 3.1
@@ -65,3 +65,4 @@ script = ExtResource("5_c4w8v")
 health = NodePath("../../enemy_health")
 
 [node name="blockbench_export" parent="." instance=ExtResource("6_xwavj")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)

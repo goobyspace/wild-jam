@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bgua7jrqal3qw"]
+
+[resource]
+resource_name = "grass"
+transparency = 4
+albedo_color = Color(0.282353, 0.0705882, 0.298039, 0.333333)
+metallic = 1.0

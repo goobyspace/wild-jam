@@ -4,13 +4,19 @@ extends CharacterBody3D
 
 @export var model: Node3D
 @export var animation_tree: AnimationTree
+@export var _rotation_speed: float = TAU * 4
 
 var current_animation := PlayerAnimations.WalkAnimations.idle
 var camera: Camera3D
 var speed_adjusted := speed
 var initial_rotation := rotation.y
-var knockback_vector := Vector3.ZERO
+var knockback_vectors: Array[knockback] = []
 var direction := Vector3.ZERO
+var movement_lock := 0.0
+var model_lock := false
+var look_at_directon := Vector3.ZERO
+var _theta := 0.0
+var mouse_to_center: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	camera = get_viewport().get_camera_3d()
@@ -23,19 +29,14 @@ func getRotationDirection(originalDirection: Vector2) -> Vector3:
 		.rotated(Vector3(0, 0, 1), -sin(rotation.y) * rotation.x)
 
 
-func set_direction(knockback_direction: Vector3, knockback_speed: float, duration: float) -> void:
-	speed_adjusted = knockback_speed
-	var current_direction = direction
+func set_direction(knockback_direction: Vector3, knockback_speed: float, duration: float, lock: bool) -> void:
 	if knockback_direction == Vector3.ZERO:
-		knockback_vector += current_direction
-	else:
-		knockback_vector += knockback_direction
-	await get_tree().create_timer(duration).timeout
-	if knockback_direction == Vector3.ZERO:
-		knockback_vector -= current_direction
-	else:
-		knockback_vector = Vector3.ZERO
-	speed_adjusted = speed
+		knockback_direction = direction
+	knockback_vectors.append(knockback.new(knockback_direction, knockback_speed, duration, lock))
+
+func lock_movement(lock_duration: float) -> void:
+	movement_lock += lock_duration
+
 
 func adjust_speed(new_speed: float, duration: float) -> void:
 	speed_adjusted = new_speed
@@ -94,19 +95,44 @@ func set_walking_animation():
 
 func _physics_process(delta: float) -> void:
 	# 2d vector = (x, y) where x -1 is forward, 1 is backward, y -1 is right, 1 is left
-	var input_vectors := Input.get_vector("move_forward", "move_back", "move_right", "move_left")
+	var input_vectors := Input.get_vector("move_right", "move_left", "move_back", "move_forward")
 
 	# we normalize the input vector, turn it into a 3d vector, and then apply the rotation so that forward is always in the direction the mesh is facing
 	direction = getRotationDirection(input_vectors)
-	if knockback_vector != Vector3.ZERO:
-		direction = knockback_vector.normalized();
-
-	# dashing sets a cooldown and a timer, and once youve dashed youre stuck dashing until that timer is up
-	# and you cannot dash again until the cooldown is over
 	var current_speed = speed_adjusted * delta * 100;
+	direction = direction * current_speed
 
-	velocity.x = direction.x * current_speed
-	velocity.z = direction.z * current_speed
+	if movement_lock > 0:
+		movement_lock -= delta
+		direction = Vector3.ZERO
+	
+	model_lock = false
+	knockback_vectors = knockback_vectors.filter(func(kb: knockback) -> bool:
+		direction += kb.knockback_vector.normalized() * kb.knockback_speed
+		kb.knockback_duration -= delta
+		if kb.lock_direction:
+			model_lock = true
+			# https://www.youtube.com/watch?v=NrvIuBu3-8I
+			_theta = wrapf(atan2(-kb.knockback_vector.x, -kb.knockback_vector.z) - model.rotation.y, -PI, PI)
+			model.rotation.y += clamp(_rotation_speed * delta, 0, abs(_theta)) * sign(_theta)
+
+		if kb.knockback_duration <= 0:
+			return false
+		else:
+			return true
+	)
+
+	# we rotate the player here so that the player rotates back instantly when a knockback lock is over
+	# otherwise the player will stay facing the direction of the knockback until the next mouse input
+	if not model_lock and mouse_to_center != Vector2.ZERO:
+		model.look_at(Vector3(position.x - mouse_to_center.x, 0, position.z - mouse_to_center.y), Vector3.UP)
+		model.rotation.y += rotation.y
+		
+	model.rotation.x = 0
+	model.rotation.z = 0
+
+	velocity.x = direction.x;
+	velocity.z = direction.z;
 
 	# move and slide moves the player in the direction of the velocity vector and handles collisions by having the player slide along walls
 	move_and_slide()
@@ -119,17 +145,11 @@ var rot_y = 0
 func _input(event):
 	if event is InputEventMouseMotion && Input.is_action_pressed("camera_drag"):
 		rot_y = rotation.y - event.relative.x * 0.01
+		rotation.y = rot_y
 
-	rotation.y = rot_y
-
-	var space_state = get_world_3d().direct_space_state
-	var mouse_position = get_viewport().get_mouse_position()
-	var ray_origin = camera.project_ray_origin(mouse_position)
-	var ray_end = ray_origin + camera.project_ray_normal(mouse_position) * 1000.0
-	var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
-	var intersection = space_state.intersect_ray(query)
-	if not intersection.is_empty():
-		var pos = intersection.position
-		model.look_at(Vector3(pos.x, 0, pos.z), Vector3.UP)
-		model.rotation.x = 0
-		model.rotation.z = 0
+	# we get the mouse position compared to the center of the screen to rotate the player model in _physics_process
+	var viewport = get_viewport();
+	var mouse_position = viewport.get_mouse_position()
+	var rect = viewport.get_visible_rect()
+	var center_position = rect.size / 2
+	mouse_to_center = (mouse_position - center_position).normalized()
