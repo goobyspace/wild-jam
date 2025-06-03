@@ -20,9 +20,7 @@ func setDashCollision():
 func _on_use() -> bool:
 	play_animation()
 	setDashCollision()
-	character.lock_movement(dash_duration)
 	character.set_direction(dash_direction, dash_speed, dash_duration, true)
-	print("doing it");
 	await get_tree().create_timer(dash_duration).timeout
 	character.adjust_speed(dash_speed, dash_speed_duration)
 	setDashCollision()
