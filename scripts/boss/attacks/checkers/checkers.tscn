@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmdcrfbc1udc7"]
+[gd_scene load_steps=6 format=3 uid="uid://cmdcrfbc1udc7"]
 
 [ext_resource type="PackedScene" uid="uid://ebknl1cq8it6" path="res://assets/models/spells/rectangle.gltf" id="1_71e0w"]
 [ext_resource type="Material" uid="uid://cdk1ttcdh2ufq" path="res://assets/materials/checkers.tres" id="1_mwp7p"]
@@ -10,9 +10,6 @@ size = Vector3(1, 0.5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rrndx"]
 size = Vector3(1, 2.8, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_rnnnh"]
-size = Vector3(1, 5, 1)
 
 [node name="Checkers" type="Node3D"]
 
@@ -28,7 +25,3 @@ script = ExtResource("3_rrndx")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageCollider"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("BoxShape3D_rrndx")
-
-[node name="ShapeCast3D" type="ShapeCast3D" parent="DamageCollider"]
-shape = SubResource("BoxShape3D_rnnnh")
-target_position = Vector3(0, 0, 0)
