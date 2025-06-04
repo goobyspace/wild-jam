@@ -247,6 +247,8 @@ script = ExtResource("1_4flbx")
 model = NodePath("model")
 animation_tree = NodePath("AnimationTree")
 
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-1, 6.18173e-08, -6.18173e-08, 0, 0.707107, 0.707107, 8.74228e-08, 0.707107, -0.707107, 0, 75, -75)
 projection = 1
@@ -313,7 +315,6 @@ icon = ExtResource("21_wqfne")
 keybind = SubResource("InputEventAction_ujl30")
 
 [node name="spin" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("21_a38lo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 hits = 8
 active_time = 2.0
 character = NodePath("../..")
@@ -323,7 +324,6 @@ icon = ExtResource("22_dt7fs")
 keybind = SubResource("InputEventAction_31cv2")
 
 [node name="lunge" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("22_4ni07")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 character = NodePath("../..")
 ability_cooldown = 6.0
 animation_tree = NodePath("../../AnimationTree")
@@ -338,7 +338,6 @@ icon = ExtResource("24_31cv2")
 keybind = SubResource("InputEventAction_dt7fs")
 
 [node name="thunderstrike" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("23_l71n6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 stun_time = 1.4
 character = NodePath("../..")
 ability_cooldown = 1.0
