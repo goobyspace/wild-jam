@@ -1,7 +1,12 @@
 class_name BossAttack extends Node
 
-@export var delay_time: float = 0.5 # Time to wait until the attack can start
-@export var recovery_time: float = 0.5 # Time to wait until the next attack can start'
+## Time to wait until the attack starts
+@export var delay_time: float = 0.5
+## Time until the next attack can start
+@export var recovery_time: float = 0.5
+## Wait for the attack to finish before starting a new one
+@export var wait_for_attack: bool = true
+
 var tree: SceneTree
 
 func _ready() -> void:

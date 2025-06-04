@@ -55,7 +55,7 @@ func _on_body_entered(body: Node) -> void:
 		health_node.take_damage(damage)
 
 func _on_use() -> bool:
-	area_hitbox.monitoring = true
+	area_hitbox.activate()
 	play_animation()
 	character.lock_movement(stun_time)
 	material.albedo_color = thunder_color

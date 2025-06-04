@@ -31,7 +31,7 @@ func _on_use() -> bool:
 	character.add_sibling(new_bolt)
 	var area_hitbox = new_bolt.get_node("Area3D")
 	area_hitbox.connect("body_entered", self._on_body_entered)
-	area_hitbox.monitoring = true
+	area_hitbox.activate()
 	var viewport = get_viewport();
 	var mouse_position = viewport.get_mouse_position()
 	var rect = viewport.get_visible_rect()
