@@ -2,7 +2,7 @@ extends BossAttack
 
 @export_group("Grid Attack")
 ## Imagine if the map is divided into a 3x3 grid, click the cells that will spawn the attack
-@export var grid: Array[CheckerGrid] = []
+@export var grid: Array[WeirdCheckerGrid] = []
 @export_range(0, 100, 1) var repeat: int = 0
 @export var startup: float = 0.5
 @export var active_time: float = 1.0
@@ -15,6 +15,7 @@ extends BossAttack
 var parent: Node3D
 var depth = 44.0
 var width = 42.0
+var hitboxes = []
 
 func _ready():
 	super._ready()
@@ -22,8 +23,10 @@ func _ready():
 		push_error("Checker scene is not set.")
 		return
 
+	print(grid)
+
 	if grid.size() == 0:
-		push_error("Grid is empty, please add at least one CheckerGrid resource.")
+		push_error("Grid is empty, please add at least one WeirdCheckerGrid resource.")
 		return
 
 	parent = top_parent.get_parent()
@@ -33,7 +36,6 @@ func get_checkers():
 		for i in range(grid.size()):
 			play_animation()
 			var checker = grid[i].grid
-			print(checker)
 			# originally i tried doing this dynamically but its only 9 values so fuck it
 			if checker["top_left"]:
 				spawn_checker(checker.top_left, Vector3(width / 2, 0, depth / 2))
@@ -56,6 +58,13 @@ func get_checkers():
 
 			await get_tree().create_timer(startup).timeout
 			await get_tree().create_timer(active_time).timeout
+			var player_found = false
+			for hitbox in hitboxes:
+				if hitbox.player:
+					player_found = true
+			if not player_found:
+				hitboxes[0].do_damage()
+			hitboxes.clear()
 			await get_tree().create_timer(cleanup_time).timeout
 
 
@@ -75,6 +84,7 @@ func spawn_checker(checker: bool, position: Vector3) -> void:
 		tween.tween_property(checker_mesh, "scale", Vector3.ONE, startup)
 		await get_tree().create_timer(startup).timeout
 		var hitbox = checker_instance.find_child("DamageCollider")
+		hitboxes.append(hitbox)
 		hitbox.damage = damage
 		hitbox.connect("body_entered", hitbox._on_body_entered)
 		hitbox.activate()

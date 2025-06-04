@@ -6,7 +6,9 @@ extends BossAttack
 @export var active_time := 5.0
 @export var amount: int = 3
 @export var beam_node: PackedScene
-@export var inner_beam_color: Color = Color(1, 0.2, 0.2, 1)
+@export var inner_beam_color: Color = Color(0.2, 1, 0.2, 1)
+
+var hitboxes = []
 
 func _ready() -> void:
 	super._ready()
@@ -29,9 +31,11 @@ func spawn_beam(initial_rotation: Vector3) -> void:
 	hitbox.activate()
 	hitbox.damage = damage
 	hitbox.connect("body_entered", hitbox._on_body_entered)
+	hitboxes.append(hitbox)
 	var tween = get_tree().create_tween()
 	tween.tween_property(beam, "rotation", Vector3(beam.rotation.x, beam.rotation.y - PI * rotation_speed, beam.rotation.z), active_time)
 	await tween.finished
+	hitbox.monitoring = false
 	var exit_tween = get_tree().create_tween().set_parallel(true)
 	exit_tween.tween_property(inner_material, "albedo_color", Color(1, 1, 1, 0), active_delay / 2)
 	exit_tween.tween_property(outer, "scale", Vector3.ZERO, active_delay / 2)
@@ -44,4 +48,12 @@ func attack() -> bool:
 		var starting_rotation = Vector3(0, i * (PI * 2 / amount), 0)
 		spawn_beam(starting_rotation)
 	await get_tree().create_timer(active_delay + active_time).timeout
+	var player_found = false
+	for hitbox in hitboxes:
+		hitbox.monitoring = false
+		if hitbox.player:
+			player_found = true
+	if not player_found:
+		hitboxes[0].do_damage()
+	hitboxes.clear()
 	return true

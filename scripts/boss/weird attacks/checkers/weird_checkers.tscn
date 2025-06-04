@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://0qnjmqwy3y6x"]
+
+[ext_resource type="Material" uid="uid://cdk1ttcdh2ufq" path="res://assets/materials/checkers.tres" id="1_xtcmw"]
+[ext_resource type="Material" uid="uid://bukp6otmo2q1h" path="res://assets/materials/weird_checkers.tres" id="2_m6rkd"]
+[ext_resource type="PackedScene" uid="uid://dn0syu5bjuynq" path="res://assets/models/spells/weird_rectangle.gltf" id="3_m6rkd"]
+[ext_resource type="Script" uid="uid://bclpvjbse855b" path="res://scripts/boss/weird attacks/weird_collider.gd" id="4_m6rkd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mwp7p"]
+material = ExtResource("1_xtcmw")
+size = Vector3(1, 0.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rrndx"]
+size = Vector3(1, 2.8, 1)
+
+[node name="Checkers" type="Node3D"]
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_mwp7p")
+surface_material_override/0 = ExtResource("2_m6rkd")
+
+[node name="blockbench_export" parent="." instance=ExtResource("3_m6rkd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26, 0)
+
+[node name="DamageCollider" type="Area3D" parent="."]
+script = ExtResource("4_m6rkd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageCollider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("BoxShape3D_rrndx")

@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bm3v3hf5w0mjv"]
+
+[ext_resource type="Texture2D" uid="uid://b8v7tb5mpetmr" path="res://assets/models/spells/fireball_0.png" id="1_r6bu6"]
+
+[resource]
+resource_name = "material_0"
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0, 1, 0, 0.784314)
+albedo_texture = ExtResource("1_r6bu6")
+texture_filter = 0
+texture_repeat = false

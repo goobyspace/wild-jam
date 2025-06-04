@@ -12,7 +12,7 @@ extends BossAttack
 @export var knockback_lock_movement: bool = true
 
 var explosion_mesh: ExplosionMesh
-var explosion_hitbox: DamageCollider
+var explosion_hitbox: WeirdCollider
 
 func _ready() -> void:
 	super._ready()
@@ -34,10 +34,11 @@ func attack() -> bool:
 	explosion_hitbox.connect("body_entered", explosion_hitbox._on_body_entered)
 	explosion_hitbox.damage = explosion_damage
 	explosion_hitbox.monitoring = false
-	await explosion_mesh.explode(explosion_active_delay, explosion_radius, Color(1, 0, 0, 0.5)) # Red color for explosion
+	await explosion_mesh.explode(explosion_active_delay, explosion_radius, Color(0, 1, 0, 0.5))
 	explosion_hitbox.activate()
 	await get_tree().create_timer(explosion_active_timer).timeout
 	explosion_hitbox.monitoring = false
+	explosion_hitbox.do_damage()
 	await explosion_mesh.reset(explosion_cosmetic_linger_timer)
 	return true
 

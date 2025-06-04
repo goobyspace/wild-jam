@@ -6,6 +6,8 @@ class_name BossAttack extends Node
 @export var recovery_time: float = 0.5
 ## Wait for the attack to finish before starting a new one
 @export var wait_for_attack: bool = true
+@export var boss_animations: BossAnimations
+@export var animation: BossAnimations.Animations
 
 var tree: SceneTree
 
@@ -29,3 +31,18 @@ func attack() -> bool:
 #this function should be overwritten by subclasses
 func cleanup() -> void:
 	return
+
+func play_animation() -> void:
+	if boss_animations:
+		boss_animations.execute_animation(animation)
+
+func start_blend_animation() -> void:
+	if boss_animations:
+		var tween = tree.create_tween()
+		tween.tween_method(func(blend): boss_animations.set_blend_animation(animation, blend), 0.0, 1.0, 0.1)
+
+		
+func stop_blend_animation() -> void:
+	if boss_animations:
+		var tween = tree.create_tween()
+		tween.tween_method(func(blend): boss_animations.set_blend_animation(animation, blend), 1.0, 0.0, 0.3)

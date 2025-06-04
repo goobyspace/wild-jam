@@ -1,7 +1,7 @@
 @tool
 extends Resource
 
-class_name WeirdCheckerGrid
+class_name CheckerGrid
 
 @export var grid := {
     "top_left": false,

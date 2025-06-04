@@ -47,6 +47,7 @@ func explosion_activate() -> void:
 func explosion_cleanup() -> void:
 	for hitbox in hitboxes:
 		hitbox.monitoring = false
+		hitbox.do_damage()
 	for explosion in explosions:
 		explosion.reset(cleanup_time)
 

@@ -1,7 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://bqth5yqagfvxu"]
+[gd_scene load_steps=54 format=3 uid="uid://bqth5yqagfvxu"]
 
 [ext_resource type="Script" uid="uid://dxkpnugcif1tb" path="res://scripts/boss/boss_attack_controller.gd" id="1_7p1mj"]
-[ext_resource type="Script" uid="uid://e755np8slxxt" path="res://scenes/boss.gd" id="1_w8i8w"]
+[ext_resource type="Script" path="res://scenes/boss.gd" id="1_w8i8w"]
 [ext_resource type="Script" uid="uid://c48qofkpgix3f" path="res://scripts/boss/attacks/explosion/explosion.gd" id="2_md0e3"]
 [ext_resource type="PackedScene" uid="uid://brlbm87anu7d3" path="res://scripts/boss/attacks/explosion/explosion_bubble.tscn" id="3_4ra3w"]
 [ext_resource type="Script" uid="uid://bj3a4q0fcalg4" path="res://scripts/hp.gd" id="4_5uy6h"]
@@ -15,14 +15,32 @@
 [ext_resource type="Script" uid="uid://ciag4mbkv4u3" path="res://scripts/boss/attacks/ring-lock/ring-lock.gd" id="10_wtq4b"]
 [ext_resource type="PackedScene" uid="uid://cxsd27q4t36pw" path="res://scripts/boss/attacks/ring-lock/ring-beam.tscn" id="11_j0cyh"]
 [ext_resource type="Script" uid="uid://w2d8w8exkxee" path="res://scripts/boss/attacks/checkers/checkers.gd" id="12_g0wcc"]
+[ext_resource type="Script" uid="uid://diknuy4lc8pl8" path="res://scripts/boss/weird attacks/checkers/weird_checker_grid.gd" id="13_lioqc"]
 [ext_resource type="Script" uid="uid://b86dmh0oygx54" path="res://scripts/boss/attacks/checkers/checker_grid.gd" id="13_s1ycm"]
 [ext_resource type="PackedScene" uid="uid://cmdcrfbc1udc7" path="res://scripts/boss/attacks/checkers/checkers.tscn" id="14_shcg2"]
+[ext_resource type="Script" uid="uid://b5loktviwirky" path="res://scripts/boss/weird attacks/checkers/weird_checkers.gd" id="15_wjec0"]
+[ext_resource type="PackedScene" uid="uid://0qnjmqwy3y6x" path="res://scripts/boss/weird attacks/checkers/weird_checkers.tscn" id="16_i4rgx"]
+[ext_resource type="Script" uid="uid://bhjijpbl6r0it" path="res://scripts/boss/weird attacks/explosion/weird_explosion.gd" id="17_t3vcr"]
+[ext_resource type="PackedScene" uid="uid://co1phurpyixuh" path="res://scripts/boss/weird attacks/explosion/weird_explosion_bubble.tscn" id="18_qaulx"]
+[ext_resource type="Animation" uid="uid://b8ny6ywdp2xll" path="res://assets/models/characters/hound_animations/hover.res" id="18_wrm80"]
+[ext_resource type="Script" uid="uid://dj2cekqep47s6" path="res://scripts/boss/weird attacks/fireball(s)/weird_fireballs.gd" id="19_1f82d"]
+[ext_resource type="Animation" uid="uid://bq4tii6el800" path="res://assets/models/characters/hound_animations/idle.res" id="19_6awcb"]
+[ext_resource type="PackedScene" uid="uid://bl6fq7bp3cnks" path="res://scripts/boss/weird attacks/fireball(s)/weird_fireballs.tscn" id="20_lioqc"]
+[ext_resource type="Animation" uid="uid://drlr8o70ilsre" path="res://assets/models/characters/hound_animations/raise.res" id="20_wjec0"]
+[ext_resource type="Animation" uid="uid://bg0intkv5go4r" path="res://assets/models/characters/hound_animations/shoot.res" id="21_i4rgx"]
+[ext_resource type="Script" uid="uid://chr81jewy5jt0" path="res://scripts/boss/weird attacks/multi explosions/weird_multi_explosions.gd" id="22_0lg75"]
+[ext_resource type="Animation" uid="uid://b1qlqf60naub6" path="res://assets/models/characters/hound_animations/stamp.res" id="22_2mchx"]
+[ext_resource type="Script" uid="uid://cip4i87748xg7" path="res://scripts/boss/boss_animations.gd" id="23_6awcb"]
+[ext_resource type="Script" uid="uid://da7jvhg732hxs" path="res://scripts/boss/weird attacks/ring-lock/weird_ring_lock.gd" id="23_thsr5"]
+[ext_resource type="PackedScene" uid="uid://bdh7ua16lm2yy" path="res://scripts/boss/weird attacks/ring-lock/weird_ring_beam.tscn" id="24_ekh6n"]
+[ext_resource type="Script" uid="uid://bln7boc5jrf8w" path="res://scripts/boss/weird attacks/rotating_beam/weird_rotating_beam.gd" id="25_2sbpf"]
+[ext_resource type="PackedScene" uid="uid://bl6608yik4g57" path="res://scripts/boss/weird attacks/rotating_beam/weird_beam.tscn" id="26_78kod"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_nenq2"]
 height = 3.1
 
-[sub_resource type="Resource" id="Resource_s1ycm"]
-script = ExtResource("13_s1ycm")
+[sub_resource type="Resource" id="Resource_0lg75"]
+script = ExtResource("13_lioqc")
 grid = {
 "bottom_center": true,
 "bottom_left": true,
@@ -33,6 +51,36 @@ grid = {
 "top_center": true,
 "top_left": true,
 "top_right": true
+}
+metadata/_custom_type_script = "uid://diknuy4lc8pl8"
+
+[sub_resource type="Resource" id="Resource_i4rgx"]
+script = ExtResource("13_s1ycm")
+grid = {
+"bottom_center": false,
+"bottom_left": true,
+"bottom_right": true,
+"middle_center": true,
+"middle_left": false,
+"middle_right": false,
+"top_center": false,
+"top_left": true,
+"top_right": true
+}
+metadata/_custom_type_script = "uid://b86dmh0oygx54"
+
+[sub_resource type="Resource" id="Resource_2mchx"]
+script = ExtResource("13_s1ycm")
+grid = {
+"bottom_center": true,
+"bottom_left": false,
+"bottom_right": false,
+"middle_center": false,
+"middle_left": true,
+"middle_right": true,
+"top_center": true,
+"top_left": false,
+"top_right": false
 }
 metadata/_custom_type_script = "uid://b86dmh0oygx54"
 
@@ -50,6 +98,72 @@ bg_color = Color(0.746585, 2.00946e-06, 8.66354e-07, 1)
 skew = Vector2(0.2, 0)
 corner_detail = 16
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wjec0"]
+_data = {
+&"hover": ExtResource("18_wrm80"),
+&"idle": ExtResource("19_6awcb"),
+&"raise": ExtResource("20_wjec0"),
+&"shoot": ExtResource("21_i4rgx"),
+&"stamp": ExtResource("22_2mchx")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6awcb"]
+animation = &"boss/shoot"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wjec0"]
+animation = &"boss/stamp"
+use_custom_timeline = true
+timeline_length = 0.5
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i4rgx"]
+animation = &"boss/hover"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2mchx"]
+animation = &"boss/raise"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_t3vcr"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qaulx"]
+animation = &"boss/idle"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_1f82d"]
+fadein_time = 0.1
+fadeout_time = 0.1
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_lioqc"]
+fadein_time = 0.1
+fadeout_time = 0.1
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_0lg75"]
+fadein_time = 0.1
+fadeout_time = 0.1
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_6awcb"]
+graph_offset = Vector2(-155.409, 72.2648)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_2mchx")
+nodes/Animation/position = Vector2(-140, 320)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_6awcb")
+"nodes/Animation 2/position" = Vector2(160, 320)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_wjec0")
+"nodes/Animation 3/position" = Vector2(520, 320)
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_i4rgx")
+"nodes/Animation 4/position" = Vector2(820, 320)
+nodes/hover/node = SubResource("AnimationNodeBlend2_t3vcr")
+nodes/hover/position = Vector2(980, 140)
+nodes/idle/node = SubResource("AnimationNodeAnimation_qaulx")
+nodes/idle/position = Vector2(-320, 140)
+nodes/output/position = Vector2(1200, 140)
+nodes/raise/node = SubResource("AnimationNodeOneShot_1f82d")
+nodes/raise/position = Vector2(20, 140)
+nodes/shoot/node = SubResource("AnimationNodeOneShot_lioqc")
+nodes/shoot/position = Vector2(320, 140)
+nodes/stamp/node = SubResource("AnimationNodeOneShot_0lg75")
+nodes/stamp/position = Vector2(660, 120)
+node_connections = [&"hover", 0, &"stamp", &"hover", 1, &"Animation 4", &"output", 0, &"hover", &"raise", 0, &"idle", &"raise", 1, &"Animation", &"shoot", 0, &"raise", &"shoot", 1, &"Animation 2", &"stamp", 0, &"shoot", &"stamp", 1, &"Animation 3"]
+
 [node name="Enemy" type="CharacterBody3D"]
 axis_lock_linear_y = true
 script = ExtResource("1_w8i8w")
@@ -60,28 +174,33 @@ shape = SubResource("CylinderShape3D_nenq2")
 
 [node name="attack_controller" type="Node" parent="." node_paths=PackedStringArray("attacks")]
 script = ExtResource("1_7p1mj")
-attacks = [NodePath("checkers"), NodePath("beam")]
+attacks = [NodePath("weird_beam")]
 
-[node name="explosion" type="Node" parent="attack_controller"]
+[node name="explosion" type="Node" parent="attack_controller" node_paths=PackedStringArray("boss_animations")]
 script = ExtResource("2_md0e3")
 explosion_node = ExtResource("3_4ra3w")
 knockback_duration = 0.7
 knockback_strength = 16.0
+boss_animations = NodePath("../../AnimationTree")
 
-[node name="fireball(s)" type="Node" parent="attack_controller" node_paths=PackedStringArray("top_parent")]
+[node name="fireball(s)" type="Node" parent="attack_controller" node_paths=PackedStringArray("top_parent", "boss_animations")]
 script = ExtResource("4_nenq2")
 travel_time = 4.0
 fireball_node = ExtResource("5_md484")
 top_parent = NodePath("../..")
+boss_animations = NodePath("../../AnimationTree")
+animation = 1
 
-[node name="beam" type="Node" parent="attack_controller"]
+[node name="beam" type="Node" parent="attack_controller" node_paths=PackedStringArray("boss_animations")]
 script = ExtResource("6_ipns3")
 rotation_speed = 1.6
 amount = 10
 beam_node = ExtResource("7_8qclf")
 delay_time = 1.0
+boss_animations = NodePath("../../AnimationTree")
+animation = 3
 
-[node name="multi_explosion" type="Node" parent="attack_controller" node_paths=PackedStringArray("top_parent")]
+[node name="multi_explosion" type="Node" parent="attack_controller" node_paths=PackedStringArray("top_parent", "boss_animations")]
 script = ExtResource("9_otmr2")
 width_range = 20.0
 depth_range = 20.0
@@ -93,23 +212,69 @@ scale = 2.0
 top_parent = NodePath("../..")
 delay_time = 0.0
 recovery_time = 0.0
+boss_animations = NodePath("../../AnimationTree")
 
-[node name="ring lock" type="Node" parent="attack_controller" node_paths=PackedStringArray("top_parent")]
+[node name="ring lock" type="Node" parent="attack_controller" node_paths=PackedStringArray("top_parent", "boss_animations")]
 script = ExtResource("10_wtq4b")
-active_time = 1.0
 top_parent = NodePath("../..")
 ring_lock_node = ExtResource("11_j0cyh")
+boss_animations = NodePath("../../AnimationTree")
+animation = 3
 
-[node name="checkers" type="Node" parent="attack_controller" node_paths=PackedStringArray("top_parent")]
+[node name="checkers" type="Node" parent="attack_controller" node_paths=PackedStringArray("top_parent", "boss_animations")]
 script = ExtResource("12_g0wcc")
-grid = Array[ExtResource("13_s1ycm")]([SubResource("Resource_s1ycm")])
+grid = Array[ExtResource("13_lioqc")]([SubResource("Resource_0lg75")])
+repeat = 2
 startup = 2.0
-active_time = 20.0
-cleanup_time = 0.3
+active_time = 0.5
+cleanup_time = 0.2
 damage = 20
 checker_scene = ExtResource("14_shcg2")
 top_parent = NodePath("../..")
-wait_for_attack = false
+boss_animations = NodePath("../../AnimationTree")
+animation = 2
+
+[node name="weird checkers" type="Node" parent="attack_controller" node_paths=PackedStringArray("top_parent", "boss_animations")]
+script = ExtResource("15_wjec0")
+grid = Array[ExtResource("13_s1ycm")]([SubResource("Resource_i4rgx"), SubResource("Resource_2mchx")])
+repeat = 3
+checker_scene = ExtResource("16_i4rgx")
+top_parent = NodePath("../..")
+boss_animations = NodePath("../../AnimationTree")
+animation = 2
+
+[node name="weird explosion" type="Node" parent="attack_controller" node_paths=PackedStringArray("boss_animations")]
+script = ExtResource("17_t3vcr")
+explosion_node = ExtResource("18_qaulx")
+boss_animations = NodePath("../../AnimationTree")
+
+[node name="weird fireball" type="Node" parent="attack_controller" node_paths=PackedStringArray("top_parent", "boss_animations")]
+script = ExtResource("19_1f82d")
+fireball_node = ExtResource("20_lioqc")
+top_parent = NodePath("../..")
+boss_animations = NodePath("../../AnimationTree")
+animation = 1
+
+[node name="weird_multi_explosions" type="Node" parent="attack_controller" node_paths=PackedStringArray("top_parent", "boss_animations")]
+script = ExtResource("22_0lg75")
+explosion_mesh = ExtResource("18_qaulx")
+top_parent = NodePath("../..")
+boss_animations = NodePath("../../AnimationTree")
+
+[node name="weird_ring_lock" type="Node" parent="attack_controller" node_paths=PackedStringArray("top_parent", "boss_animations")]
+script = ExtResource("23_thsr5")
+active_time = 5.0
+top_parent = NodePath("../..")
+ring_lock_node = ExtResource("24_ekh6n")
+inner_beam_color = Color(0, 1, 0.2, 1)
+outer_beam_color = Color(0, 1, 0, 0.4)
+boss_animations = NodePath("../../AnimationTree")
+
+[node name="weird_beam" type="Node" parent="attack_controller" node_paths=PackedStringArray("boss_animations")]
+script = ExtResource("25_2sbpf")
+beam_node = ExtResource("26_78kod")
+boss_animations = NodePath("../../AnimationTree")
+animation = 3
 
 [node name="enemy_health" type="Node" parent="."]
 script = ExtResource("4_5uy6h")
@@ -138,3 +303,25 @@ health = NodePath("../../enemy_health")
 
 [node name="blockbench_export" parent="." instance=ExtResource("6_xwavj")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+
+[node name="animations" type="AnimationPlayer" parent="blockbench_export"]
+libraries = {
+&"boss": SubResource("AnimationLibrary_wjec0")
+}
+autoplay = "boss/idle"
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../blockbench_export")
+tree_root = SubResource("AnimationNodeBlendTree_6awcb")
+anim_player = NodePath("../blockbench_export/animations")
+parameters/hover/blend_amount = 0.0
+parameters/raise/active = false
+parameters/raise/internal_active = false
+parameters/raise/request = 0
+parameters/shoot/active = false
+parameters/shoot/internal_active = false
+parameters/shoot/request = 0
+parameters/stamp/active = false
+parameters/stamp/internal_active = false
+parameters/stamp/request = 0
+script = ExtResource("23_6awcb")

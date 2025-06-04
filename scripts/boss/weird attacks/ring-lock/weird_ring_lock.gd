@@ -13,6 +13,8 @@ extends BossAttack
 @export var inner_beam_color: Color = Color(1, 0.2, 0.2, 1)
 @export var outer_beam_color: Color = Color(1, 0.3, 0, 0.4)
 
+var hitboxes = []
+
 var rings
 func _ready() -> void:
 	if ring_lock_node == null:
@@ -35,6 +37,7 @@ func set_beam(ring):
 	var inner = beam.find_child("inner")
 	var inner_material = inner.get_active_material(0)
 	var outer_material = beam.find_child("outer").get_active_material(0)
+	hitboxes.append(hitbox)
 	hitbox.damage = damage
 	hitbox.knockback_duration = knockback_duration
 	hitbox.knockback_speed = knockback_strength
@@ -50,7 +53,6 @@ func set_beam(ring):
 	await get_tree().create_timer(startup_time).timeout
 	hitbox.activate()
 	await get_tree().create_timer(active_time).timeout
-	hitbox.monitoring = false
 	var exit_tween = get_tree().create_tween().set_parallel(true)
 	stop_blend_animation()
 	exit_tween.tween_property(inner_material, "albedo_color", Color(1, 1, 1, 0), cleanup_time / 4)
@@ -60,6 +62,16 @@ func set_beam(ring):
 	await exit_tween.finished
 	beam.queue_free()
 
+func check_hitboxes():
+	await get_tree().create_timer(active_time + startup_time + (startup_time / 2)).timeout
+	var player_found = false
+	for hitbox in hitboxes:
+		hitbox.monitoring = false
+		if hitbox.player:
+			player_found = true
+	if not player_found:
+		hitboxes[0].do_damage()
+	hitboxes.clear()
 
 func attack() -> bool:
 	var ring_parent = top_parent.get_parent().find_child("rings")
@@ -69,6 +81,7 @@ func attack() -> bool:
 	rings = ring_parent.get_children()
 	for i in range(rings.size()):
 		set_beam(rings[i])
+	check_hitboxes()
 	if wait_for_attack:
 		await get_tree().create_timer(startup_time).timeout
 		await get_tree().create_timer(active_time).timeout

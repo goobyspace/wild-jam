@@ -1,7 +1,7 @@
 extends BossAttack
 
 @export var delay: float = 0.5
-@export var travel_time: float = 1.0
+@export var travel_time: float = 2.0
 @export var damage: int = 5
 @export var amount: int = 3
 @export var knockback_duration: float = 0.3
@@ -36,6 +36,7 @@ func spawn_fireball():
 	var tween = get_tree().create_tween()
 	tween.tween_property(fireball, "position", fireball.global_basis.z * 100, travel_time)
 	await tween.finished
+	hitbox.do_damage()
 	fireball.queue_free()
 
 func attack() -> bool:
