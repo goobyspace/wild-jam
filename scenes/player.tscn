@@ -1,9 +1,10 @@
-[gd_scene load_steps=49 format=3 uid="uid://ccmmifktpgjib"]
+[gd_scene load_steps=64 format=3 uid="uid://ccmmifktpgjib"]
 
 [ext_resource type="Script" uid="uid://b6mge7o3yiv0u" path="res://scripts/player/movement/player_movement.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bj3a4q0fcalg4" path="res://scripts/hp.gd" id="2_g2els"]
 [ext_resource type="Script" uid="uid://cbwmm7hsi6ade" path="res://scripts/player/hp/hp_bar.gd" id="2_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://be2nf424vokic" path="res://assets/models/characters/fox_knight.gltf" id="6_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://dsab3mebvhwsm" path="res://assets/ui/ability_icons/dash.png" id="6_wnwbv"]
 [ext_resource type="Script" uid="uid://ou8gmdvp5iyq" path="res://scripts/player/abilities/player_ability_controller.gd" id="6_y4r1p"]
 [ext_resource type="PackedScene" uid="uid://c5pmsswu5f7bf" path="res://scripts/player/abilities/weapons/sword/sword_main.tscn" id="7_d2wvv"]
 [ext_resource type="Animation" uid="uid://upcxm4b2g5a4" path="res://assets/models/characters/animations/tpose.res" id="7_y4r1p"]
@@ -22,6 +23,14 @@
 [ext_resource type="Animation" uid="uid://c4vh5rwtcebty" path="res://assets/models/characters/animations/spell 2.res" id="18_l71n6"]
 [ext_resource type="Animation" uid="uid://ch3ltayi4bovy" path="res://assets/models/characters/animations/roll.res" id="19_i4ail"]
 [ext_resource type="PackedScene" uid="uid://bbfn0xoov1gdk" path="res://scripts/player/abilities/weapons/sword/spin.tscn" id="21_a38lo"]
+[ext_resource type="Texture2D" uid="uid://b6kep64r1pm3v" path="res://assets/ui/ability_icons/attack.png" id="21_wqfne"]
+[ext_resource type="PackedScene" uid="uid://bti1ia18i2cs3" path="res://scripts/player/abilities/weapons/sword/lunge.tscn" id="22_4ni07"]
+[ext_resource type="Texture2D" uid="uid://uabq33u6v1ek" path="res://assets/ui/ability_icons/bladestorm.png" id="22_dt7fs"]
+[ext_resource type="PackedScene" uid="uid://cg4pp21nhmd5h" path="res://scripts/player/abilities/magic/thunder/thunderstrike.tscn" id="23_l71n6"]
+[ext_resource type="Texture2D" uid="uid://dxo6mihwh08kh" path="res://assets/ui/ability_icons/lunge.png" id="23_pf23h"]
+[ext_resource type="Texture2D" uid="uid://wjbv2jo8dnbp" path="res://assets/ui/ability_icons/thunder.png" id="24_31cv2"]
+[ext_resource type="PackedScene" uid="uid://dtiju5n5lgk81" path="res://scripts/player/abilities/magic/thunder/lightningbolt.tscn" id="24_ke2ow"]
+[ext_resource type="Texture2D" uid="uid://rqgsas06urgw" path="res://assets/ui/ability_icons/thunderstrike.png" id="25_ujl30"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3vyb7"]
 viewport_path = NodePath("SubViewport")
@@ -36,6 +45,9 @@ shadow_color = Color(0, 0, 0, 1)
 bg_color = Color(0.746585, 2.00946e-06, 8.66354e-07, 1)
 skew = Vector2(0.2, 0)
 corner_detail = 16
+
+[sub_resource type="InputEventAction" id="InputEventAction_ke2ow"]
+action = &"move_dash"
 
 [sub_resource type="Animation" id="Animation_d2wvv"]
 length = 0.001
@@ -73,6 +85,21 @@ _data = {
 &"strafe right": ExtResource("13_a8ls1"),
 &"tpose": ExtResource("7_y4r1p")
 }
+
+[sub_resource type="InputEventAction" id="InputEventAction_ujl30"]
+action = &"attack_normal"
+
+[sub_resource type="InputEventAction" id="InputEventAction_31cv2"]
+action = &"attack_primary"
+
+[sub_resource type="InputEventAction" id="InputEventAction_pf23h"]
+action = &"attack_secondary"
+
+[sub_resource type="InputEventAction" id="InputEventAction_dt7fs"]
+action = &"spell_one"
+
+[sub_resource type="InputEventAction" id="InputEventAction_wqfne"]
+action = &"spell_two"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d2wvv"]
 animation = &"player/attack"
@@ -253,14 +280,9 @@ health = NodePath("../../player_health")
 [node name="player_health" type="Node" parent="."]
 script = ExtResource("2_g2els")
 
-[node name="attack_controller" type="Node3D" parent="." node_paths=PackedStringArray("mainAttack", "primaryAttack", "secondaryAttack", "spellPrimary", "spellSecondary", "dash")]
+[node name="attack_controller" type="Node3D" parent="." node_paths=PackedStringArray("abilities")]
 script = ExtResource("6_y4r1p")
-mainAttack = NodePath("../model/sword_main")
-primaryAttack = NodePath("../model/spin")
-secondaryAttack = NodePath("dash")
-spellPrimary = NodePath("dash")
-spellSecondary = NodePath("dash")
-dash = NodePath("dash")
+abilities = [NodePath("../model/sword_main"), NodePath("../model/lunge"), NodePath("../model/spin"), NodePath("../model/lightningbolt"), NodePath("../model/thunderstrike"), NodePath("dash")]
 
 [node name="dash" type="Node" parent="attack_controller" node_paths=PackedStringArray("collision", "health_bar", "character", "animation_tree")]
 script = ExtResource("8_3v2ag")
@@ -270,6 +292,8 @@ character = NodePath("../..")
 ability_cooldown = 1.5
 animation_tree = NodePath("../../AnimationTree")
 animation = 1
+icon = ExtResource("6_wnwbv")
+keybind = SubResource("InputEventAction_ke2ow")
 
 [node name="model" parent="." instance=ExtResource("6_tuyoq")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
@@ -285,12 +309,42 @@ playback_default_blend_time = 0.5
 [node name="sword_main" parent="model" node_paths=PackedStringArray("animation_tree") instance=ExtResource("7_d2wvv")]
 transform = Transform3D(2.22222, 0, -2.98023e-08, 0, 2.22222, 0, 2.98023e-08, 0, 2.22222, 0, 0, 0)
 animation_tree = NodePath("../../AnimationTree")
+icon = ExtResource("21_wqfne")
+keybind = SubResource("InputEventAction_ujl30")
 
 [node name="spin" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("21_a38lo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 hits = 8
 active_time = 2.0
 character = NodePath("../..")
+ability_cooldown = 7.0
 animation_tree = NodePath("../../AnimationTree")
+icon = ExtResource("22_dt7fs")
+keybind = SubResource("InputEventAction_31cv2")
+
+[node name="lunge" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("22_4ni07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+character = NodePath("../..")
+ability_cooldown = 6.0
+animation_tree = NodePath("../../AnimationTree")
+animation = 3
+icon = ExtResource("23_pf23h")
+keybind = SubResource("InputEventAction_pf23h")
+
+[node name="lightningbolt" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("24_ke2ow")]
+character = NodePath("../..")
+animation_tree = NodePath("../../AnimationTree")
+icon = ExtResource("24_31cv2")
+keybind = SubResource("InputEventAction_dt7fs")
+
+[node name="thunderstrike" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("23_l71n6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+stun_time = 1.4
+character = NodePath("../..")
+ability_cooldown = 1.0
+animation_tree = NodePath("../../AnimationTree")
+icon = ExtResource("25_ujl30")
+keybind = SubResource("InputEventAction_wqfne")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../model")

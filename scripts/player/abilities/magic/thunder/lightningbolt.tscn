@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtiju5n5lgk81"]
+
+[ext_resource type="Script" uid="uid://dx7x8sgl23e51" path="res://scripts/player/abilities/magic/thunder/lightningbolt.gd" id="1_tw485"]
+[ext_resource type="PackedScene" uid="uid://dxn11adesoyxk" path="res://scripts/player/abilities/magic/thunder/bolt.tscn" id="2_e8vur"]
+
+[node name="lightningbolt" type="Node3D"]
+script = ExtResource("1_tw485")
+bolt = ExtResource("2_e8vur")
+startup_time = 0.3
+travel_time = 4.0
+ability_cooldown = 1.5
+animation = 4

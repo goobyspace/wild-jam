@@ -26,6 +26,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="wild jam"
 
+[gui]
+
+theme/custom_font="uid://bnka2ruudg7hi"
+
 [input]
 
 move_forward={

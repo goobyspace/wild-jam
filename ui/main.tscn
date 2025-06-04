@@ -1,25 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpp55gui2f1h5"]
+[gd_scene load_steps=3 format=3 uid="uid://bpp55gui2f1h5"]
 
-[ext_resource type="PackedScene" uid="uid://dc1k6mcy2cnt" path="res://ui/cooldown.tscn" id="1_fblgx"]
+[ext_resource type="Script" uid="uid://b2i2je14kpn2r" path="res://scripts/cooldown_buttons/cooldown_buttons.gd" id="1_vcrq8"]
+[ext_resource type="PackedScene" uid="uid://s6rgbn278qj2" path="res://ui/icon.tscn" id="3_loxbi"]
 
-[node name="Main" type="Control"]
+[node name="Main" type="Control" node_paths=PackedStringArray("cooldown_bars")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_vcrq8")
+cooldown_bars = NodePath("HBoxContainer")
+cooldown_button = ExtResource("3_loxbi")
 
-[node name="cooldown bars" type="Control" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchor_right = 0.021
-anchor_bottom = 0.037
-offset_right = -0.320004
-offset_bottom = 0.0400009
-
-[node name="Cooldown" parent="cooldown bars" instance=ExtResource("1_fblgx")]
-layout_mode = 1
-offset_left = -919.0
-offset_top = -499.0
-offset_right = -920.68
-offset_bottom = -501.96
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -307.0
+offset_top = -184.0
+offset_right = 308.0
+offset_bottom = -84.0
+alignment = 1

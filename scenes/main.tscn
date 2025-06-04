@@ -188,7 +188,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Main" parent="CanvasLayer" instance=ExtResource("4_jyhfs")]
+[node name="Main" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("4_jyhfs")]
+player = NodePath("../../Player")
 
 [node name="terrain" type="Node3D" parent="."]
 

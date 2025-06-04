@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxn11adesoyxk"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tw485"]
+size = Vector3(0.2, 0.2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2sfrd"]
+transparency = 1
+albedo_color = Color(0.256657, 0.59785, 0.740682, 0.6)
+emission_enabled = true
+emission = Color(3.85046e-06, 0.594907, 0.870088, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tw485"]
+points = PackedVector3Array(-0.1, -0.1, -0.471748, 0.114264, 0.114264, 0.507937, 0.114264, -0.107915, 0.507937, 0.114264, 0.114264, -0.507937, -0.107915, 0.114264, 0.507937, 0.114264, -0.107915, -0.507937, -0.107915, 0.114264, -0.507937, -0.1, -0.1, 0.471748)
+
+[node name="bolt" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_tw485")
+surface_material_override/0 = SubResource("StandardMaterial3D_2sfrd")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0, 0.554936, 0.870286, 1)
+light_energy = 8.0
+light_size = 8.0
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+shape = SubResource("ConvexPolygonShape3D_tw485")
