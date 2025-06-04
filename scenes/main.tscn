@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dwclbmbobga60"]
+[gd_scene load_steps=13 format=3 uid="uid://dwclbmbobga60"]
 
 [ext_resource type="PackedScene" uid="uid://ccmmifktpgjib" path="res://scenes/player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bqth5yqagfvxu" path="res://scenes/enemy.tscn" id="3_sugp2"]
@@ -35,6 +35,9 @@ size = Vector3(0.37323, 1, 0.369385)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r4ag1"]
 size = Vector3(0.596875, 1, 0.168347)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tefeu"]
+size = Vector3(500, 0.1, 500)
 
 [node name="Main" type="Node3D"]
 
@@ -166,3 +169,11 @@ omni_range = 10.0
 omni_attenuation = -0.566
 
 [node name="terrain" parent="." instance=ExtResource("6_tefeu")]
+
+[node name="mouse_raycast_plane" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 8
+collision_priority = 4.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mouse_raycast_plane"]
+shape = SubResource("BoxShape3D_tefeu")

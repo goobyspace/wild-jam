@@ -16,7 +16,7 @@ var movement_lock := 0.0
 var model_lock := false
 var look_at_directon := Vector3.ZERO
 var _theta := 0.0
-var mouse_to_center: Vector2 = Vector2.ZERO
+var mouse_raycast: Vector3 = Vector3.ZERO
 
 func _ready() -> void:
 	camera = get_viewport().get_camera_3d()
@@ -124,9 +124,8 @@ func _physics_process(delta: float) -> void:
 
 	# we rotate the player here so that the player rotates back instantly when a knockback lock is over
 	# otherwise the player will stay facing the direction of the knockback until the next mouse input
-	if not model_lock and mouse_to_center != Vector2.ZERO:
-		model.look_at(Vector3(position.x - mouse_to_center.x, 0, position.z - mouse_to_center.y), Vector3.UP)
-		model.rotation.y += rotation.y
+	if not model_lock and mouse_raycast != Vector3.ZERO:
+		model.look_at(mouse_raycast, Vector3.UP)
 		
 	model.rotation.x = 0
 	model.rotation.z = 0
@@ -149,8 +148,12 @@ func _input(event):
 		rotation.y = rot_y
 
 	# we get the mouse position compared to the center of the screen to rotate the player model in _physics_process
-	var viewport = get_viewport();
-	var mouse_position = viewport.get_mouse_position()
-	var rect = viewport.get_visible_rect()
-	var center_position = rect.size / 2
-	mouse_to_center = (mouse_position - center_position).normalized()
+	var mouse_pos = get_viewport().get_mouse_position()
+	var origin = camera.project_ray_origin(mouse_pos)
+	var end = origin + camera.project_ray_normal(mouse_pos) * 100000
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(origin, end, 0b00010000_00000000_00000000_00001000)
+	query.collide_with_areas = true
+	var result = space_state.intersect_ray(query)
+	if result.position:
+		mouse_raycast = result.position
