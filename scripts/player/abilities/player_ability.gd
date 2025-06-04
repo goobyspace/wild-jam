@@ -3,6 +3,10 @@ class_name PlayerAbility extends Node
 @export var ability_cooldown: float = 1.0
 @export var animation_tree: AnimationTree
 @export var animation: PlayerAnimations.ActionAnimations
+@export var icon: Texture
+@export var keybind: InputEventAction
+
+signal ability_used(ability: PlayerAbility)
 
 var is_on_cooldown: bool = false
 
@@ -19,6 +23,7 @@ func use() -> void:
 	if is_on_cooldown:
 		return
 
+	ability_used.emit(self)
 	is_on_cooldown = true
 	_on_use()
 	await get_tree().create_timer(ability_cooldown).timeout

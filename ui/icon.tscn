@@ -1,0 +1,89 @@
+[gd_scene load_steps=9 format=3 uid="uid://s6rgbn278qj2"]
+
+[ext_resource type="Texture2D" uid="uid://dw3v4dqs4kqtd" path="res://assets/ui/panel_grey_dark.png" id="1_1luli"]
+[ext_resource type="Script" uid="uid://srh14br7rlrm" path="res://scripts/cooldown_buttons/button.gd" id="1_b17uh"]
+[ext_resource type="Texture2D" uid="uid://b6kep64r1pm3v" path="res://assets/ui/ability_icons/attack.png" id="2_b17uh"]
+[ext_resource type="PackedScene" uid="uid://1xw0jrqtmt6b" path="res://ui/keybind.tscn" id="4_b17uh"]
+[ext_resource type="PackedScene" uid="uid://dmeikbe3fmyu7" path="res://ui/mouse_button.tscn" id="5_kt85e"]
+[ext_resource type="PackedScene" uid="uid://bagady0no6r6u" path="res://ui/space_bar.tscn" id="6_53i7k"]
+
+[sub_resource type="Gradient" id="Gradient_b17uh"]
+colors = PackedColorArray(0.25098, 0.25098, 0.25098, 0.941176, 0, 0, 0, 0.862745)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kt85e"]
+gradient = SubResource("Gradient_b17uh")
+width = 94
+
+[node name="button" type="Control" node_paths=PackedStringArray("icon", "cooldown_progress", "keybind_button", "mouse_button", "space_bar")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 100.0
+offset_bottom = 100.0
+size_flags_stretch_ratio = 0.0
+script = ExtResource("1_b17uh")
+icon = NodePath("icon")
+cooldown_progress = NodePath("TextureProgressBar")
+keybind_button = NodePath("Keybind")
+mouse_button = NodePath("MouseButton")
+space_bar = NodePath("space_bar")
+
+[node name="border" type="TextureRect" parent="."]
+layout_mode = 2
+offset_right = 100.0
+offset_bottom = 100.0
+texture = ExtResource("1_1luli")
+expand_mode = 3
+
+[node name="icon" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 97.0
+offset_bottom = 97.0
+texture = ExtResource("2_b17uh")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 2
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 97.0
+offset_bottom = 96.0
+color = Color(0, 0, 0, 0.807843)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 97.0
+offset_top = 3.0
+offset_right = 191.0
+offset_bottom = 97.0
+rotation = 1.5708
+value = 100.0
+fill_mode = 1
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture1D_kt85e")
+
+[node name="Keybind" parent="." instance=ExtResource("4_b17uh")]
+layout_mode = 1
+offset_left = 50.8
+offset_top = -24.2
+offset_right = 98.8
+offset_bottom = 23.8
+
+[node name="MouseButton" parent="." instance=ExtResource("5_kt85e")]
+layout_mode = 1
+offset_left = 49.7
+offset_top = -24.3
+offset_right = 99.7
+offset_bottom = 25.7
+
+[node name="space_bar" parent="." instance=ExtResource("6_53i7k")]
+layout_mode = 1
+offset_left = 49.7
+offset_top = -25.3
+offset_right = 99.7
+offset_bottom = 24.7

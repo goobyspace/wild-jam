@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmeikbe3fmyu7"]
+
+[ext_resource type="Texture2D" uid="uid://wg2fahwkmvti" path="res://assets/ui/keyboard-&-mouse_sheet_default.png" id="1_2in45"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1iqcj"]
+atlas = ExtResource("1_2in45")
+region = Rect2(200.305, 72.055, 48, 48)
+
+[node name="MouseButton" type="TextureRect"]
+custom_minimum_size = Vector2(50, 50)
+anchors_preset = -1
+anchor_left = 0.013
+anchor_top = 0.023
+anchor_right = 0.013
+anchor_bottom = 0.023
+offset_left = -24.96
+offset_top = -24.84
+offset_right = 25.04
+offset_bottom = 25.16
+texture = SubResource("AtlasTexture_1iqcj")

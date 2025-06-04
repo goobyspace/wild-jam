@@ -5,16 +5,13 @@ extends Node
 
 @export var player: CharacterBody3D
 
-var abilities: Array[PlayerAbility] = []
-
-func _on_ability_used(ability: PlayerAbility) -> void:
-	# Handle the ability used event, e.g., update UI or trigger effects
-	print("Ability used:", ability.name)
-
 func _ready() -> void:
-	abilities = player.find_child("attack_controller").abilities
+	var attack_controller = player.find_child("attack_controller")
+	var abilities = attack_controller.abilities
 
 	for ability in abilities:
 		var button = cooldown_button.instantiate()
 		cooldown_bars.add_child(button)
-		button.connect("ability_used", _on_ability_used)
+		button.set_ability(ability)
+		ability.connect("ability_used", button._on_ability_used)
+		attack_controller.connect("ability_used", button._any_ability_used)
