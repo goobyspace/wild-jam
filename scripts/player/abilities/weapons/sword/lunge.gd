@@ -34,8 +34,9 @@ func _on_use() -> bool:
 	var tween = get_tree().create_tween()
 	tween.tween_property(material, "albedo_color", transparent, active_time / 2)
 	tween.tween_property(material, "albedo_color", color, active_time / 4)
-	tween.tween_property(material, "albedo_color", transparent, active_time / 2)
 	await get_tree().create_timer(active_time).timeout
+	var out_tween = get_tree().create_tween()
+	out_tween.tween_property(material, "albedo_color", transparent, active_time / 2)
 	area_hitbox.monitoring = false
 	await get_tree().create_timer(lock_time - active_time).timeout
 	return true

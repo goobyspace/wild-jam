@@ -312,17 +312,16 @@ ability_cooldown = 2.0
 animation_tree = NodePath("../../AnimationTree")
 icon = ExtResource("21_wqfne")
 keybind = SubResource("InputEventAction_ujl30")
-damage = 5
 
 [node name="spin" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("21_a38lo")]
-hits = 7
+hits = 9
 active_time = 1.5
 character = NodePath("../..")
 ability_cooldown = 6.0
 animation_tree = NodePath("../../AnimationTree")
 icon = ExtResource("22_dt7fs")
 keybind = SubResource("InputEventAction_31cv2")
-damage = 2
+damage = 1
 
 [node name="lunge" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("22_4ni07")]
 lock_time = 0.5
@@ -332,16 +331,16 @@ animation_tree = NodePath("../../AnimationTree")
 animation = 3
 icon = ExtResource("23_pf23h")
 keybind = SubResource("InputEventAction_pf23h")
-damage = 12
+damage = 6
 
 [node name="lightningbolt" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("24_ke2ow")]
 character = NodePath("../..")
 travel_time = 3.8
-ability_cooldown = 4.0
+ability_cooldown = 2.0
 animation_tree = NodePath("../../AnimationTree")
 icon = ExtResource("24_31cv2")
 keybind = SubResource("InputEventAction_dt7fs")
-damage = 4
+damage = 2
 
 [node name="thunderstrike" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("23_l71n6")]
 stun_time = 1.1
@@ -350,7 +349,7 @@ ability_cooldown = 8.0
 animation_tree = NodePath("../../AnimationTree")
 icon = ExtResource("25_ujl30")
 keybind = SubResource("InputEventAction_wqfne")
-damage = 18
+damage = 12
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../model")
