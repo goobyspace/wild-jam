@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dwclbmbobga60"]
+[gd_scene load_steps=15 format=3 uid="uid://dwclbmbobga60"]
 
 [ext_resource type="PackedScene" uid="uid://ccmmifktpgjib" path="res://scenes/player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cehuslw1ppg1g" path="res://ui/start_screen.tscn" id="3_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://bqth5yqagfvxu" path="res://scenes/enemy.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://bpp55gui2f1h5" path="res://ui/main.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://cffhrfcnoomqm" path="res://assets/models/terrain/nature kit/statue_ring.glb" id="5_r4ag1"]
+[ext_resource type="PackedScene" uid="uid://pb47woopyn3t" path="res://ui/end_screen.tscn" id="5_tipki"]
 [ext_resource type="PackedScene" uid="uid://b606nmbtkfsgn" path="res://scenes/terrain.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://caxeor7gbeaus" path="res://assets/models/terrain/graveyard/column-large.glb" id="47_vc5cj"]
 
@@ -62,6 +63,8 @@ player = NodePath("../Player")
 player = NodePath("../../Player")
 
 [node name="StartScreen" parent="CanvasLayer" instance=ExtResource("3_o6xl0")]
+
+[node name="StartScreen2" parent="CanvasLayer" instance=ExtResource("5_tipki")]
 
 [node name="columns" type="Node3D" parent="."]
 

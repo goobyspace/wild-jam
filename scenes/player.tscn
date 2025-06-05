@@ -241,7 +241,6 @@ height = 1.95
 radius = 0.4
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("model", "animation_tree")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 axis_lock_linear_y = true
 platform_wall_layers = 1
 script = ExtResource("1_4flbx")
@@ -321,6 +320,7 @@ ability_cooldown = 7.0
 animation_tree = NodePath("../../AnimationTree")
 icon = ExtResource("22_dt7fs")
 keybind = SubResource("InputEventAction_31cv2")
+damage = 20
 
 [node name="lunge" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("22_4ni07")]
 character = NodePath("../..")

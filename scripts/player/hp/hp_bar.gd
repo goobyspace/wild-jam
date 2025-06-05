@@ -7,6 +7,7 @@ var max_health: int = 100;
 func _ready() -> void:
 	self.hide()
 	health.connect("health_changed", on_health_changed)
+	health.connect("health_depleted", self.hide)
 	max_health = health.maxHealth
 	self.value = 100
 

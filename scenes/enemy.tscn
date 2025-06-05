@@ -1,7 +1,7 @@
 [gd_scene load_steps=54 format=3 uid="uid://bqth5yqagfvxu"]
 
 [ext_resource type="Script" uid="uid://dxkpnugcif1tb" path="res://scripts/boss/boss_attack_controller.gd" id="1_7p1mj"]
-[ext_resource type="Script" path="res://scenes/boss.gd" id="1_w8i8w"]
+[ext_resource type="Script" uid="uid://e755np8slxxt" path="res://scenes/boss.gd" id="1_w8i8w"]
 [ext_resource type="Script" uid="uid://c48qofkpgix3f" path="res://scripts/boss/attacks/explosion/explosion.gd" id="2_md0e3"]
 [ext_resource type="PackedScene" uid="uid://brlbm87anu7d3" path="res://scripts/boss/attacks/explosion/explosion_bubble.tscn" id="3_4ra3w"]
 [ext_resource type="Script" uid="uid://bj3a4q0fcalg4" path="res://scripts/hp.gd" id="4_5uy6h"]
@@ -174,10 +174,11 @@ shape = SubResource("CylinderShape3D_nenq2")
 
 [node name="attack_controller" type="Node" parent="." node_paths=PackedStringArray("attacks")]
 script = ExtResource("1_7p1mj")
-attacks = [NodePath("weird_beam")]
+attacks = [NodePath("explosion")]
 
 [node name="explosion" type="Node" parent="attack_controller" node_paths=PackedStringArray("boss_animations")]
 script = ExtResource("2_md0e3")
+explosion_damage = 1000
 explosion_node = ExtResource("3_4ra3w")
 knockback_duration = 0.7
 knockback_strength = 16.0

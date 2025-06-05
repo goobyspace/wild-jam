@@ -28,7 +28,5 @@ func _unhandled_input(event: InputEvent) -> void:
 	for ability in abilities:
 		if _cooldown_timer > 0.0:
 			return
-		print(event)
-		print(ability.keybind)
-		if event == ability.keybind:
+		if InputMap.event_is_action(event, ability.keybind.action):
 			use_ability(ability)
