@@ -1,9 +1,9 @@
 [gd_scene load_steps=19 format=3 uid="uid://dwclbmbobga60"]
 
-[ext_resource type="PackedScene" uid="uid://ccmmifktpgjib" path="res://scenes/player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://6jvl6rch4u0r" path="res://scenes/player.tscn" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://bvra2jpeldcop" path="res://scripts/boss/enemy_hp_bar.gd" id="3_85g3d"]
 [ext_resource type="PackedScene" uid="uid://cehuslw1ppg1g" path="res://ui/start_screen.tscn" id="3_o6xl0"]
-[ext_resource type="PackedScene" uid="uid://bqth5yqagfvxu" path="res://scenes/enemy.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://cfpd50qrxn2ho" path="res://scenes/enemy.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://bpp55gui2f1h5" path="res://ui/main.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://cffhrfcnoomqm" path="res://assets/models/terrain/nature kit/statue_ring.glb" id="5_r4ag1"]
 [ext_resource type="PackedScene" uid="uid://pb47woopyn3t" path="res://ui/end_screen.tscn" id="5_tipki"]
