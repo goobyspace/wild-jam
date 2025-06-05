@@ -18,8 +18,6 @@ func _ready() -> void:
 		return
 
 
-
-
 func attack() -> bool:
 	explosion_mesh = explosion_node.instantiate()
 	self.add_child(explosion_mesh)
@@ -29,8 +27,6 @@ func attack() -> bool:
 	explosion_hitbox.monitoring = false
 	await explosion_mesh.explode(explosion_active_delay, explosion_radius, Color(1, 0, 0, 0.3), Color(1, 0, 0, 0.5)) # Red color for explosion
 	explosion_hitbox.activate()
-	await get_tree().create_timer(explosion_active_timer).timeout
-	await explosion_mesh.explode(explosion_active_delay, explosion_radius, Color(1, 0, 0)) # Red color for explosion
 	explosion_hitbox.monitoring = true
 	await get_tree().create_timer(explosion_active_delay).timeout
 	explosion_hitbox.monitoring = false
