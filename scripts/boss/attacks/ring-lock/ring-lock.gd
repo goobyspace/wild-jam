@@ -12,6 +12,7 @@ extends BossAttack
 @export var ring_lock_node: PackedScene
 @export var inner_beam_color: Color = Color(1, 0.2, 0.2, 1)
 @export var outer_beam_color: Color = Color(1, 0.3, 0, 0.4)
+@export var audio_fade_duration: float = 0.9
 
 var rings
 func _ready() -> void:
@@ -51,6 +52,16 @@ func set_beam(ring):
 	hitbox.activate()
 	await get_tree().create_timer(active_time).timeout
 	hitbox.monitoring = false
+
+	# Fade out the audio when beam is done
+	if audio_player and audio_player.playing:
+		var audio_tween = get_tree().create_tween()
+		var original_volume = audio_player.volume_db
+		audio_tween.tween_property(audio_player, "volume_db", -80.0, audio_fade_duration)
+		audio_tween.tween_callback(audio_player.stop_audio)
+		# Reset volume for future sounds
+		audio_tween.tween_property(audio_player, "volume_db", original_volume, 0.01)
+
 	var exit_tween = get_tree().create_tween().set_parallel(true)
 	stop_blend_animation()
 	exit_tween.tween_property(inner_material, "albedo_color", Color(1, 1, 1, 0), cleanup_time / 4)

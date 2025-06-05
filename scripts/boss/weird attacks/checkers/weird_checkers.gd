@@ -19,6 +19,7 @@ var hitboxes = []
 
 func _ready():
 	super._ready()
+	play_in_parent = false # Disables boss_attacks from playing the sound
 	if not checker_scene:
 		push_error("Checker scene is not set.")
 		return
@@ -33,6 +34,9 @@ func get_checkers():
 	for _i in repeat + 1:
 		for i in range(grid.size()):
 			play_animation()
+			if audio_player and audio_track:
+				audio_player.play_audio(audio_track, volume_db, audio_start)
+				audio_player.bus = audio_bus
 			var checker = grid[i].grid
 			# originally i tried doing this dynamically but its only 9 values so fuck it
 			if checker["top_left"]:
