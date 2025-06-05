@@ -1,41 +1,36 @@
-[gd_scene load_steps=69 format=3 uid="uid://ccmmifktpgjib"]
+[gd_scene load_steps=64 format=3 uid="uid://6jvl6rch4u0r"]
 
-[ext_resource type="Script" uid="uid://b6mge7o3yiv0u" path="res://scripts/player/movement/player_movement.gd" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://bj3a4q0fcalg4" path="res://scripts/hp.gd" id="2_g2els"]
-[ext_resource type="Script" uid="uid://t8hdm25fnidd" path="res://scripts/audio/universal_audio.gd" id="2_gl8cc"]
-[ext_resource type="Script" uid="uid://cbwmm7hsi6ade" path="res://scripts/player/hp/hp_bar.gd" id="2_qhqgy"]
-[ext_resource type="PackedScene" uid="uid://be2nf424vokic" path="res://assets/models/characters/fox_knight.gltf" id="6_tuyoq"]
-[ext_resource type="Texture2D" uid="uid://dsab3mebvhwsm" path="res://assets/ui/ability_icons/dash.png" id="6_wnwbv"]
-[ext_resource type="Script" uid="uid://ou8gmdvp5iyq" path="res://scripts/player/abilities/player_ability_controller.gd" id="6_y4r1p"]
-[ext_resource type="PackedScene" uid="uid://c5pmsswu5f7bf" path="res://scripts/player/abilities/weapons/sword/sword_main.tscn" id="7_d2wvv"]
-[ext_resource type="Animation" uid="uid://upcxm4b2g5a4" path="res://assets/models/characters/animations/tpose.res" id="7_y4r1p"]
-[ext_resource type="Script" uid="uid://ddjqahwbx1afm" path="res://scripts/player/abilities/dash/main_dash.gd" id="8_3v2ag"]
-[ext_resource type="AudioStream" uid="uid://c18pd7cdjpqmp" path="res://assets/sounds/dashroll.wav" id="8_487ah"]
-[ext_resource type="Animation" uid="uid://qixm0x3wvrbs" path="res://assets/models/characters/animations/run forward.res" id="8_d2wvv"]
-[ext_resource type="Animation" uid="uid://7ba1wfxtesni" path="res://assets/models/characters/animations/idle.res" id="9_3v2ag"]
-[ext_resource type="Animation" uid="uid://b8iswqochcsyt" path="res://assets/models/characters/animations/attack.res" id="10_jej6c"]
-[ext_resource type="Script" uid="uid://u5jc1fp3va0w" path="res://scripts/player/movement/player_animations.gd" id="11_d2wvv"]
-[ext_resource type="Animation" uid="uid://x5das8no1435" path="res://assets/models/characters/animations/run backwards.res" id="11_f1ej7"]
-[ext_resource type="Animation" uid="uid://ddyf46a24wokg" path="res://assets/models/characters/animations/strafe left.res" id="12_oprun"]
-[ext_resource type="Animation" uid="uid://fsnxgt8gs7n8" path="res://assets/models/characters/animations/strafe right.res" id="13_a8ls1"]
-[ext_resource type="Animation" uid="uid://bg66p0m4wy78u" path="res://assets/models/characters/animations/bladestorm.res" id="14_60mlk"]
-[ext_resource type="Animation" uid="uid://b48037u6um5hd" path="res://assets/models/characters/animations/dash.res" id="15_i4ail"]
-[ext_resource type="Animation" uid="uid://dsw61brf7g4ba" path="res://assets/models/characters/animations/lunge.res" id="16_a38lo"]
-[ext_resource type="Animation" uid="uid://blo8pmic5rany" path="res://assets/models/characters/animations/spell 1.res" id="17_4ni07"]
-[ext_resource type="Animation" uid="uid://c4vh5rwtcebty" path="res://assets/models/characters/animations/spell 2.res" id="18_l71n6"]
-[ext_resource type="Animation" uid="uid://ch3ltayi4bovy" path="res://assets/models/characters/animations/roll.res" id="19_i4ail"]
-[ext_resource type="PackedScene" uid="uid://bbfn0xoov1gdk" path="res://scripts/player/abilities/weapons/sword/spin.tscn" id="21_a38lo"]
-[ext_resource type="Texture2D" uid="uid://b6kep64r1pm3v" path="res://assets/ui/ability_icons/attack.png" id="21_wqfne"]
-[ext_resource type="PackedScene" uid="uid://bti1ia18i2cs3" path="res://scripts/player/abilities/weapons/sword/lunge.tscn" id="22_4ni07"]
-[ext_resource type="Texture2D" uid="uid://uabq33u6v1ek" path="res://assets/ui/ability_icons/bladestorm.png" id="22_dt7fs"]
-[ext_resource type="PackedScene" uid="uid://cg4pp21nhmd5h" path="res://scripts/player/abilities/magic/thunder/thunderstrike.tscn" id="23_l71n6"]
-[ext_resource type="Texture2D" uid="uid://dxo6mihwh08kh" path="res://assets/ui/ability_icons/lunge.png" id="23_pf23h"]
-[ext_resource type="Texture2D" uid="uid://wjbv2jo8dnbp" path="res://assets/ui/ability_icons/thunder.png" id="24_31cv2"]
-[ext_resource type="PackedScene" uid="uid://dtiju5n5lgk81" path="res://scripts/player/abilities/magic/thunder/lightningbolt.tscn" id="24_ke2ow"]
-[ext_resource type="AudioStream" uid="uid://ds32s1qxqd1tr" path="res://assets/sounds/swordattack.wav" id="25_md1ol"]
-[ext_resource type="Texture2D" uid="uid://rqgsas06urgw" path="res://assets/ui/ability_icons/thunderstrike.png" id="25_ujl30"]
-[ext_resource type="AudioStream" uid="uid://ddbnobj70tt7g" path="res://assets/sounds/lightningbolt.ogg" id="32_jc3p3"]
-[ext_resource type="AudioStream" uid="uid://cfxst2atav61" path="res://assets/sounds/thunderstrike.wav" id="34_bj30b"]
+[ext_resource type="Script" uid="uid://b6mge7o3yiv0u" path="res://scripts/player/movement/player_movement.gd" id="1_xsx7v"]
+[ext_resource type="Script" uid="uid://cbwmm7hsi6ade" path="res://scripts/player/hp/hp_bar.gd" id="2_63se2"]
+[ext_resource type="Script" uid="uid://bj3a4q0fcalg4" path="res://scripts/hp.gd" id="3_jld6q"]
+[ext_resource type="Script" uid="uid://ou8gmdvp5iyq" path="res://scripts/player/abilities/player_ability_controller.gd" id="4_la8rm"]
+[ext_resource type="Script" uid="uid://ddjqahwbx1afm" path="res://scripts/player/abilities/dash/main_dash.gd" id="5_bnjk3"]
+[ext_resource type="Texture2D" uid="uid://dsab3mebvhwsm" path="res://assets/ui/ability_icons/dash.png" id="6_bbi8u"]
+[ext_resource type="PackedScene" uid="uid://be2nf424vokic" path="res://assets/models/characters/fox_knight.gltf" id="7_ushjk"]
+[ext_resource type="Animation" uid="uid://b8iswqochcsyt" path="res://assets/models/characters/animations/attack.res" id="8_y5key"]
+[ext_resource type="Animation" uid="uid://bg66p0m4wy78u" path="res://assets/models/characters/animations/bladestorm.res" id="9_qcs3k"]
+[ext_resource type="Animation" uid="uid://b48037u6um5hd" path="res://assets/models/characters/animations/dash.res" id="10_86xxx"]
+[ext_resource type="Animation" uid="uid://7ba1wfxtesni" path="res://assets/models/characters/animations/idle.res" id="11_o2nc5"]
+[ext_resource type="Animation" uid="uid://dsw61brf7g4ba" path="res://assets/models/characters/animations/lunge.res" id="12_q5k1l"]
+[ext_resource type="Animation" uid="uid://ch3ltayi4bovy" path="res://assets/models/characters/animations/roll.res" id="13_xq4da"]
+[ext_resource type="Animation" uid="uid://x5das8no1435" path="res://assets/models/characters/animations/run backwards.res" id="14_udnlq"]
+[ext_resource type="Animation" uid="uid://qixm0x3wvrbs" path="res://assets/models/characters/animations/run forward.res" id="15_wp7nj"]
+[ext_resource type="Animation" uid="uid://blo8pmic5rany" path="res://assets/models/characters/animations/spell 1.res" id="16_w78wd"]
+[ext_resource type="Animation" uid="uid://c4vh5rwtcebty" path="res://assets/models/characters/animations/spell 2.res" id="17_5jtrl"]
+[ext_resource type="Animation" uid="uid://ddyf46a24wokg" path="res://assets/models/characters/animations/strafe left.res" id="18_48ldc"]
+[ext_resource type="Animation" uid="uid://fsnxgt8gs7n8" path="res://assets/models/characters/animations/strafe right.res" id="19_n1aeu"]
+[ext_resource type="Animation" uid="uid://upcxm4b2g5a4" path="res://assets/models/characters/animations/tpose.res" id="20_2ds2q"]
+[ext_resource type="PackedScene" uid="uid://c5pmsswu5f7bf" path="res://scripts/player/abilities/weapons/sword/sword_main.tscn" id="21_jsl5g"]
+[ext_resource type="Texture2D" uid="uid://b6kep64r1pm3v" path="res://assets/ui/ability_icons/attack.png" id="22_01wcc"]
+[ext_resource type="PackedScene" uid="uid://bbfn0xoov1gdk" path="res://scripts/player/abilities/weapons/sword/spin.tscn" id="23_h0745"]
+[ext_resource type="Texture2D" uid="uid://uabq33u6v1ek" path="res://assets/ui/ability_icons/bladestorm.png" id="24_tdkd2"]
+[ext_resource type="PackedScene" uid="uid://bti1ia18i2cs3" path="res://scripts/player/abilities/weapons/sword/lunge.tscn" id="25_eyhd5"]
+[ext_resource type="Texture2D" uid="uid://dxo6mihwh08kh" path="res://assets/ui/ability_icons/lunge.png" id="26_wp154"]
+[ext_resource type="PackedScene" uid="uid://dtiju5n5lgk81" path="res://scripts/player/abilities/magic/thunder/lightningbolt.tscn" id="27_j3n28"]
+[ext_resource type="Texture2D" uid="uid://wjbv2jo8dnbp" path="res://assets/ui/ability_icons/thunder.png" id="28_ecrm8"]
+[ext_resource type="PackedScene" uid="uid://cg4pp21nhmd5h" path="res://scripts/player/abilities/magic/thunder/thunderstrike.tscn" id="29_y2rux"]
+[ext_resource type="Texture2D" uid="uid://rqgsas06urgw" path="res://assets/ui/ability_icons/thunderstrike.png" id="30_cpwpr"]
+[ext_resource type="Script" uid="uid://u5jc1fp3va0w" path="res://scripts/player/movement/player_animations.gd" id="31_qqft0"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3vyb7"]
 viewport_path = NodePath("SubViewport")
@@ -76,19 +71,19 @@ _data = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f1ej7"]
 _data = {
-&"attack": ExtResource("10_jej6c"),
-&"bladestorm": ExtResource("14_60mlk"),
-&"dash": ExtResource("15_i4ail"),
-&"idle": ExtResource("9_3v2ag"),
-&"lunge": ExtResource("16_a38lo"),
-&"roll": ExtResource("19_i4ail"),
-&"run backwards": ExtResource("11_f1ej7"),
-&"run forward": ExtResource("8_d2wvv"),
-&"spell 1": ExtResource("17_4ni07"),
-&"spell 2": ExtResource("18_l71n6"),
-&"strafe left": ExtResource("12_oprun"),
-&"strafe right": ExtResource("13_a8ls1"),
-&"tpose": ExtResource("7_y4r1p")
+&"attack": ExtResource("8_y5key"),
+&"bladestorm": ExtResource("9_qcs3k"),
+&"dash": ExtResource("10_86xxx"),
+&"idle": ExtResource("11_o2nc5"),
+&"lunge": ExtResource("12_q5k1l"),
+&"roll": ExtResource("13_xq4da"),
+&"run backwards": ExtResource("14_udnlq"),
+&"run forward": ExtResource("15_wp7nj"),
+&"spell 1": ExtResource("16_w78wd"),
+&"spell 2": ExtResource("17_5jtrl"),
+&"strafe left": ExtResource("18_48ldc"),
+&"strafe right": ExtResource("19_n1aeu"),
+&"tpose": ExtResource("20_2ds2q")
 }
 
 [sub_resource type="InputEventAction" id="InputEventAction_ujl30"]
@@ -248,15 +243,9 @@ radius = 0.4
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("model", "animation_tree")]
 axis_lock_linear_y = true
 platform_wall_layers = 1
-script = ExtResource("1_4flbx")
+script = ExtResource("1_xsx7v")
 model = NodePath("model")
 animation_tree = NodePath("AnimationTree")
-
-[node name="PlayerSounds" type="AudioStreamPlayer" parent="."]
-script = ExtResource("2_gl8cc")
-
-[node name="ThunderstrikeAudio" type="AudioStreamPlayer" parent="."]
-script = ExtResource("2_gl8cc")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
@@ -288,32 +277,29 @@ theme_override_styles/background = SubResource("StyleBoxFlat_3vyb7")
 theme_override_styles/fill = SubResource("StyleBoxFlat_g2els")
 value = 10.0
 show_percentage = false
-script = ExtResource("2_qhqgy")
+script = ExtResource("2_63se2")
 health = NodePath("../../player_health")
 
 [node name="player_health" type="Node" parent="."]
-script = ExtResource("2_g2els")
+script = ExtResource("3_jld6q")
 
 [node name="attack_controller" type="Node3D" parent="." node_paths=PackedStringArray("abilities")]
-script = ExtResource("6_y4r1p")
-abilities = [NodePath("../model/sword_main"), NodePath("../model/lunge"), NodePath("../model/spin"), NodePath("../model/lightningbolt"), NodePath("../model/thunderstrike"), NodePath("dash")]
+script = ExtResource("4_la8rm")
+abilities = [NodePath("../model/sword_main"), NodePath("../model/spin"), NodePath("../model/lunge"), NodePath("../model/lightningbolt"), NodePath("../model/thunderstrike"), NodePath("dash")]
 
-[node name="dash" type="Node" parent="attack_controller" node_paths=PackedStringArray("collision", "health_bar", "character", "animation_tree", "audio_player")]
-script = ExtResource("8_3v2ag")
-collision = NodePath("../../CollisionShape3D")
+[node name="dash" type="Node" parent="attack_controller" node_paths=PackedStringArray("health_bar", "character", "animation_tree")]
+script = ExtResource("5_bnjk3")
 health_bar = NodePath("../../health_bar")
 character = NodePath("../..")
-ability_cooldown = 1.5
+ability_cooldown = 4.5
 animation_tree = NodePath("../../AnimationTree")
 animation = 1
-icon = ExtResource("6_wnwbv")
+icon = ExtResource("6_bbi8u")
 keybind = SubResource("InputEventAction_ke2ow")
-audio_track = ExtResource("8_487ah")
-audio_player = NodePath("../../PlayerSounds")
-volume_db = 5.0
+damage = 0
 
-[node name="model" parent="." instance=ExtResource("6_tuyoq")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+[node name="model" parent="." instance=ExtResource("7_ushjk")]
+transform = Transform3D(-0.212132, 0, -0.212132, 0, 0.3, 0, 0.212132, 0, -0.212132, 0, 0, 0)
 
 [node name="animations" type="AnimationPlayer" parent="model"]
 libraries = {
@@ -323,60 +309,50 @@ libraries = {
 autoplay = "player/idle"
 playback_default_blend_time = 0.5
 
-[node name="sword_main" parent="model" node_paths=PackedStringArray("animation_tree", "audio_player") instance=ExtResource("7_d2wvv")]
+[node name="sword_main" parent="model" node_paths=PackedStringArray("animation_tree") instance=ExtResource("21_jsl5g")]
 transform = Transform3D(2.22222, 0, -2.98023e-08, 0, 2.22222, 0, 2.98023e-08, 0, 2.22222, 0, 0, 0)
+ability_cooldown = 2.0
 animation_tree = NodePath("../../AnimationTree")
-icon = ExtResource("21_wqfne")
+icon = ExtResource("22_01wcc")
 keybind = SubResource("InputEventAction_ujl30")
-audio_track = ExtResource("25_md1ol")
-audio_player = NodePath("../../PlayerSounds")
-volume_db = -4.0
 
-[node name="spin" parent="model" node_paths=PackedStringArray("character", "animation_tree", "audio_player") instance=ExtResource("21_a38lo")]
-hits = 8
-active_time = 2.0
-character = NodePath("../..")
-ability_cooldown = 7.0
-animation_tree = NodePath("../../AnimationTree")
-icon = ExtResource("22_dt7fs")
-keybind = SubResource("InputEventAction_31cv2")
-audio_track = ExtResource("25_md1ol")
-audio_player = NodePath("../../PlayerSounds")
-volume_db = -3.0
-
-[node name="lunge" parent="model" node_paths=PackedStringArray("character", "animation_tree", "audio_player") instance=ExtResource("22_4ni07")]
+[node name="spin" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("23_h0745")]
+hits = 9
+active_time = 1.5
 character = NodePath("../..")
 ability_cooldown = 6.0
 animation_tree = NodePath("../../AnimationTree")
+icon = ExtResource("24_tdkd2")
+keybind = SubResource("InputEventAction_31cv2")
+damage = 1
+
+[node name="lunge" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("25_eyhd5")]
+lock_time = 0.5
+character = NodePath("../..")
+ability_cooldown = 7.0
+animation_tree = NodePath("../../AnimationTree")
 animation = 3
-icon = ExtResource("23_pf23h")
+icon = ExtResource("26_wp154")
 keybind = SubResource("InputEventAction_pf23h")
-audio_track = ExtResource("25_md1ol")
-audio_player = NodePath("../../PlayerSounds")
-volume_db = -2.0
-audio_bus = "Fireball"
+damage = 6
 
-[node name="lightningbolt" parent="model" node_paths=PackedStringArray("character", "animation_tree", "audio_player") instance=ExtResource("24_ke2ow")]
+[node name="lightningbolt" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("27_j3n28")]
 character = NodePath("../..")
+travel_time = 3.8
+ability_cooldown = 2.0
 animation_tree = NodePath("../../AnimationTree")
-icon = ExtResource("24_31cv2")
+icon = ExtResource("28_ecrm8")
 keybind = SubResource("InputEventAction_dt7fs")
-audio_track = ExtResource("32_jc3p3")
-audio_player = NodePath("../../PlayerSounds")
-volume_db = -6.0
-audio_bus = "Fireball"
+damage = 2
 
-[node name="thunderstrike" parent="model" node_paths=PackedStringArray("character", "animation_tree", "audio_player") instance=ExtResource("23_l71n6")]
-stun_time = 1.4
+[node name="thunderstrike" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("29_y2rux")]
+stun_time = 1.1
 character = NodePath("../..")
-ability_cooldown = 1.0
+ability_cooldown = 8.0
 animation_tree = NodePath("../../AnimationTree")
-icon = ExtResource("25_ujl30")
+icon = ExtResource("30_cpwpr")
 keybind = SubResource("InputEventAction_wqfne")
-audio_track = ExtResource("34_bj30b")
-audio_player = NodePath("../../ThunderstrikeAudio")
-volume_db = -8.0
-audio_bus = "Thunderstrike"
+damage = 12
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../model")
@@ -401,7 +377,7 @@ parameters/thunder/request = 0
 parameters/walk_direction/current_state = "idle"
 parameters/walk_direction/transition_request = ""
 parameters/walk_direction/current_index = 0
-script = ExtResource("11_d2wvv")
+script = ExtResource("31_qqft0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01693, 0)

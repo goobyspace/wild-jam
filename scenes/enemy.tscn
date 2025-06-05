@@ -1,14 +1,14 @@
-[gd_scene load_steps=72 format=3 uid="uid://bqth5yqagfvxu"]
+[gd_scene load_steps=61 format=3 uid="uid://bqth5yqagfvxu"]
 
 [ext_resource type="Script" uid="uid://dxkpnugcif1tb" path="res://scripts/boss/boss_attack_controller.gd" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://e755np8slxxt" path="res://scenes/boss.gd" id="1_w8i8w"]
 [ext_resource type="Script" uid="uid://bjhe81757cjyb" path="res://scripts/audio/audio_player.gd" id="2_78kod"]
 [ext_resource type="Script" uid="uid://c48qofkpgix3f" path="res://scripts/boss/attacks/explosion/explosion.gd" id="2_md0e3"]
-[ext_resource type="Script" uid="uid://db7l1y7bejuty" path="res://scripts/boss/attack_grouper.gd" id="3_2sbpf"]
 [ext_resource type="PackedScene" uid="uid://brlbm87anu7d3" path="res://scripts/boss/attacks/explosion/explosion_bubble.tscn" id="3_4ra3w"]
-[ext_resource type="Script" path="res://scripts/audio/universal_audio.gd" id="3_vab5u"]
+[ext_resource type="Script" uid="uid://t8hdm25fnidd" path="res://scripts/audio/universal_audio.gd" id="3_vab5u"]
 [ext_resource type="Script" uid="uid://bj3a4q0fcalg4" path="res://scripts/hp.gd" id="4_5uy6h"]
 [ext_resource type="Script" uid="uid://lf5laixwwstb" path="res://scripts/boss/attacks/fireball(s)/fireballs.gd" id="4_nenq2"]
+[ext_resource type="Script" uid="uid://cbwmm7hsi6ade" path="res://scripts/player/hp/hp_bar.gd" id="5_c4w8v"]
 [ext_resource type="PackedScene" uid="uid://d1wvjuu3cvt1p" path="res://scripts/boss/attacks/fireball(s)/fireballs.tscn" id="5_md484"]
 [ext_resource type="Script" uid="uid://b5fkompcpcsg6" path="res://scripts/boss/attacks/rotating_beam/rotating_beam.gd" id="6_ipns3"]
 [ext_resource type="AudioStream" uid="uid://bc20aygdks6if" path="res://assets/sounds/explosion_sfx.wav" id="6_x6q4o"]
@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://bi8trnei7n73i" path="res://scripts/boss/attacks/rotating_beam/beam.tscn" id="7_8qclf"]
 [ext_resource type="Script" uid="uid://xq5oytbpjv0f" path="res://scripts/boss/attacks/multi explosions/multi_explosions.gd" id="9_otmr2"]
 [ext_resource type="AudioStream" uid="uid://qhok0xh6xvmy" path="res://assets/sounds/fireball.wav" id="9_x6q4o"]
+[ext_resource type="Script" uid="uid://ciag4mbkv4u3" path="res://scripts/boss/attacks/ring-lock/ring-lock.gd" id="10_wtq4b"]
+[ext_resource type="PackedScene" uid="uid://cxsd27q4t36pw" path="res://scripts/boss/attacks/ring-lock/ring-beam.tscn" id="11_j0cyh"]
 [ext_resource type="AudioStream" uid="uid://cukoenr1f8fw7" path="res://assets/sounds/rotatingbeam.mp3" id="12_2tuss"]
 [ext_resource type="Script" uid="uid://w2d8w8exkxee" path="res://scripts/boss/attacks/checkers/checkers.gd" id="12_g0wcc"]
 [ext_resource type="Script" uid="uid://diknuy4lc8pl8" path="res://scripts/boss/weird attacks/checkers/weird_checker_grid.gd" id="13_lioqc"]
@@ -44,66 +46,6 @@
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_nenq2"]
 height = 3.1
 
-[sub_resource type="Resource" id="Resource_ekh6n"]
-script = ExtResource("13_lioqc")
-grid = {
-"bottom_center": false,
-"bottom_left": true,
-"bottom_right": true,
-"middle_center": true,
-"middle_left": false,
-"middle_right": false,
-"top_center": false,
-"top_left": true,
-"top_right": true
-}
-metadata/_custom_type_script = "uid://diknuy4lc8pl8"
-
-[sub_resource type="Resource" id="Resource_2sbpf"]
-script = ExtResource("13_lioqc")
-grid = {
-"bottom_center": true,
-"bottom_left": false,
-"bottom_right": false,
-"middle_center": true,
-"middle_left": true,
-"middle_right": true,
-"top_center": true,
-"top_left": false,
-"top_right": false
-}
-metadata/_custom_type_script = "uid://diknuy4lc8pl8"
-
-[sub_resource type="Resource" id="Resource_78kod"]
-script = ExtResource("13_s1ycm")
-grid = {
-"bottom_center": false,
-"bottom_left": true,
-"bottom_right": true,
-"middle_center": true,
-"middle_left": false,
-"middle_right": false,
-"top_center": false,
-"top_left": true,
-"top_right": true
-}
-metadata/_custom_type_script = "uid://b86dmh0oygx54"
-
-[sub_resource type="Resource" id="Resource_605iw"]
-script = ExtResource("13_s1ycm")
-grid = {
-"bottom_center": true,
-"bottom_left": false,
-"bottom_right": false,
-"middle_center": false,
-"middle_left": true,
-"middle_right": true,
-"top_center": true,
-"top_left": false,
-"top_right": false
-}
-metadata/_custom_type_script = "uid://b86dmh0oygx54"
-
 [sub_resource type="Resource" id="Resource_0lg75"]
 script = ExtResource("13_lioqc")
 grid = {
@@ -118,186 +60,6 @@ grid = {
 "top_right": true
 }
 metadata/_custom_type_script = "uid://diknuy4lc8pl8"
-
-[sub_resource type="Resource" id="Resource_thsr5"]
-script = ExtResource("13_lioqc")
-grid = {
-"bottom_center": true,
-"bottom_left": true,
-"bottom_right": false,
-"middle_center": true,
-"middle_left": true,
-"middle_right": true,
-"top_center": true,
-"top_left": false,
-"top_right": true
-}
-metadata/_custom_type_script = "uid://diknuy4lc8pl8"
-
-[sub_resource type="Resource" id="Resource_x6q4o"]
-script = ExtResource("13_lioqc")
-grid = {
-"bottom_center": false,
-"bottom_left": true,
-"bottom_right": true,
-"middle_center": true,
-"middle_left": true,
-"middle_right": true,
-"top_center": false,
-"top_left": true,
-"top_right": true
-}
-metadata/_custom_type_script = "uid://diknuy4lc8pl8"
-
-[sub_resource type="Resource" id="Resource_2tuss"]
-script = ExtResource("13_lioqc")
-grid = {
-"bottom_center": true,
-"bottom_left": false,
-"bottom_right": true,
-"middle_center": true,
-"middle_left": true,
-"middle_right": true,
-"top_center": true,
-"top_left": true,
-"top_right": false
-}
-metadata/_custom_type_script = "uid://diknuy4lc8pl8"
-
-[sub_resource type="Resource" id="Resource_7v6cf"]
-script = ExtResource("13_lioqc")
-grid = {
-"bottom_center": true,
-"bottom_left": true,
-"bottom_right": true,
-"middle_center": true,
-"middle_left": false,
-"middle_right": false,
-"top_center": true,
-"top_left": true,
-"top_right": true
-}
-metadata/_custom_type_script = "uid://diknuy4lc8pl8"
-
-[sub_resource type="Resource" id="Resource_vab5u"]
-script = ExtResource("13_lioqc")
-grid = {
-"bottom_center": true,
-"bottom_left": true,
-"bottom_right": false,
-"middle_center": true,
-"middle_left": true,
-"middle_right": true,
-"top_center": true,
-"top_left": false,
-"top_right": true
-}
-metadata/_custom_type_script = "uid://diknuy4lc8pl8"
-
-[sub_resource type="Resource" id="Resource_qiusc"]
-script = ExtResource("13_lioqc")
-grid = {
-"bottom_center": false,
-"bottom_left": true,
-"bottom_right": true,
-"middle_center": true,
-"middle_left": true,
-"middle_right": true,
-"top_center": false,
-"top_left": true,
-"top_right": true
-}
-metadata/_custom_type_script = "uid://diknuy4lc8pl8"
-
-[sub_resource type="Resource" id="Resource_5ie7m"]
-script = ExtResource("13_lioqc")
-grid = {
-"bottom_center": true,
-"bottom_left": false,
-"bottom_right": true,
-"middle_center": true,
-"middle_left": true,
-"middle_right": true,
-"top_center": true,
-"top_left": true,
-"top_right": false
-}
-metadata/_custom_type_script = "uid://diknuy4lc8pl8"
-
-[sub_resource type="Resource" id="Resource_ya47j"]
-script = ExtResource("13_lioqc")
-grid = {
-"bottom_center": true,
-"bottom_left": true,
-"bottom_right": true,
-"middle_center": true,
-"middle_left": false,
-"middle_right": false,
-"top_center": true,
-"top_left": true,
-"top_right": true
-}
-metadata/_custom_type_script = "uid://diknuy4lc8pl8"
-
-[sub_resource type="Resource" id="Resource_hyejq"]
-script = ExtResource("13_lioqc")
-grid = {
-"bottom_center": false,
-"bottom_left": false,
-"bottom_right": true,
-"middle_center": false,
-"middle_left": false,
-"middle_right": false,
-"top_center": false,
-"top_left": true,
-"top_right": false
-}
-metadata/_custom_type_script = "uid://diknuy4lc8pl8"
-
-[sub_resource type="Resource" id="Resource_j0dkt"]
-script = ExtResource("13_lioqc")
-grid = {
-"bottom_center": false,
-"bottom_left": true,
-"bottom_right": false,
-"middle_center": false,
-"middle_left": false,
-"middle_right": false,
-"top_center": false,
-"top_left": false,
-"top_right": true
-}
-metadata/_custom_type_script = "uid://diknuy4lc8pl8"
-
-[sub_resource type="Resource" id="Resource_sdxul"]
-script = ExtResource("13_s1ycm")
-grid = {
-"bottom_center": false,
-"bottom_left": true,
-"bottom_right": false,
-"middle_center": false,
-"middle_left": false,
-"middle_right": false,
-"top_center": false,
-"top_left": false,
-"top_right": true
-}
-metadata/_custom_type_script = "uid://b86dmh0oygx54"
-
-[sub_resource type="Resource" id="Resource_e7lhw"]
-script = ExtResource("13_s1ycm")
-grid = {
-"bottom_center": false,
-"bottom_left": false,
-"bottom_right": true,
-"middle_center": false,
-"middle_left": false,
-"middle_right": false,
-"top_center": false,
-"top_left": true,
-"top_right": false
-}
-metadata/_custom_type_script = "uid://b86dmh0oygx54"
 
 [sub_resource type="Resource" id="Resource_i4rgx"]
 script = ExtResource("13_s1ycm")
@@ -328,6 +90,20 @@ grid = {
 "top_right": false
 }
 metadata/_custom_type_script = "uid://b86dmh0oygx54"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_c4w8v"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nenq2"]
+bg_color = Color(0.117647, 0, 0, 1)
+skew = Vector2(0.2, 0)
+corner_detail = 16
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_md484"]
+bg_color = Color(0.746585, 2.00946e-06, 8.66354e-07, 1)
+skew = Vector2(0.2, 0)
+corner_detail = 16
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wjec0"]
 _data = {
@@ -411,496 +187,41 @@ script = ExtResource("2_78kod")
 bus = &"SFX"
 script = ExtResource("3_vab5u")
 
-[node name="attack_controller" type="Node" parent="." node_paths=PackedStringArray("intro_attacks", "attacks")]
+[node name="attack_controller" type="Node" parent="." node_paths=PackedStringArray("attacks")]
 script = ExtResource("1_7p1mj")
-intro_attacks = [NodePath("intro")]
-attacks = [NodePath("arena smaller"), NodePath("melee time"), NodePath("chase the beam"), NodePath("melee time"), NodePath("corners"), NodePath("melee time")]
+attacks = [null]
 
-[node name="intro" type="Node" parent="attack_controller"]
-script = ExtResource("3_2sbpf")
+[node name="explosion" type="Node" parent="attack_controller" node_paths=PackedStringArray("boss_animations", "audio_player")]
+script = ExtResource("2_md0e3")
+explosion_node = ExtResource("3_4ra3w")
+boss_animations = NodePath("../../AnimationTree")
+audio_track = ExtResource("6_x6q4o")
+audio_player = NodePath("../../AudioStreamPlayer3D")
 
-[node name="fireball(s)" type="Node" parent="attack_controller/intro" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
+[node name="fireball(s)" type="Node" parent="attack_controller" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
 script = ExtResource("4_nenq2")
 travel_time = 4.0
-damage = 6
 fireball_node = ExtResource("5_md484")
-top_parent = NodePath("../../..")
-delay_time = 1.0
-boss_animations = NodePath("../../../AnimationTree")
+top_parent = NodePath("../..")
+boss_animations = NodePath("../../AnimationTree")
 animation = 1
 audio_track = ExtResource("9_x6q4o")
-audio_player = NodePath("../../../AudioStreamPlayer3D")
+audio_player = NodePath("../../AudioStreamPlayer3D")
+audio_bus = "Fireball"
 
-[node name="explosion" type="Node" parent="attack_controller/intro" node_paths=PackedStringArray("boss_animations", "audio_player")]
-script = ExtResource("2_md0e3")
-explosion_active_timer = 1.0
-explosion_damage = 12
-explosion_node = ExtResource("3_4ra3w")
-recovery_time = 0.0
-boss_animations = NodePath("../../../AnimationTree")
-audio_track = ExtResource("6_x6q4o")
-audio_player = NodePath("../../../AudioStreamPlayer3D")
-
-[node name="checkers" type="Node" parent="attack_controller/intro" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
-script = ExtResource("12_g0wcc")
-grid = Array[ExtResource("13_lioqc")]([SubResource("Resource_ekh6n"), SubResource("Resource_2sbpf")])
-startup = 1.2
-active_time = 0.5
-cleanup_time = 0.2
-damage = 10
-checker_scene = ExtResource("14_shcg2")
-top_parent = NodePath("../../..")
-delay_time = 0.0
-recovery_time = 0.0
-boss_animations = NodePath("../../../AnimationTree")
-animation = 2
-audio_track = ExtResource("21_qiusc")
-audio_player = NodePath("../../../UniversalAudio")
-
-[node name="checkers2" type="Node" parent="attack_controller/intro" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
-script = ExtResource("12_g0wcc")
-grid = Array[ExtResource("13_lioqc")]([SubResource("Resource_ekh6n"), SubResource("Resource_2sbpf")])
-repeat = 2
-startup = 1.2
-active_time = 0.5
-cleanup_time = 0.2
-damage = 10
-checker_scene = ExtResource("14_shcg2")
-top_parent = NodePath("../../..")
-delay_time = 0.0
-recovery_time = 0.0
-wait_for_attack = false
-boss_animations = NodePath("../../../AnimationTree")
-animation = 2
-audio_track = ExtResource("21_qiusc")
-audio_player = NodePath("../../../UniversalAudio")
-
-[node name="beam" type="Node" parent="attack_controller/intro" node_paths=PackedStringArray("boss_animations", "audio_player")]
-script = ExtResource("6_ipns3")
-rotation_speed = 0.8
-damage = 10
-amount = 6
-beam_node = ExtResource("7_8qclf")
-recovery_time = 6.0
-boss_animations = NodePath("../../../AnimationTree")
-animation = 3
-audio_track = ExtResource("12_2tuss")
-audio_player = NodePath("../../../UniversalAudio")
-
-[node name="weird checkers" type="Node" parent="attack_controller/intro" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
-script = ExtResource("15_wjec0")
-grid = Array[ExtResource("13_s1ycm")]([SubResource("Resource_78kod"), SubResource("Resource_605iw")])
-repeat = 2
-damage = 15
-checker_scene = ExtResource("16_i4rgx")
-top_parent = NodePath("../../..")
-delay_time = 0.0
-recovery_time = 0.0
-wait_for_attack = false
-boss_animations = NodePath("../../../AnimationTree")
-animation = 2
-audio_track = ExtResource("21_qiusc")
-audio_player = NodePath("../../../UniversalAudio")
-
-[node name="beam2" type="Node" parent="attack_controller/intro" node_paths=PackedStringArray("boss_animations", "audio_player")]
-script = ExtResource("6_ipns3")
-rotation_speed = 1.6
-active_time = 10.0
-amount = 6
-beam_node = ExtResource("7_8qclf")
-delay_time = 0.0
-recovery_time = 1.0
-boss_animations = NodePath("../../../AnimationTree")
-animation = 3
-audio_track = ExtResource("12_2tuss")
-audio_player = NodePath("../../../UniversalAudio")
-
-[node name="checkers3" type="Node" parent="attack_controller/intro" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
-script = ExtResource("12_g0wcc")
-grid = Array[ExtResource("13_lioqc")]([SubResource("Resource_ekh6n"), SubResource("Resource_2sbpf")])
-repeat = 2
-startup = 1.2
-active_time = 0.5
-cleanup_time = 0.2
-damage = 10
-checker_scene = ExtResource("14_shcg2")
-top_parent = NodePath("../../..")
-delay_time = 0.0
-recovery_time = 0.0
-wait_for_attack = false
-boss_animations = NodePath("../../../AnimationTree")
-animation = 2
-audio_track = ExtResource("21_qiusc")
-audio_player = NodePath("../../../UniversalAudio")
-
-[node name="weird_beam" type="Node" parent="attack_controller/intro" node_paths=PackedStringArray("boss_animations", "audio_player")]
-script = ExtResource("25_2sbpf")
-rotation_speed = 1.6
-damage = 10
-active_time = 6.0
-amount = 6
-beam_node = ExtResource("26_78kod")
-delay_time = 1.0
-recovery_time = 4.5
-boss_animations = NodePath("../../../AnimationTree")
-animation = 3
-audio_track = ExtResource("12_2tuss")
-audio_player = NodePath("../../../UniversalAudio")
-
-[node name="arena smaller" type="Node" parent="attack_controller"]
-script = ExtResource("3_2sbpf")
-
-[node name="checkers" type="Node" parent="attack_controller/arena smaller" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
-script = ExtResource("12_g0wcc")
-grid = Array[ExtResource("13_lioqc")]([SubResource("Resource_0lg75")])
-startup = 2.0
-active_time = 10.0
-cleanup_time = 0.2
-damage = 18
-checker_scene = ExtResource("14_shcg2")
-top_parent = NodePath("../../..")
-delay_time = 0.0
-recovery_time = 0.0
-wait_for_attack = false
-boss_animations = NodePath("../../../AnimationTree")
-animation = 2
-audio_track = ExtResource("21_qiusc")
-audio_player = NodePath("../../../UniversalAudio")
-
-[node name="beam" type="Node" parent="attack_controller/arena smaller" node_paths=PackedStringArray("boss_animations", "audio_player")]
-script = ExtResource("6_ipns3")
-active_delay = 2.0
-rotation_speed = 0.8
-damage = 10
-active_time = 10.0
-amount = 6
-beam_node = ExtResource("7_8qclf")
-delay_time = 0.0
-recovery_time = 0.0
-wait_for_attack = false
-boss_animations = NodePath("../../../AnimationTree")
-animation = 3
-audio_track = ExtResource("12_2tuss")
-audio_player = NodePath("../../../UniversalAudio")
-
-[node name="weird fireball" type="Node" parent="attack_controller/arena smaller" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
-script = ExtResource("19_1f82d")
-damage = 8
-fireball_node = ExtResource("20_lioqc")
-top_parent = NodePath("../../..")
-delay_time = 2.0
-boss_animations = NodePath("../../../AnimationTree")
-animation = 1
-audio_track = ExtResource("9_x6q4o")
-audio_player = NodePath("../../../AudioStreamPlayer3D")
-
-[node name="weird_ring_lock" type="Node" parent="attack_controller/arena smaller" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
-script = ExtResource("23_thsr5")
-startup_time = 2.0
-active_time = 5.0
-knockback_duration = 0.0
-knockback_strength = 0.0
-lock_movement = false
-top_parent = NodePath("../../..")
-ring_lock_node = ExtResource("24_ekh6n")
-inner_beam_color = Color(0, 1, 0.2, 1)
-outer_beam_color = Color(0, 1, 0, 0.4)
-delay_time = 0.0
-recovery_time = 0.0
-wait_for_attack = false
-boss_animations = NodePath("../../../AnimationTree")
-audio_track = ExtResource("12_2tuss")
-audio_player = NodePath("../../../UniversalAudio")
-
-[node name="weird_multi_explosions" type="Node" parent="attack_controller/arena smaller" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
-script = ExtResource("22_0lg75")
-width_range = 0.0
-depth_range = 0.0
-explosion_mesh = ExtResource("18_qaulx")
-amount = 1
-startup_time = 0.5
-scale = 1.0
-top_parent = NodePath("../../..")
-recovery_time = 1.5
-boss_animations = NodePath("../../../AnimationTree")
-audio_track = ExtResource("14_7v6cf")
-audio_player = NodePath("../../../UniversalAudio")
-
-[node name="weird fireball2" type="Node" parent="attack_controller/arena smaller" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
-script = ExtResource("19_1f82d")
-damage = 8
-fireball_node = ExtResource("20_lioqc")
-top_parent = NodePath("../../..")
-recovery_time = 0.0
-boss_animations = NodePath("../../../AnimationTree")
-animation = 1
-audio_track = ExtResource("9_x6q4o")
-audio_player = NodePath("../../../AudioStreamPlayer3D")
-
-[node name="weird_multi_explosions2" type="Node" parent="attack_controller/arena smaller" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
-script = ExtResource("22_0lg75")
-width_range = 0.0
-depth_range = 0.0
-explosion_mesh = ExtResource("18_qaulx")
-amount = 1
-startup_time = 0.5
-scale = 1.0
-top_parent = NodePath("../../..")
-delay_time = 0.0
-recovery_time = 1.5
-boss_animations = NodePath("../../../AnimationTree")
-audio_track = ExtResource("14_7v6cf")
-audio_player = NodePath("../../../UniversalAudio")
-
-[node name="chase the beam" type="Node" parent="attack_controller"]
-script = ExtResource("3_2sbpf")
-
-[node name="weird_beam" type="Node" parent="attack_controller/chase the beam" node_paths=PackedStringArray("boss_animations", "audio_player")]
-script = ExtResource("25_2sbpf")
-rotation_speed = 8.0
-active_time = 27.3
-amount = 1
-beam_node = ExtResource("26_78kod")
-delay_time = 0.0
-recovery_time = 0.0
-wait_for_attack = false
-boss_animations = NodePath("../../../AnimationTree")
-animation = 3
-audio_track = ExtResource("12_2tuss")
-audio_player = NodePath("../../../UniversalAudio")
-
-[node name="beam" type="Node" parent="attack_controller/chase the beam" node_paths=PackedStringArray("boss_animations", "audio_player")]
-script = ExtResource("6_ipns3")
-active_delay = 3.2
-rotation_speed = 8.0
-active_time = 27.3
-amount = 1
-beam_node = ExtResource("7_8qclf")
-delay_time = 1.0
-wait_for_attack = false
-boss_animations = NodePath("../../../AnimationTree")
-animation = 3
-audio_track = ExtResource("12_2tuss")
-audio_player = NodePath("../../../UniversalAudio")
-
-[node name="checkers3" type="Node" parent="attack_controller/chase the beam" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
-script = ExtResource("12_g0wcc")
-grid = Array[ExtResource("13_lioqc")]([SubResource("Resource_thsr5")])
-startup = 3.5
-active_time = 0.5
-cleanup_time = 0.2
-damage = 18
-checker_scene = ExtResource("14_shcg2")
-top_parent = NodePath("../../..")
-delay_time = 0.0
-recovery_time = 0.0
-boss_animations = NodePath("../../../AnimationTree")
-animation = 2
-audio_track = ExtResource("21_qiusc")
-audio_player = NodePath("../../../UniversalAudio")
-
-[node name="checkers2" type="Node" parent="attack_controller/chase the beam" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
-script = ExtResource("12_g0wcc")
-grid = Array[ExtResource("13_lioqc")]([SubResource("Resource_x6q4o"), SubResource("Resource_2tuss"), SubResource("Resource_7v6cf"), SubResource("Resource_vab5u"), SubResource("Resource_qiusc"), SubResource("Resource_5ie7m"), SubResource("Resource_ya47j")])
-startup = 1.2
-active_time = 0.5
-cleanup_time = 0.2
-damage = 18
-checker_scene = ExtResource("14_shcg2")
-top_parent = NodePath("../../..")
-delay_time = 0.0
-recovery_time = 0.0
-boss_animations = NodePath("../../../AnimationTree")
-animation = 2
-audio_track = ExtResource("21_qiusc")
-audio_player = NodePath("../../../UniversalAudio")
-
-[node name="checkers" type="Node" parent="attack_controller/chase the beam" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
-script = ExtResource("12_g0wcc")
-grid = Array[ExtResource("13_lioqc")]([SubResource("Resource_thsr5"), SubResource("Resource_x6q4o"), SubResource("Resource_2tuss"), SubResource("Resource_7v6cf"), SubResource("Resource_vab5u"), SubResource("Resource_qiusc"), SubResource("Resource_5ie7m"), SubResource("Resource_ya47j")])
-startup = 1.2
-active_time = 0.5
-cleanup_time = 0.2
-damage = 18
-checker_scene = ExtResource("14_shcg2")
-top_parent = NodePath("../../..")
-delay_time = 0.0
-recovery_time = 0.0
-boss_animations = NodePath("../../../AnimationTree")
-animation = 2
-audio_track = ExtResource("21_qiusc")
-audio_player = NodePath("../../../UniversalAudio")
-
-[node name="corners" type="Node" parent="attack_controller"]
-script = ExtResource("3_2sbpf")
-
-[node name="checkers" type="Node" parent="attack_controller/corners" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
-script = ExtResource("12_g0wcc")
-grid = Array[ExtResource("13_lioqc")]([SubResource("Resource_hyejq"), SubResource("Resource_j0dkt")])
-repeat = 3
-startup = 2.5
-active_time = 0.5
-cleanup_time = 0.2
-damage = 18
-checker_scene = ExtResource("14_shcg2")
-top_parent = NodePath("../../..")
-recovery_time = 0.0
-wait_for_attack = false
-boss_animations = NodePath("../../../AnimationTree")
-animation = 2
-audio_track = ExtResource("21_qiusc")
-audio_player = NodePath("../../../UniversalAudio")
-
-[node name="weird checkers" type="Node" parent="attack_controller/corners" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
-script = ExtResource("15_wjec0")
-grid = Array[ExtResource("13_s1ycm")]([SubResource("Resource_sdxul"), SubResource("Resource_e7lhw")])
-repeat = 3
-startup = 2.5
-active_time = 0.5
-cleanup_time = 0.2
-damage = 20
-checker_scene = ExtResource("16_i4rgx")
-top_parent = NodePath("../../..")
-delay_time = 0.0
-recovery_time = 0.0
-wait_for_attack = false
-boss_animations = NodePath("../../../AnimationTree")
-animation = 2
-audio_track = ExtResource("21_qiusc")
-audio_player = NodePath("../../../UniversalAudio")
-
-[node name="fireball(s)" type="Node" parent="attack_controller/corners" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
-script = ExtResource("4_nenq2")
-delay = 1.0
-travel_time = 2.5
-damage = 9
-amount = 23
-fireball_node = ExtResource("5_md484")
-top_parent = NodePath("../../..")
-delay_time = 1.8
-recovery_time = 2.3
-boss_animations = NodePath("../../../AnimationTree")
-animation = 1
-audio_track = ExtResource("9_x6q4o")
-audio_player = NodePath("../../../AudioStreamPlayer3D")
-
-[node name="melee time" type="Node" parent="attack_controller"]
-script = ExtResource("3_2sbpf")
-
-[node name="multi_explosion" type="Node" parent="attack_controller/melee time" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
-script = ExtResource("9_otmr2")
-width_range = 4.0
-depth_range = 4.0
-explosion_mesh = ExtResource("3_4ra3w")
-amount = 8
-startup_time = 0.7
-active_time = 0.3
-cleanup_time = 0.3
-damage = 6
-scale = 2.0
-top_parent = NodePath("../../..")
-recovery_time = 0.0
-boss_animations = NodePath("../../../AnimationTree")
-audio_track = ExtResource("14_7v6cf")
-audio_player = NodePath("../../../UniversalAudio")
-
-[node name="multi_explosion2" type="Node" parent="attack_controller/melee time" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
-script = ExtResource("9_otmr2")
-width_range = 4.0
-depth_range = 4.0
-explosion_mesh = ExtResource("3_4ra3w")
-amount = 8
-startup_time = 0.7
-active_time = 0.3
-cleanup_time = 0.3
-damage = 6
-scale = 2.0
-top_parent = NodePath("../../..")
-delay_time = 0.0
-recovery_time = 0.0
-boss_animations = NodePath("../../../AnimationTree")
-audio_track = ExtResource("14_7v6cf")
-audio_player = NodePath("../../../UniversalAudio")
-
-[node name="multi_explosion3" type="Node" parent="attack_controller/melee time" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
-script = ExtResource("9_otmr2")
-width_range = 4.0
-depth_range = 4.0
-explosion_mesh = ExtResource("3_4ra3w")
-amount = 8
-startup_time = 0.7
-active_time = 0.3
-cleanup_time = 0.3
-damage = 6
-scale = 2.0
-top_parent = NodePath("../../..")
-delay_time = 0.0
-recovery_time = 0.0
-boss_animations = NodePath("../../../AnimationTree")
-audio_track = ExtResource("14_7v6cf")
-audio_player = NodePath("../../../UniversalAudio")
-
-[node name="multi_explosion4" type="Node" parent="attack_controller/melee time" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
-script = ExtResource("9_otmr2")
-width_range = 4.0
-depth_range = 4.0
-explosion_mesh = ExtResource("3_4ra3w")
-amount = 8
-startup_time = 0.7
-active_time = 0.3
-cleanup_time = 0.3
-damage = 6
-scale = 2.0
-top_parent = NodePath("../../..")
-delay_time = 0.0
-recovery_time = 0.0
-boss_animations = NodePath("../../../AnimationTree")
-audio_track = ExtResource("14_7v6cf")
-audio_player = NodePath("../../../UniversalAudio")
-
-[node name="explosion" type="Node" parent="attack_controller/melee time" node_paths=PackedStringArray("boss_animations", "audio_player")]
-script = ExtResource("2_md0e3")
-explosion_active_delay = 1.5
-explosion_damage = 20
-explosion_node = ExtResource("3_4ra3w")
-delay_time = 0.0
-recovery_time = 0.0
-boss_animations = NodePath("../../../AnimationTree")
-audio_track = ExtResource("6_x6q4o")
-audio_player = NodePath("../../../AudioStreamPlayer3D")
-
-[node name="example_attacks" type="Node" parent="attack_controller"]
-
-[node name="explosion" type="Node" parent="attack_controller/example_attacks" node_paths=PackedStringArray("boss_animations", "audio_player")]
-script = ExtResource("2_md0e3")
-explosion_damage = 1000
-explosion_node = ExtResource("3_4ra3w")
-boss_animations = NodePath("../../../AnimationTree")
-audio_track = ExtResource("6_x6q4o")
-audio_player = NodePath("../../../AudioStreamPlayer3D")
-
-[node name="beam" type="Node" parent="attack_controller/example_attacks" node_paths=PackedStringArray("boss_animations", "audio_player")]
+[node name="beam" type="Node" parent="attack_controller" node_paths=PackedStringArray("boss_animations", "audio_player")]
 script = ExtResource("6_ipns3")
 rotation_speed = 1.6
 amount = 10
 beam_node = ExtResource("7_8qclf")
 delay_time = 1.0
-boss_animations = NodePath("../../../AnimationTree")
+boss_animations = NodePath("../../AnimationTree")
 animation = 3
 audio_track = ExtResource("12_2tuss")
-audio_player = NodePath("../../../UniversalAudio")
+audio_player = NodePath("../../AudioStreamPlayer3D")
+volume_db = -6.0
 
-[node name="fireball(s)" type="Node" parent="attack_controller/example_attacks" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
-script = ExtResource("4_nenq2")
-travel_time = 4.0
-fireball_node = ExtResource("5_md484")
-top_parent = NodePath("../../..")
-boss_animations = NodePath("../../../AnimationTree")
-animation = 1
-audio_track = ExtResource("9_x6q4o")
-audio_player = NodePath("../../../AudioStreamPlayer3D")
-
-[node name="multi_explosion" type="Node" parent="attack_controller/example_attacks" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
+[node name="multi_explosion" type="Node" parent="attack_controller" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
 script = ExtResource("9_otmr2")
 width_range = 20.0
 depth_range = 20.0
@@ -909,14 +230,26 @@ amount = 40
 active_time = 0.3
 cleanup_time = 0.4
 scale = 2.0
-top_parent = NodePath("../../..")
+top_parent = NodePath("../..")
 delay_time = 0.0
 recovery_time = 0.0
-boss_animations = NodePath("../../../AnimationTree")
-audio_track = ExtResource("6_x6q4o")
-audio_player = NodePath("../../../UniversalAudio")
+boss_animations = NodePath("../../AnimationTree")
+audio_track = ExtResource("14_7v6cf")
+audio_player = NodePath("../../UniversalAudio")
+volume_db = -11.0
+audio_bus = "MultiExplosion"
 
-[node name="checkers" type="Node" parent="attack_controller/example_attacks" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
+[node name="ring lock" type="Node" parent="attack_controller" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
+script = ExtResource("10_wtq4b")
+top_parent = NodePath("../..")
+ring_lock_node = ExtResource("11_j0cyh")
+boss_animations = NodePath("../../AnimationTree")
+animation = 3
+audio_track = ExtResource("12_2tuss")
+audio_player = NodePath("../../UniversalAudio")
+volume_db = -8.0
+
+[node name="checkers" type="Node" parent="attack_controller" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
 script = ExtResource("12_g0wcc")
 grid = Array[ExtResource("13_lioqc")]([SubResource("Resource_0lg75")])
 repeat = 2
@@ -925,68 +258,99 @@ active_time = 0.5
 cleanup_time = 0.2
 damage = 20
 checker_scene = ExtResource("14_shcg2")
-top_parent = NodePath("../../..")
-boss_animations = NodePath("../../../AnimationTree")
+top_parent = NodePath("../..")
+boss_animations = NodePath("../../AnimationTree")
 animation = 2
 audio_track = ExtResource("21_qiusc")
-audio_player = NodePath("../../../UniversalAudio")
+audio_player = NodePath("../../UniversalAudio")
+volume_db = -6.0
+audio_bus = "Checkers"
 
-[node name="weird checkers" type="Node" parent="attack_controller/example_attacks" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
+[node name="weird checkers" type="Node" parent="attack_controller" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
 script = ExtResource("15_wjec0")
 grid = Array[ExtResource("13_s1ycm")]([SubResource("Resource_i4rgx"), SubResource("Resource_2mchx")])
 repeat = 3
 checker_scene = ExtResource("16_i4rgx")
-top_parent = NodePath("../../..")
-boss_animations = NodePath("../../../AnimationTree")
+top_parent = NodePath("../..")
+boss_animations = NodePath("../../AnimationTree")
 animation = 2
 audio_track = ExtResource("21_qiusc")
-audio_player = NodePath("../../../UniversalAudio")
+audio_player = NodePath("../../UniversalAudio")
+volume_db = -6.0
+audio_bus = "Checkers"
 
-[node name="weird explosion" type="Node" parent="attack_controller/example_attacks" node_paths=PackedStringArray("boss_animations", "audio_player")]
+[node name="weird explosion" type="Node" parent="attack_controller" node_paths=PackedStringArray("boss_animations", "audio_player")]
 script = ExtResource("17_t3vcr")
 explosion_node = ExtResource("18_qaulx")
-boss_animations = NodePath("../../../AnimationTree")
+boss_animations = NodePath("../../AnimationTree")
 audio_track = ExtResource("6_x6q4o")
-audio_player = NodePath("../../../AudioStreamPlayer3D")
+audio_player = NodePath("../../AudioStreamPlayer3D")
 
-[node name="weird fireball" type="Node" parent="attack_controller/example_attacks" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
+[node name="weird fireball" type="Node" parent="attack_controller" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
 script = ExtResource("19_1f82d")
 fireball_node = ExtResource("20_lioqc")
-top_parent = NodePath("../../..")
-boss_animations = NodePath("../../../AnimationTree")
+top_parent = NodePath("../..")
+boss_animations = NodePath("../../AnimationTree")
 animation = 1
 audio_track = ExtResource("9_x6q4o")
-audio_player = NodePath("../../../AudioStreamPlayer3D")
+audio_player = NodePath("../../AudioStreamPlayer3D")
+audio_bus = "Fireball"
 
-[node name="weird_multi_explosions" type="Node" parent="attack_controller/example_attacks" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
+[node name="weird_multi_explosions" type="Node" parent="attack_controller" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
 script = ExtResource("22_0lg75")
 explosion_mesh = ExtResource("18_qaulx")
-top_parent = NodePath("../../..")
-boss_animations = NodePath("../../../AnimationTree")
+top_parent = NodePath("../..")
+boss_animations = NodePath("../../AnimationTree")
 audio_track = ExtResource("14_7v6cf")
-audio_player = NodePath("../../../UniversalAudio")
+audio_player = NodePath("../../UniversalAudio")
+volume_db = -11.0
+audio_bus = "MultiExplosion"
 
-[node name="weird_ring_lock" type="Node" parent="attack_controller/example_attacks" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
+[node name="weird_ring_lock" type="Node" parent="attack_controller" node_paths=PackedStringArray("top_parent", "boss_animations", "audio_player")]
 script = ExtResource("23_thsr5")
 active_time = 5.0
-top_parent = NodePath("../../..")
+top_parent = NodePath("../..")
 ring_lock_node = ExtResource("24_ekh6n")
 inner_beam_color = Color(0, 1, 0.2, 1)
 outer_beam_color = Color(0, 1, 0, 0.4)
-boss_animations = NodePath("../../../AnimationTree")
+boss_animations = NodePath("../../AnimationTree")
 audio_track = ExtResource("12_2tuss")
-audio_player = NodePath("../../../UniversalAudio")
+audio_player = NodePath("../../UniversalAudio")
+volume_db = -8.0
 
-[node name="weird_beam" type="Node" parent="attack_controller/example_attacks" node_paths=PackedStringArray("boss_animations", "audio_player")]
+[node name="weird_beam" type="Node" parent="attack_controller" node_paths=PackedStringArray("boss_animations", "audio_player")]
 script = ExtResource("25_2sbpf")
 beam_node = ExtResource("26_78kod")
-boss_animations = NodePath("../../../AnimationTree")
+boss_animations = NodePath("../../AnimationTree")
 animation = 3
 audio_track = ExtResource("12_2tuss")
-audio_player = NodePath("../../../UniversalAudio")
+audio_player = NodePath("../../AudioStreamPlayer3D")
+volume_db = -6.0
 
 [node name="enemy_health" type="Node" parent="."]
 script = ExtResource("4_5uy6h")
+
+[node name="health_bar" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6, 0)
+pixel_size = 0.006
+billboard = 1
+no_depth_test = true
+texture = SubResource("ViewportTexture_c4w8v")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(680, 80)
+
+[node name="ProgressBar" type="ProgressBar" parent="SubViewport" node_paths=PackedStringArray("health")]
+offset_left = 12.0
+offset_right = 668.0
+offset_bottom = 80.0
+theme_override_styles/background = SubResource("StyleBoxFlat_nenq2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_md484")
+value = 10.0
+show_percentage = false
+script = ExtResource("5_c4w8v")
+health = NodePath("../../enemy_health")
 
 [node name="blockbench_export" parent="." instance=ExtResource("6_xwavj")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)

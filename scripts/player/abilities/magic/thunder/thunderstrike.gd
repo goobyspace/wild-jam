@@ -59,6 +59,9 @@ func _on_body_entered(body: Node) -> void:
 
 func _on_use() -> bool:
 	activate_hitbox()
+	if audio_player and audio_track:
+		audio_player.play_audio(audio_track, volume_db, audio_start)
+		audio_player.bus = audio_bus
 	play_animation()
 	hp.block_taking_damage = true
 	character.lock_movement(stun_time)

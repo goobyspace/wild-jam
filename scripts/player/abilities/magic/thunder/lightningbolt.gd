@@ -23,6 +23,9 @@ func _on_body_entered(body: Node) -> void:
 
 func _on_use() -> bool:
 	play_animation()
+	if audio_player and audio_track:
+		audio_player.play_audio(audio_track, volume_db, audio_start)
+		audio_player.bus = audio_bus
 	character.adjust_speed(character.speed / 2, startup_time)
 
 	await get_tree().create_timer(startup_time).timeout
