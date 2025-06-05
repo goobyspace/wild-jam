@@ -5,6 +5,8 @@ class_name PlayerAbility extends Node
 @export var animation: PlayerAnimations.ActionAnimations
 @export var icon: Texture
 @export var keybind: InputEventAction
+@export var area_hitbox: Area3D
+@export var damage: int = 3
 
 signal ability_used(ability: PlayerAbility)
 
@@ -36,3 +38,19 @@ func _on_use(): # override this method in subclasses to make attacks
 func play_animation() -> void:
 	if animation_tree:
 		animation_tree.execute_action_animation(animation)
+
+func check_node(body: Node) -> void:
+	var health_node = body.find_child("enemy_health")
+	if health_node and health_node.has_method("take_damage"):
+		health_node.take_damage(damage)
+
+func _on_body_entered(body: Node) -> void:
+	check_node(body)
+
+func activate_hitbox():
+	if area_hitbox:
+		area_hitbox.monitoring = true
+		var nodes = area_hitbox.get_overlapping_bodies()
+		if nodes.size() > 0:
+			for body in nodes:
+				check_node(body)

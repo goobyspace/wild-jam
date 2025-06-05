@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bl6fq7bp3cnks"]
+
+[ext_resource type="Script" uid="uid://bclpvjbse855b" path="res://scripts/boss/weird attacks/weird_collider.gd" id="1_oi3tc"]
+[ext_resource type="PackedScene" uid="uid://b3tcapmamxjfh" path="res://assets/models/spells/weird_fireball.gltf" id="2_oi3tc"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_nsnwb"]
+height = 0.676685
+radius = 0.13
+
+[node name="fireball" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+
+[node name="DamageCollider" type="Area3D" parent="."]
+script = ExtResource("1_oi3tc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageCollider"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.00451656, 0.32, -0.161658)
+shape = SubResource("CylinderShape3D_nsnwb")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0, 1, 0, 1)
+
+[node name="blockbench_export" parent="." instance=ExtResource("2_oi3tc")]

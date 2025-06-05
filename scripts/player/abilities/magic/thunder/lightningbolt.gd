@@ -1,6 +1,5 @@
 extends PlayerAbility
 
-@export var damage: int = 5
 @export var character: Node3D
 @export var bolt: PackedScene
 @export var startup_time: float = 0.2
@@ -29,16 +28,12 @@ func _on_use() -> bool:
 	await get_tree().create_timer(startup_time).timeout
 	var new_bolt = bolt.instantiate()
 	character.add_sibling(new_bolt)
-	var area_hitbox = new_bolt.get_node("Area3D")
+	area_hitbox = new_bolt.get_node("Area3D")
 	area_hitbox.connect("body_entered", self._on_body_entered)
-	area_hitbox.monitoring = true
-	var viewport = get_viewport();
-	var mouse_position = viewport.get_mouse_position()
-	var rect = viewport.get_visible_rect()
-	var center_position = rect.size / 2
-	var mouse_to_center = (mouse_position - center_position).normalized()
+	activate_hitbox()
+
 	new_bolt.position = character.position
-	new_bolt.look_at(Vector3(character.position.x - mouse_to_center.x, 0, character.position.z - mouse_to_center.y), Vector3.UP)
+	new_bolt.look_at(character.mouse_raycast, Vector3.UP)
 	new_bolt.rotation.y = new_bolt.rotation.y - PI
 	var tween = get_tree().create_tween()
 	tween.tween_property(new_bolt, "position", new_bolt.global_basis.z * 100, travel_time)

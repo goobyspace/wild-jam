@@ -1,7 +1,5 @@
 extends PlayerAbility
 
-@export var area_hitbox: Area3D
-@export var damage: int = 10
 @export var active_time: float = 0.5
 
 func _ready() -> void:
@@ -19,7 +17,7 @@ func _on_body_entered(body: Node) -> void:
 
 func _on_use() -> bool:
 	play_animation()
-	area_hitbox.monitoring = true
+	activate_hitbox()
 	await get_tree().create_timer(active_time).timeout
 	area_hitbox.monitoring = false
 	return true

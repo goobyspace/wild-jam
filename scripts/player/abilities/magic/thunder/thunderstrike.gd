@@ -1,7 +1,5 @@
 extends PlayerAbility
 
-@export var area_hitbox: Area3D
-@export var damage: int = 25
 @export var active_time: float = 0.5
 @export var stun_time: float = 1.2
 @export var character: Node3D
@@ -55,7 +53,7 @@ func _on_body_entered(body: Node) -> void:
 		health_node.take_damage(damage)
 
 func _on_use() -> bool:
-	area_hitbox.monitoring = true
+	activate_hitbox()
 	play_animation()
 	character.lock_movement(stun_time)
 	material.albedo_color = thunder_color

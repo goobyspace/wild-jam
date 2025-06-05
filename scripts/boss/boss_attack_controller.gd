@@ -19,8 +19,7 @@ func execute_attack(attack: BossAttack):
 		push_error("Invalid attack provided to execute_attack. Remember to assign an attack in the inspector.")
 		return
 		
-	var attack_result = await attack.on_attack()
-	print("Attack was succesfully executed: ", attack_result)
+	await attack.on_attack()
 	attack.on_finish()
 
 

@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://bl6608yik4g57"]
+
+[ext_resource type="Script" uid="uid://bclpvjbse855b" path="res://scripts/boss/weird attacks/weird_collider.gd" id="1_khef3"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_w84yr"]
+points = PackedVector3Array(0.511111, 10.5778, 0.355388, -0.577778, -10.5778, -0.422161, -0.577778, -10.5778, 0.355388, -0.577778, 10.5778, -0.422161, 0.511111, -10.5778, -0.422161, 0.355388, 10.5778, -0.577778, -0.422161, 10.5778, 0.511111, 0.355388, -10.5778, 0.511111, -0.422161, -10.5778, -0.577778, -0.422161, -10.5778, 0.511111, 0.511111, -10.5778, 0.355388, 0.355388, 10.5778, 0.511111, 0.511111, 10.5778, -0.422161, -0.577778, 10.5778, 0.355388, -0.422161, 10.5778, -0.577778, 0.355388, -10.5778, -0.577778)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_w84yr"]
+height = 50.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_khef3"]
+transparency = 1
+albedo_color = Color(0, 1, 0, 0.588235)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lj3el"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 50.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7h3qi"]
+transparency = 1
+albedo_color = Color(0, 1, 0, 1)
+
+[node name="Beam" type="Node3D"]
+
+[node name="DamageCollider" type="Area3D" parent="."]
+script = ExtResource("1_khef3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageCollider"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 10.5)
+shape = SubResource("ConvexPolygonShape3D_w84yr")
+
+[node name="outer" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-08, -0.1, 0, 1, -4.37114e-09, 0, 0, 25)
+mesh = SubResource("CylinderMesh_w84yr")
+surface_material_override/0 = SubResource("StandardMaterial3D_khef3")
+
+[node name="inner" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 25)
+mesh = SubResource("CylinderMesh_lj3el")
+surface_material_override/0 = SubResource("StandardMaterial3D_7h3qi")

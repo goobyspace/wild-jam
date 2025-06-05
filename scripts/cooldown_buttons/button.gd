@@ -10,6 +10,9 @@ var keybind_label: Label
 
 var ability: PlayerAbility
 
+var cooldown_tween: Tween
+var gcd_tween: Tween
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if not icon or not cooldown_progress or not keybind_button or not mouse_button or not space_bar:
@@ -41,13 +44,19 @@ func set_ability(new_ability: PlayerAbility) -> void:
 
 func _any_ability_used(ability_used, gcd) -> void:
 	if ability_used != ability:
+		if cooldown_tween and cooldown_tween.is_running():
+			var duration = ability.ability_cooldown - cooldown_tween.get_total_elapsed_time()
+			if duration < gcd:
+				cooldown_tween.stop()
+			else:
+				return
 		cooldown_progress.value = 100
-		var tween = create_tween()
-		tween.tween_property(cooldown_progress, "value", 0, gcd)
+		gcd_tween = create_tween()
+		gcd_tween.tween_property(cooldown_progress, "value", 0, gcd)
 
 
 func _on_ability_used(_ability) -> void:
 	if ability:
 		cooldown_progress.value = 100
-		var tween = create_tween()
-		tween.tween_property(cooldown_progress, "value", 0, ability.ability_cooldown)
+		cooldown_tween = create_tween()
+		cooldown_tween.tween_property(cooldown_progress, "value", 0, ability.ability_cooldown)
