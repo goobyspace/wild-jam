@@ -23,7 +23,12 @@ func _process(_delta: float) -> void:
 	if _cooldown_timer > 0.0:
 		_cooldown_timer -= _delta
 		return
-		
+
+func _unhandled_input(event: InputEvent) -> void:
 	for ability in abilities:
-		if Input.is_action_just_pressed(ability.keybind.action):
+		if _cooldown_timer > 0.0:
+			return
+		print(event)
+		print(ability.keybind)
+		if event == ability.keybind:
 			use_ability(ability)

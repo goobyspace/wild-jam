@@ -33,7 +33,6 @@ func get_checkers():
 		for i in range(grid.size()):
 			play_animation()
 			var checker = grid[i].grid
-			print(checker)
 			# originally i tried doing this dynamically but its only 9 values so fuck it
 			if checker["top_left"]:
 				spawn_checker(checker.top_left, Vector3(width / 2, 0, depth / 2))

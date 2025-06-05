@@ -1,0 +1,142 @@
+[gd_scene load_steps=6 format=3 uid="uid://cehuslw1ppg1g"]
+
+[ext_resource type="Script" uid="uid://b7njl7i0b6rnt" path="res://scripts/ui/start_screen.gd" id="1_s6cxg"]
+[ext_resource type="Texture2D" uid="uid://cbc5d0q17bugc" path="res://assets/ui/panel_brown_damaged.png" id="2_50anp"]
+[ext_resource type="Texture2D" uid="uid://bnd8l33erb23g" path="res://assets/ui/button_red.png" id="3_nledq"]
+
+[sub_resource type="Gradient" id="Gradient_50anp"]
+offsets = PackedFloat32Array(0, 0.653846, 1)
+colors = PackedColorArray(0.984314, 0, 0.345098, 0.54902, 0.384314, 0.576471, 1, 0.556863, 0.392157, 0.847059, 0.592157, 0.552941)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nledq"]
+gradient = SubResource("Gradient_50anp")
+width = 10
+height = 10
+fill_from = Vector2(0.55, 0)
+fill_to = Vector2(1, 0.45)
+
+[node name="StartScreen" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_s6cxg")
+
+[node name="ColorRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.497
+anchor_right = 0.5
+anchor_bottom = 0.497
+offset_left = -2358.0
+offset_top = -1541.76
+offset_right = 2188.0
+offset_bottom = 1169.24
+texture = SubResource("GradientTexture2D_nledq")
+
+[node name="Button" type="Button" parent="."]
+process_mode = 3
+light_mask = 1023
+layout_mode = 1
+anchors_preset = -1
+offset_left = 133.0
+offset_top = 475.0
+offset_right = 733.0
+offset_bottom = 595.0
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 2
+action_mode = 0
+button_mask = 7
+text = "start"
+flat = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Button"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -60.0
+offset_right = 300.0
+offset_bottom = 60.0
+texture = ExtResource("2_50anp")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Label" type="Label" parent="Button/NinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.494
+anchor_top = 0.825
+anchor_right = 0.494
+anchor_bottom = 0.825
+offset_left = -125.4
+offset_top = -80.0
+offset_right = 125.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "Start
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="."]
+process_mode = 3
+light_mask = 1023
+layout_mode = 1
+anchors_preset = -1
+offset_left = 133.0
+offset_top = 645.0
+offset_right = 733.0
+offset_bottom = 765.0
+mouse_default_cursor_shape = 2
+action_mode = 0
+button_mask = 7
+text = "close"
+flat = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CloseButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -60.0
+offset_right = 300.0
+offset_bottom = 60.0
+texture = ExtResource("3_nledq")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Label" type="Label" parent="CloseButton/NinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.492
+anchor_top = 0.5
+anchor_right = 0.492
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 64
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="gui_input" from="Button/NinePatchRect" to="." method="_on_nine_patch_rect_gui_input"]
+[connection signal="gui_input" from="CloseButton/NinePatchRect" to="." method="_on_nine_patch_rect_gui_input"]

@@ -23,8 +23,6 @@ func _ready():
 		push_error("Checker scene is not set.")
 		return
 
-	print(grid)
-
 	if grid.size() == 0:
 		push_error("Grid is empty, please add at least one WeirdCheckerGrid resource.")
 		return

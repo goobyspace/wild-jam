@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://dwclbmbobga60"]
+[gd_scene load_steps=14 format=3 uid="uid://dwclbmbobga60"]
 
 [ext_resource type="PackedScene" uid="uid://ccmmifktpgjib" path="res://scenes/player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cehuslw1ppg1g" path="res://ui/start_screen.tscn" id="3_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://bqth5yqagfvxu" path="res://scenes/enemy.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://bpp55gui2f1h5" path="res://ui/main.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://cffhrfcnoomqm" path="res://assets/models/terrain/nature kit/statue_ring.glb" id="5_r4ag1"]
@@ -50,7 +51,7 @@ shadow_enabled = true
 environment = SubResource("Environment_0xm2m")
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.3, 0, 5.4)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, -18.5)
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_sugp2")]
 player = NodePath("../Player")
@@ -59,6 +60,8 @@ player = NodePath("../Player")
 
 [node name="Main" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("4_jyhfs")]
 player = NodePath("../../Player")
+
+[node name="StartScreen" parent="CanvasLayer" instance=ExtResource("3_o6xl0")]
 
 [node name="columns" type="Node3D" parent="."]
 

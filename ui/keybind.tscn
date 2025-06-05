@@ -5,7 +5,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kiuog"]
 atlas = ExtResource("1_kiuog")
-region = Rect2(199.879, 263.975, 48.2246, 48.2246)
+region = Rect2(135.713, 263.754, 48.6636, 48.6636)
 
 [node name="Keybind" type="Control"]
 layout_mode = 3
@@ -44,6 +44,7 @@ offset_left = -24.0
 offset_top = -24.0
 offset_right = 24.0
 offset_bottom = 18.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_xg3hd")
 theme_override_font_sizes/font_size = 34
 text = "q"
