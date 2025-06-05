@@ -20,7 +20,7 @@ var play_in_parent: bool = true # If true, the audio will be played in the boss_
 
 func _ready() -> void:
 	tree = get_tree()
-	play_in_parent = true #Default to true to avoid audio issues when set to false during another attack
+	play_in_parent = true # Default to true to avoid audio issues when set to false during another attack
 
 func on_attack() -> bool:
 	await tree.create_timer(delay_time).timeout

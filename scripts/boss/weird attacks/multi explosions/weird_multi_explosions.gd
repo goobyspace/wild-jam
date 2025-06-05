@@ -39,7 +39,6 @@ func explosion_start() -> void:
 		hitbox.monitoring = false
 		hitbox.connect("body_entered", hitbox._on_body_entered)
 		hitboxes.append(hitbox)
-		explosion.explode(startup_time, scale, Color(1, 0, 0, 0.9)) # Red color for explosion
 		if audio_player and audio_track:
 			audio_player.play_audio(audio_track, volume_db, audio_start)
 			audio_player.bus = audio_bus

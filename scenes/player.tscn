@@ -381,6 +381,7 @@ damage = 12
 audio_track = ExtResource("35_ushjk")
 audio_player = NodePath("../../ThunderstrikeAudio")
 volume_db = -8.0
+audio_bus = "Thunderstrike"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../model")

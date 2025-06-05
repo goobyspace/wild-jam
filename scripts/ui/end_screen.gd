@@ -5,6 +5,7 @@ var victory_dog: SubViewportContainer
 var start_button: Button
 var close_button: Button
 var label: Label
+@onready var _bus := AudioServer.get_bus_index("SFX")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	start_button = find_child("Button")
@@ -27,6 +28,7 @@ func _on_close_button_pressed() -> void:
 	get_tree().quit()
 
 func end():
+	AudioServer.set_bus_volume_db(_bus, linear_to_db(0))
 	get_tree().paused = true
 	show()
 
