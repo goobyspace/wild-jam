@@ -19,6 +19,8 @@ const blank = Color(1, 1, 1, 0)
 const start_energy = 0.0
 const start_size = 0.0
 
+var hp
+
 func _ready() -> void:
 	super._ready()
 	if area_hitbox == null:
@@ -32,6 +34,9 @@ func _ready() -> void:
 	if thunder == null:
 		push_error("Thunder mesh is not assigned in the Thunderstrike ability.")
 		return
+
+	hp = get_tree().root.get_node("Main/Player/player_health");
+
 	material = thunder.get_surface_override_material(0) as StandardMaterial3D
 	omni_light = thunder.get_node("OmniLight3D")
 	light_energy = omni_light.light_energy
@@ -55,6 +60,7 @@ func _on_body_entered(body: Node) -> void:
 func _on_use() -> bool:
 	activate_hitbox()
 	play_animation()
+	hp.block_taking_damage = true
 	character.lock_movement(stun_time)
 	material.albedo_color = thunder_color
 	var tween_start = get_tree().create_tween().set_parallel(true)
@@ -64,6 +70,7 @@ func _on_use() -> bool:
 	tween_start.tween_property(thunder, "scale", thunder_scale, 0.2)
 	await get_tree().create_timer(active_time).timeout
 	area_hitbox.monitoring = false
+	hp.block_taking_damage = false
 	var tween_end = get_tree().create_tween().set_parallel(true)
 	tween_end.tween_property(material, "albedo_color", blank, fadeout_time)
 	tween_end.tween_property(omni_light, "light_size", start_energy, fadeout_time)

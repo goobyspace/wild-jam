@@ -38,7 +38,7 @@ func explosion_start() -> void:
 		hitbox.monitoring = false
 		hitbox.connect("body_entered", hitbox._on_body_entered)
 		hitboxes.append(hitbox)
-		explosion.explode(startup_time, scale, Color(1, 0, 0, 0.9)) # Red color for explosion
+		explosion.explode(startup_time, scale, Color(1, 0, 0, 0.6), Color(1, 0, 0, 0.9))
 
 func explosion_activate() -> void:
 	for hitbox in hitboxes:

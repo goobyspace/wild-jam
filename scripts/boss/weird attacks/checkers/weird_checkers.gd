@@ -30,7 +30,7 @@ func _ready():
 	parent = top_parent.get_parent()
 
 func get_checkers():
-	for _i in repeat:
+	for _i in repeat + 1:
 		for i in range(grid.size()):
 			play_animation()
 			var checker = grid[i].grid
@@ -78,9 +78,10 @@ func spawn_checker(checker: bool, position: Vector3) -> void:
 		var tween = get_tree().create_tween().set_parallel(true)
 		var material = checker_mesh.get_active_material(0)
 		material.albedo_color = Color(1, 1, 1, 0) # Start with transparent white
-		tween.tween_property(material, "albedo_color", Color(1, 0, 0, 0.8), startup)
+		tween.tween_property(material, "albedo_color", Color(0, 1, 0, 0.6), startup)
 		tween.tween_property(checker_mesh, "scale", Vector3.ONE, startup)
 		await get_tree().create_timer(startup).timeout
+		material.albedo_color = Color(0, 1, 0, 0.8)
 		var hitbox = checker_instance.find_child("DamageCollider")
 		hitboxes.append(hitbox)
 		hitbox.damage = damage

@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://dwclbmbobga60"]
+[gd_scene load_steps=18 format=3 uid="uid://dwclbmbobga60"]
 
 [ext_resource type="PackedScene" uid="uid://ccmmifktpgjib" path="res://scenes/player.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://bvra2jpeldcop" path="res://scripts/boss/enemy_hp_bar.gd" id="3_85g3d"]
 [ext_resource type="PackedScene" uid="uid://cehuslw1ppg1g" path="res://ui/start_screen.tscn" id="3_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://bqth5yqagfvxu" path="res://scenes/enemy.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://bpp55gui2f1h5" path="res://ui/main.tscn" id="4_jyhfs"]
@@ -32,6 +33,17 @@ fog_height_density = 0.1
 volumetric_fog_length = 13.8
 volumetric_fog_ambient_inject = 1.68
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_choun"]
+bg_color = Color(0.117647, 0, 0, 1)
+skew = Vector2(0.2, 0)
+corner_detail = 16
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ya4ey"]
+bg_color = Color(0.746585, 2.00946e-06, 8.66354e-07, 1)
+skew = Vector2(0.2, 0)
+corner_detail = 16
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_j4bwh"]
 size = Vector3(0.37323, 1, 0.369385)
 
@@ -58,6 +70,21 @@ transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 
 player = NodePath("../Player")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = 40.0
+offset_right = 400.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_choun")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ya4ey")
+value = 10.0
+show_percentage = false
+script = ExtResource("3_85g3d")
 
 [node name="Main" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("4_jyhfs")]
 player = NodePath("../../Player")

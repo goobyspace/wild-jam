@@ -47,7 +47,14 @@ func attack() -> bool:
 	for i in range(amount):
 		var starting_rotation = Vector3(0, i * (PI * 2 / amount), 0)
 		spawn_beam(starting_rotation)
+	do_damage()
+	if wait_for_attack:
+		await get_tree().create_timer(active_delay + active_time).timeout
+	return true
+
+func do_damage() -> void:
 	await get_tree().create_timer(active_delay + active_time).timeout
+
 	var player_found = false
 	for hitbox in hitboxes:
 		hitbox.monitoring = false
@@ -56,4 +63,3 @@ func attack() -> bool:
 	if not player_found:
 		hitboxes[0].do_damage()
 	hitboxes.clear()
-	return true

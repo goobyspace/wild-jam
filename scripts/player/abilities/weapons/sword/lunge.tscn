@@ -1,16 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://bti1ia18i2cs3"]
+[gd_scene load_steps=4 format=3 uid="uid://bti1ia18i2cs3"]
 
 [ext_resource type="Script" uid="uid://dwp20vgt7mgt8" path="res://scripts/player/abilities/weapons/sword/lunge.gd" id="1_lixh0"]
 
-[node name="lunge" type="Node3D" node_paths=PackedStringArray("area_hitbox")]
+[sub_resource type="BoxMesh" id="BoxMesh_lixh0"]
+size = Vector3(0.1, 0.1, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lixh0"]
+transparency = 1
+albedo_color = Color(0, 0.615686, 1, 0)
+emission_enabled = true
+emission = Color(0, 0.403922, 1, 1)
+emission_energy_multiplier = 3.84
+
+[node name="lunge" type="Node3D" node_paths=PackedStringArray("lightning_bolt", "area_hitbox")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 script = ExtResource("1_lixh0")
+lightning_bolt = NodePath("MeshInstance3D")
+ability_cooldown = 1.5
 area_hitbox = NodePath("Area3D")
 damage = 10
-ability_cooldown = 1.5
 
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-polygon = PackedVector2Array(-0.3, 0, 0.3, 0, 0.6, 4, -0.6, 4)
+polygon = PackedVector2Array(-0.3, 0, 0.3, 0, 0.5, 8, -0.7, 8)
 debug_color = Color(0, 0.592157, 0.690196, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.5)
+mesh = SubResource("BoxMesh_lixh0")
+surface_material_override/0 = SubResource("StandardMaterial3D_lixh0")
