@@ -18,6 +18,7 @@ var hitboxes = []
 
 func _ready() -> void:
 	super._ready()
+	play_in_parent = false # Disables boss_attacks from playing the sound
 	if explosion_mesh == null:
 		push_error("Explosion mesh is not set, please assign it in the editor.")
 		return
@@ -39,6 +40,9 @@ func explosion_start() -> void:
 		hitbox.connect("body_entered", hitbox._on_body_entered)
 		hitboxes.append(hitbox)
 		explosion.explode(startup_time, scale, Color(1, 0, 0, 0.9)) # Red color for explosion
+		if audio_player and audio_track:
+			audio_player.play_audio(audio_track, volume_db, audio_start)
+			audio_player.bus = audio_bus
 
 func explosion_activate() -> void:
 	for hitbox in hitboxes:

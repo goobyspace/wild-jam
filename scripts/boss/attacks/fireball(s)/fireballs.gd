@@ -13,6 +13,7 @@ var player: Node3D
 
 func _ready() -> void:
 	super._ready()
+	play_in_parent = false #Disables boss_attacks from playing the sound
 	if fireball_node == null:
 		push_error("Fireball node is not set, please assign it in the editor.")
 		return
@@ -33,6 +34,10 @@ func spawn_fireball():
 	hitbox.connect("body_entered", hitbox._on_body_entered)
 	fireball.look_at(player.position, Vector3.UP)
 	fireball.rotation.y -= PI
+	#Play fireball audio
+	if audio_player and audio_track:
+		audio_player.play_audio(audio_track, volume_db, audio_start)
+		audio_player.bus = audio_bus
 	var tween = get_tree().create_tween()
 	tween.tween_property(fireball, "position", fireball.global_basis.z * 100, travel_time)
 	await tween.finished
