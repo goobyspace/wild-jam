@@ -7,6 +7,7 @@ extends BossAttack
 @export var amount: int = 3
 @export var beam_node: PackedScene
 @export var inner_beam_color: Color = Color(1, 0.2, 0.2, 1)
+@export var audio_fade_duration: float = 0.9
 
 func _ready() -> void:
 	super._ready()
@@ -32,6 +33,14 @@ func spawn_beam(initial_rotation: Vector3) -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(beam, "rotation", Vector3(beam.rotation.x, beam.rotation.y - PI * rotation_speed, beam.rotation.z), active_time)
 	await tween.finished
+	# Fade out the audio when beam is done
+	if audio_player and audio_player.playing:
+		var audio_tween = get_tree().create_tween()
+		var original_volume = audio_player.volume_db
+		audio_tween.tween_property(audio_player, "volume_db", -80.0, audio_fade_duration)
+		audio_tween.tween_callback(audio_player.stop_audio)
+		# Reset volume for future sounds
+		audio_tween.tween_property(audio_player, "volume_db", original_volume, 0.01)
 	var exit_tween = get_tree().create_tween().set_parallel(true)
 	exit_tween.tween_property(inner_material, "albedo_color", Color(1, 1, 1, 0), active_delay / 2)
 	exit_tween.tween_property(outer, "scale", Vector3.ZERO, active_delay / 2)

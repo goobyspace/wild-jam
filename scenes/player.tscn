@@ -248,6 +248,7 @@ model = NodePath("model")
 animation_tree = NodePath("AnimationTree")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-1, 6.18173e-08, -6.18173e-08, 0, 0.707107, 0.707107, 8.74228e-08, 0.707107, -0.707107, 0, 75, -75)
