@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dwclbmbobga60"]
+[gd_scene load_steps=19 format=3 uid="uid://dwclbmbobga60"]
 
 [ext_resource type="PackedScene" uid="uid://ccmmifktpgjib" path="res://scenes/player.tscn" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://bvra2jpeldcop" path="res://scripts/boss/enemy_hp_bar.gd" id="3_85g3d"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cffhrfcnoomqm" path="res://assets/models/terrain/nature kit/statue_ring.glb" id="5_r4ag1"]
 [ext_resource type="PackedScene" uid="uid://pb47woopyn3t" path="res://ui/end_screen.tscn" id="5_tipki"]
 [ext_resource type="PackedScene" uid="uid://b606nmbtkfsgn" path="res://scenes/terrain.tscn" id="6_tefeu"]
+[ext_resource type="AudioStream" uid="uid://cnrskoppt5oug" path="res://assets/sounds/Desert-Mayhem.mp3" id="10_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://caxeor7gbeaus" path="res://assets/models/terrain/graveyard/column-large.glb" id="47_vc5cj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
@@ -210,3 +211,11 @@ collision_priority = 4.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="mouse_raycast_plane"]
 shape = SubResource("BoxShape3D_tefeu")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("10_ya4ey")
+volume_db = -15.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true

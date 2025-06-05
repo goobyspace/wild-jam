@@ -285,7 +285,7 @@ script = ExtResource("2_g2els")
 
 [node name="attack_controller" type="Node3D" parent="." node_paths=PackedStringArray("abilities")]
 script = ExtResource("6_y4r1p")
-abilities = [NodePath("../model/sword_main"), NodePath("../model/lunge"), NodePath("../model/spin"), NodePath("../model/lightningbolt"), NodePath("../model/thunderstrike"), NodePath("dash")]
+abilities = [NodePath("../model/sword_main"), NodePath("../model/spin"), NodePath("../model/lunge"), NodePath("../model/lightningbolt"), NodePath("../model/thunderstrike"), NodePath("dash")]
 
 [node name="dash" type="Node" parent="attack_controller" node_paths=PackedStringArray("health_bar", "character", "animation_tree")]
 script = ExtResource("8_3v2ag")
