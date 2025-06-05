@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=8 format=3 uid="uid://buhlma4bqsm8e"]
+[gd_resource type="AudioBusLayout" load_steps=9 format=3 uid="uid://buhlma4bqsm8e"]
 
 [sub_resource type="AudioEffectHardLimiter" id="AudioEffectHardLimiter_j3pel"]
 resource_name = "HardLimiter"
@@ -36,6 +36,13 @@ resource_name = "Reverb"
 room_size = 0.35
 damping = 0.3
 spread = 0.75
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_5t1r3"]
+resource_name = "Reverb"
+room_size = 0.45
+damping = 0.15
+spread = 0.3
+wet = 0.1
 
 [resource]
 bus/0/volume_db = -0.130497
@@ -83,3 +90,11 @@ bus/5/volume_db = 0.0
 bus/5/send = &"Master"
 bus/5/effect/0/effect = SubResource("AudioEffectReverb_j3pel")
 bus/5/effect/0/enabled = true
+bus/6/name = &"Thunderstrike"
+bus/6/solo = false
+bus/6/mute = false
+bus/6/bypass_fx = false
+bus/6/volume_db = 0.0
+bus/6/send = &"Master"
+bus/6/effect/0/effect = SubResource("AudioEffectReverb_5t1r3")
+bus/6/effect/0/enabled = true

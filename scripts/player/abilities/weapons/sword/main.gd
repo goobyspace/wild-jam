@@ -16,6 +16,9 @@ func _on_body_entered(body: Node) -> void:
 		health_node.take_damage(damage)
 
 func _on_use() -> bool:
+	if audio_player and audio_track:
+		audio_player.play_audio(audio_track, volume_db, audio_start)
+		audio_player.bus = audio_bus
 	play_animation()
 	activate_hitbox()
 	await get_tree().create_timer(active_time).timeout

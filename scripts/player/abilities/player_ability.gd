@@ -7,6 +7,11 @@ class_name PlayerAbility extends Node
 @export var keybind: InputEventAction
 @export var area_hitbox: Area3D
 @export var damage: int = 3
+@export var audio_track: AudioStream
+@export var audio_player: UniversalAudioPlayer
+@export var volume_db: float = 0.0
+@export var audio_start: float = 0.0
+@export var audio_bus: String = "SFX"
 
 signal ability_used(ability: PlayerAbility)
 
@@ -34,6 +39,11 @@ func use() -> void:
 func _on_use(): # override this method in subclasses to make attacks
 	await get_tree().create_timer(0).timeout
 	return true
+
+func play_ability_audio() -> void:
+	if audio_player and audio_track:
+		audio_player.play_audio(audio_track, volume_db, audio_start)
+		audio_player.bus = audio_bus
 
 func play_animation() -> void:
 	if animation_tree:

@@ -189,7 +189,7 @@ script = ExtResource("3_vab5u")
 
 [node name="attack_controller" type="Node" parent="." node_paths=PackedStringArray("attacks")]
 script = ExtResource("1_7p1mj")
-attacks = [NodePath("explosion")]
+attacks = [null]
 
 [node name="explosion" type="Node" parent="attack_controller" node_paths=PackedStringArray("boss_animations", "audio_player")]
 script = ExtResource("2_md0e3")

@@ -18,6 +18,9 @@ func setDashCollision():
 	health_bar.visible = !health_bar.visible
 
 func _on_use() -> bool:
+	if audio_player and audio_track:
+		audio_player.play_audio(audio_track, volume_db, audio_start)
+		audio_player.bus = audio_bus
 	play_animation()
 	setDashCollision()
 	character.set_direction(dash_direction, dash_speed, dash_duration, true)

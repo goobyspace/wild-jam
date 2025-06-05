@@ -1,7 +1,8 @@
-[gd_scene load_steps=64 format=3 uid="uid://ccmmifktpgjib"]
+[gd_scene load_steps=69 format=3 uid="uid://ccmmifktpgjib"]
 
 [ext_resource type="Script" uid="uid://b6mge7o3yiv0u" path="res://scripts/player/movement/player_movement.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bj3a4q0fcalg4" path="res://scripts/hp.gd" id="2_g2els"]
+[ext_resource type="Script" uid="uid://t8hdm25fnidd" path="res://scripts/audio/universal_audio.gd" id="2_gl8cc"]
 [ext_resource type="Script" uid="uid://cbwmm7hsi6ade" path="res://scripts/player/hp/hp_bar.gd" id="2_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://be2nf424vokic" path="res://assets/models/characters/fox_knight.gltf" id="6_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://dsab3mebvhwsm" path="res://assets/ui/ability_icons/dash.png" id="6_wnwbv"]
@@ -9,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c5pmsswu5f7bf" path="res://scripts/player/abilities/weapons/sword/sword_main.tscn" id="7_d2wvv"]
 [ext_resource type="Animation" uid="uid://upcxm4b2g5a4" path="res://assets/models/characters/animations/tpose.res" id="7_y4r1p"]
 [ext_resource type="Script" uid="uid://ddjqahwbx1afm" path="res://scripts/player/abilities/dash/main_dash.gd" id="8_3v2ag"]
+[ext_resource type="AudioStream" uid="uid://c18pd7cdjpqmp" path="res://assets/sounds/dashroll.wav" id="8_487ah"]
 [ext_resource type="Animation" uid="uid://qixm0x3wvrbs" path="res://assets/models/characters/animations/run forward.res" id="8_d2wvv"]
 [ext_resource type="Animation" uid="uid://7ba1wfxtesni" path="res://assets/models/characters/animations/idle.res" id="9_3v2ag"]
 [ext_resource type="Animation" uid="uid://b8iswqochcsyt" path="res://assets/models/characters/animations/attack.res" id="10_jej6c"]
@@ -30,7 +32,10 @@
 [ext_resource type="Texture2D" uid="uid://dxo6mihwh08kh" path="res://assets/ui/ability_icons/lunge.png" id="23_pf23h"]
 [ext_resource type="Texture2D" uid="uid://wjbv2jo8dnbp" path="res://assets/ui/ability_icons/thunder.png" id="24_31cv2"]
 [ext_resource type="PackedScene" uid="uid://dtiju5n5lgk81" path="res://scripts/player/abilities/magic/thunder/lightningbolt.tscn" id="24_ke2ow"]
+[ext_resource type="AudioStream" uid="uid://ds32s1qxqd1tr" path="res://assets/sounds/swordattack.wav" id="25_md1ol"]
 [ext_resource type="Texture2D" uid="uid://rqgsas06urgw" path="res://assets/ui/ability_icons/thunderstrike.png" id="25_ujl30"]
+[ext_resource type="AudioStream" uid="uid://ddbnobj70tt7g" path="res://assets/sounds/lightningbolt.ogg" id="32_jc3p3"]
+[ext_resource type="AudioStream" uid="uid://cfxst2atav61" path="res://assets/sounds/thunderstrike.wav" id="34_bj30b"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3vyb7"]
 viewport_path = NodePath("SubViewport")
@@ -247,6 +252,12 @@ script = ExtResource("1_4flbx")
 model = NodePath("model")
 animation_tree = NodePath("AnimationTree")
 
+[node name="PlayerSounds" type="AudioStreamPlayer" parent="."]
+script = ExtResource("2_gl8cc")
+
+[node name="ThunderstrikeAudio" type="AudioStreamPlayer" parent="."]
+script = ExtResource("2_gl8cc")
+
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
 
@@ -287,7 +298,7 @@ script = ExtResource("2_g2els")
 script = ExtResource("6_y4r1p")
 abilities = [NodePath("../model/sword_main"), NodePath("../model/lunge"), NodePath("../model/spin"), NodePath("../model/lightningbolt"), NodePath("../model/thunderstrike"), NodePath("dash")]
 
-[node name="dash" type="Node" parent="attack_controller" node_paths=PackedStringArray("collision", "health_bar", "character", "animation_tree")]
+[node name="dash" type="Node" parent="attack_controller" node_paths=PackedStringArray("collision", "health_bar", "character", "animation_tree", "audio_player")]
 script = ExtResource("8_3v2ag")
 collision = NodePath("../../CollisionShape3D")
 health_bar = NodePath("../../health_bar")
@@ -297,6 +308,9 @@ animation_tree = NodePath("../../AnimationTree")
 animation = 1
 icon = ExtResource("6_wnwbv")
 keybind = SubResource("InputEventAction_ke2ow")
+audio_track = ExtResource("8_487ah")
+audio_player = NodePath("../../PlayerSounds")
+volume_db = 5.0
 
 [node name="model" parent="." instance=ExtResource("6_tuyoq")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
@@ -309,13 +323,16 @@ libraries = {
 autoplay = "player/idle"
 playback_default_blend_time = 0.5
 
-[node name="sword_main" parent="model" node_paths=PackedStringArray("animation_tree") instance=ExtResource("7_d2wvv")]
+[node name="sword_main" parent="model" node_paths=PackedStringArray("animation_tree", "audio_player") instance=ExtResource("7_d2wvv")]
 transform = Transform3D(2.22222, 0, -2.98023e-08, 0, 2.22222, 0, 2.98023e-08, 0, 2.22222, 0, 0, 0)
 animation_tree = NodePath("../../AnimationTree")
 icon = ExtResource("21_wqfne")
 keybind = SubResource("InputEventAction_ujl30")
+audio_track = ExtResource("25_md1ol")
+audio_player = NodePath("../../PlayerSounds")
+volume_db = -4.0
 
-[node name="spin" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("21_a38lo")]
+[node name="spin" parent="model" node_paths=PackedStringArray("character", "animation_tree", "audio_player") instance=ExtResource("21_a38lo")]
 hits = 8
 active_time = 2.0
 character = NodePath("../..")
@@ -323,28 +340,43 @@ ability_cooldown = 7.0
 animation_tree = NodePath("../../AnimationTree")
 icon = ExtResource("22_dt7fs")
 keybind = SubResource("InputEventAction_31cv2")
+audio_track = ExtResource("25_md1ol")
+audio_player = NodePath("../../PlayerSounds")
+volume_db = -3.0
 
-[node name="lunge" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("22_4ni07")]
+[node name="lunge" parent="model" node_paths=PackedStringArray("character", "animation_tree", "audio_player") instance=ExtResource("22_4ni07")]
 character = NodePath("../..")
 ability_cooldown = 6.0
 animation_tree = NodePath("../../AnimationTree")
 animation = 3
 icon = ExtResource("23_pf23h")
 keybind = SubResource("InputEventAction_pf23h")
+audio_track = ExtResource("25_md1ol")
+audio_player = NodePath("../../PlayerSounds")
+volume_db = -2.0
+audio_bus = "Fireball"
 
-[node name="lightningbolt" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("24_ke2ow")]
+[node name="lightningbolt" parent="model" node_paths=PackedStringArray("character", "animation_tree", "audio_player") instance=ExtResource("24_ke2ow")]
 character = NodePath("../..")
 animation_tree = NodePath("../../AnimationTree")
 icon = ExtResource("24_31cv2")
 keybind = SubResource("InputEventAction_dt7fs")
+audio_track = ExtResource("32_jc3p3")
+audio_player = NodePath("../../PlayerSounds")
+volume_db = -6.0
+audio_bus = "Fireball"
 
-[node name="thunderstrike" parent="model" node_paths=PackedStringArray("character", "animation_tree") instance=ExtResource("23_l71n6")]
+[node name="thunderstrike" parent="model" node_paths=PackedStringArray("character", "animation_tree", "audio_player") instance=ExtResource("23_l71n6")]
 stun_time = 1.4
 character = NodePath("../..")
 ability_cooldown = 1.0
 animation_tree = NodePath("../../AnimationTree")
 icon = ExtResource("25_ujl30")
 keybind = SubResource("InputEventAction_wqfne")
+audio_track = ExtResource("34_bj30b")
+audio_player = NodePath("../../ThunderstrikeAudio")
+volume_db = -8.0
+audio_bus = "Thunderstrike"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../model")
