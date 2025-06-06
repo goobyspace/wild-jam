@@ -202,6 +202,7 @@ theme_override_font_sizes/font_size = 32
 text = "Sound Effects"
 
 [node name="HSlider2" type="HSlider" parent="."]
+layout_mode = 0
 offset_left = 141.0
 offset_top = 867.0
 offset_right = 728.0
@@ -213,6 +214,7 @@ script = ExtResource("4_igmpp")
 audio_bus_name = "Music"
 
 [node name="Label" type="Label" parent="HSlider2"]
+layout_mode = 0
 offset_left = 2.0
 offset_top = -15.0
 offset_right = 240.0
@@ -267,6 +269,7 @@ offset_bottom = 108.0
 color = Color(1, 0, 0, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="how to play/RichTextLabel"]
+layout_mode = 0
 offset_left = 856.0
 offset_top = 75.0
 offset_right = 888.0
@@ -334,6 +337,16 @@ theme_override_constants/margin_bottom = 3
 [node name="TextureRect" type="TextureRect" parent="how to play/RichTextLabel/VBoxContainer/MarginContainer6"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_65fpc")
+
+[node name="credit" type="Label" parent="."]
+layout_mode = 0
+offset_right = 341.0
+offset_bottom = 101.0
+theme_override_font_sizes/font_size = 24
+text = "Game by Gooby.Space & DiasTAPvP
+Icons by MothKing97
+Music by Eric Matyas (www.soundimage.org)
+Terrain assets & UI from Kenney.nl"
 
 [connection signal="gui_input" from="Button/NinePatchRect" to="." method="_on_nine_patch_rect_gui_input"]
 [connection signal="gui_input" from="CloseButton/NinePatchRect" to="." method="_on_nine_patch_rect_gui_input"]
