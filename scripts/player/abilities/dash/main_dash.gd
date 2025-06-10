@@ -15,7 +15,7 @@ var dash_cooldown_timer := 0.0
 var dash_direction := Vector3.ZERO
 
 func _ready() -> void:
-	hp = get_tree().root.get_node("Main/Player/player_health");
+	hp = get_node("./../../player_health");
 	
 
 func setDashCollision():

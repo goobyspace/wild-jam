@@ -1,0 +1,212 @@
+[gd_scene load_steps=17 format=3 uid="uid://dwclbmbobga60"]
+
+[ext_resource type="Script" uid="uid://bvra2jpeldcop" path="res://scripts/boss/enemy_hp_bar.gd" id="3_85g3d"]
+[ext_resource type="PackedScene" uid="uid://cfpd50qrxn2ho" path="res://scenes/characters/hound.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://bpp55gui2f1h5" path="res://scenes/ui/main.tscn" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://cffhrfcnoomqm" path="res://assets/models/terrain/nature kit/statue_ring.glb" id="5_r4ag1"]
+[ext_resource type="PackedScene" uid="uid://dkpi8owt2hx2y" path="res://scenes/ui/pause_screen.tscn" id="5_u5m6a"]
+[ext_resource type="PackedScene" uid="uid://b606nmbtkfsgn" path="res://scenes/levels/terrain.tscn" id="6_tefeu"]
+[ext_resource type="AudioStream" uid="uid://cnrskoppt5oug" path="res://assets/sounds/Desert-Mayhem.mp3" id="10_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://caxeor7gbeaus" path="res://assets/models/terrain/graveyard/column-large.glb" id="47_vc5cj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
+sky_top_color = Color(0.119107, 0.343829, 0.33447, 1)
+sky_horizon_color = Color(0.529091, 0.602748, 0.736587, 1)
+ground_bottom_color = Color(0.161138, 0.231047, 0.77576, 1)
+ground_horizon_color = Color(0.529091, 0.602748, 0.736587, 1)
+energy_multiplier = 0.85
+
+[sub_resource type="Sky" id="Sky_ig7tw"]
+sky_material = SubResource("ProceduralSkyMaterial_7dm0k")
+
+[sub_resource type="Environment" id="Environment_0xm2m"]
+background_mode = 2
+sky = SubResource("Sky_ig7tw")
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.559336, 0.585691, 0.947634, 1)
+fog_density = 0.0
+fog_height = -0.5
+fog_height_density = 0.1
+volumetric_fog_length = 13.8
+volumetric_fog_ambient_inject = 1.68
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_choun"]
+bg_color = Color(0.117647, 0, 0, 1)
+skew = Vector2(0.2, 0)
+corner_detail = 16
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ya4ey"]
+bg_color = Color(0.746585, 2.00946e-06, 8.66354e-07, 1)
+skew = Vector2(0.2, 0)
+corner_detail = 16
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j4bwh"]
+size = Vector3(0.37323, 1, 0.369385)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r4ag1"]
+size = Vector3(0.596875, 1, 0.168347)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tefeu"]
+size = Vector3(500, 0.1, 500)
+
+[node name="Main" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.224951, 0.481282, -0.84721, 0, 0.869495, 0.493942, 0.97437, -0.111113, 0.195594, 0, 27.1, 0)
+light_color = Color(1, 0.705882, 0.635294, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0xm2m")
+
+[node name="Enemy" parent="." instance=ExtResource("3_sugp2")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = 40.0
+offset_right = 400.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_choun")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ya4ey")
+value = 10.0
+show_percentage = false
+script = ExtResource("3_85g3d")
+
+[node name="Main" parent="CanvasLayer" instance=ExtResource("4_jyhfs")]
+
+[node name="StartScreen" parent="CanvasLayer" instance=ExtResource("5_u5m6a")]
+
+[node name="columns" type="Node3D" parent="."]
+
+[node name="column" parent="columns" instance=ExtResource("47_vc5cj")]
+transform = Transform3D(4, 0, 0, 0, 8, 0, 0, 0, 4, 6, 0, 6)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="columns/column"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="columns/column/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000579834, 0, -0.00158691)
+shape = SubResource("BoxShape3D_j4bwh")
+
+[node name="column2" parent="columns" instance=ExtResource("47_vc5cj")]
+transform = Transform3D(4, 0, 0, 0, 8, 0, 0, 0, 4, -6, 0, 6)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="columns/column2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="columns/column2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000579834, 0, -0.00158691)
+shape = SubResource("BoxShape3D_j4bwh")
+
+[node name="column3" parent="columns" instance=ExtResource("47_vc5cj")]
+transform = Transform3D(4, 0, 0, 0, 8, 0, 0, 0, 4, -6, 0, -6)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="columns/column3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="columns/column3/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000579834, 0, -0.00158691)
+shape = SubResource("BoxShape3D_j4bwh")
+
+[node name="column4" parent="columns" instance=ExtResource("47_vc5cj")]
+transform = Transform3D(4, 0, 0, 0, 8, 0, 0, 0, 4, 6, 0, -6)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="columns/column4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="columns/column4/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000579834, 0, -0.00158691)
+shape = SubResource("BoxShape3D_j4bwh")
+
+[node name="rings" type="Node3D" parent="."]
+
+[node name="ring" parent="rings" instance=ExtResource("5_r4ag1")]
+transform = Transform3D(-2.82843, 0, -2.82843, 0, 4, 0, 2.82843, 0, -2.82843, 18, 0, 18)
+
+[node name="omni" type="OmniLight3D" parent="rings/ring"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+light_color = Color(0.983252, 0, 0.341643, 1)
+light_energy = 0.0
+light_size = 0.387
+omni_range = 10.0
+omni_attenuation = -0.566
+
+[node name="StaticBody3D" type="StaticBody3D" parent="rings/ring"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rings/ring/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0009377, -0.0025, 0.00138664)
+shape = SubResource("BoxShape3D_r4ag1")
+
+[node name="ring2" parent="rings" instance=ExtResource("5_r4ag1")]
+transform = Transform3D(2.82843, 0, -2.82843, 0, 4, 0, 2.82843, 0, 2.82843, 18, 0, -18)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="rings/ring2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rings/ring2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0009377, -0.0025, 0.0756431)
+shape = SubResource("BoxShape3D_r4ag1")
+
+[node name="omni" type="OmniLight3D" parent="rings/ring2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.4, 0)
+light_color = Color(0.983252, 0, 0.341643, 1)
+light_energy = 0.0
+light_size = 0.387
+omni_range = 10.0
+omni_attenuation = -0.566
+
+[node name="ring3" parent="rings" instance=ExtResource("5_r4ag1")]
+transform = Transform3D(-2.82843, 0, 2.82843, 0, 4, 0, -2.82843, 0, -2.82843, -18, 0, 18)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="rings/ring3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rings/ring3/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0009377, -0.0025, 0.114918)
+shape = SubResource("BoxShape3D_r4ag1")
+
+[node name="omni" type="OmniLight3D" parent="rings/ring3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.4, 0)
+light_color = Color(0.983252, 0, 0.341643, 1)
+light_energy = 0.0
+light_size = 0.387
+omni_range = 10.0
+omni_attenuation = -0.566
+
+[node name="ring4" parent="rings" instance=ExtResource("5_r4ag1")]
+transform = Transform3D(2.82843, 0, 2.82843, 0, 4, 0, -2.82843, 0, 2.82843, -18, 0, -18)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="rings/ring4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rings/ring4/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0009377, -0.0025, 0.114918)
+shape = SubResource("BoxShape3D_r4ag1")
+
+[node name="omni" type="OmniLight3D" parent="rings/ring4"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.4, 0)
+light_color = Color(0.983252, 0, 0.341643, 1)
+light_energy = 0.0
+light_size = 0.387
+omni_range = 10.0
+omni_attenuation = -0.566
+
+[node name="terrain" parent="." instance=ExtResource("6_tefeu")]
+
+[node name="mouse_raycast_plane" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 8
+collision_priority = 4.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mouse_raycast_plane"]
+shape = SubResource("BoxShape3D_tefeu")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("10_ya4ey")
+volume_db = -15.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true

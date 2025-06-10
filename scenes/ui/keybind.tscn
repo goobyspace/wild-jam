@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://1xw0jrqtmt6b"]
+
+[ext_resource type="Texture2D" uid="uid://c4hvrge0t78l3" path="res://assets/ui/generic_sheet_default.png" id="1_kiuog"]
+[ext_resource type="FontFile" uid="uid://bnka2ruudg7hi" path="res://assets/ui/PixelifySans-VariableFont_wght.ttf" id="2_xg3hd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kiuog"]
+atlas = ExtResource("1_kiuog")
+region = Rect2(135.713, 263.754, 48.6636, 48.6636)
+
+[node name="Keybind" type="Control"]
+layout_mode = 3
+anchor_left = 0.012
+anchor_top = 0.022
+anchor_right = 0.012
+anchor_bottom = 0.022
+offset_left = -23.04
+offset_top = -23.76
+offset_right = 24.96
+offset_bottom = 24.24
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="keybind_border" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+texture = SubResource("AtlasTexture_kiuog")
+
+[node name="keybind_label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 18.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_xg3hd")
+theme_override_font_sizes/font_size = 34
+text = "q"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 0
+uppercase = true

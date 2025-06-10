@@ -6,6 +6,7 @@ var start_button: Button
 var close_button: Button
 var label: Label
 @onready var _bus := AudioServer.get_bus_index("SFX")
+var current_volume: float = AudioServer.get_bus_volume_db(_bus)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	start_button = find_child("Button")
@@ -15,19 +16,22 @@ func _ready() -> void:
 	label = find_child("toptext")
 	victory_fox = find_child("victoryfox")
 	victory_dog = find_child("victorydog")
-	get_tree().root.get_node("Main/Player/player_health").connect("health_depleted", on_defeat)
-	get_tree().root.get_node("Main/Enemy/enemy_health").connect("health_depleted", on_victory)
 	victory_dog.hide()
 	victory_fox.hide()
 	hide()
 
 func _on_start_button_pressed() -> void:
-	get_tree().reload_current_scene()
+	AudioServer.set_bus_volume_db(_bus, current_volume)
+	var level_controller = get_tree().root.get_node("LevelController")
+	level_controller.change_level_scene(level_controller.level_scene)
+	get_tree().paused = false
+
 
 func _on_close_button_pressed() -> void:
 	get_tree().quit()
 
 func end():
+	current_volume = AudioServer.get_bus_volume_db(_bus)
 	AudioServer.set_bus_volume_db(_bus, linear_to_db(0))
 	get_tree().paused = true
 	show()

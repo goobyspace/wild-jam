@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpp55gui2f1h5"]
+
+[ext_resource type="Script" uid="uid://b2i2je14kpn2r" path="res://scripts/cooldown_buttons/cooldown_buttons.gd" id="1_vcrq8"]
+[ext_resource type="PackedScene" uid="uid://s6rgbn278qj2" path="res://scenes/ui/icon.tscn" id="3_loxbi"]
+
+[node name="Main" type="Control" node_paths=PackedStringArray("cooldown_bars")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_vcrq8")
+cooldown_bars = NodePath("HBoxContainer")
+cooldown_button = ExtResource("3_loxbi")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -307.0
+offset_top = -184.0
+offset_right = 308.0
+offset_bottom = -84.0
+alignment = 1

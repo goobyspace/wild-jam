@@ -13,7 +13,7 @@ var player: Node3D
 
 func _ready() -> void:
 	super._ready()
-	play_in_parent = false #Disables boss_attacks from playing the sound
+	play_in_parent = false # Disables boss_attacks from playing the sound
 	if fireball_node == null:
 		push_error("Fireball node is not set, please assign it in the editor.")
 		return
@@ -21,7 +21,7 @@ func _ready() -> void:
 		push_error("Fireball parent is not set, please assign it in the editor.")
 		return
 	
-	player = top_parent.get_parent().find_child("Player")
+	player = get_tree().root.get_node("LevelController/Main/Player")
 
 func spawn_fireball():
 	var fireball = fireball_node.instantiate()

@@ -1,0 +1,344 @@
+[gd_scene load_steps=14 format=3 uid="uid://dkpi8owt2hx2y"]
+
+[ext_resource type="Script" uid="uid://deeq1smfqly2y" path="res://scripts/ui/pause_screen.gd" id="1_wrw5x"]
+[ext_resource type="Texture2D" uid="uid://cbc5d0q17bugc" path="res://assets/ui/panel_brown_damaged.png" id="2_oc7jr"]
+[ext_resource type="Texture2D" uid="uid://bnd8l33erb23g" path="res://assets/ui/button_red.png" id="3_lyq4t"]
+[ext_resource type="Script" uid="uid://c1kt7a1t85ua0" path="res://scripts/audio/sound_slider.gd" id="4_g5rtw"]
+[ext_resource type="Texture2D" uid="uid://wg2fahwkmvti" path="res://assets/ui/keyboard-&-mouse_sheet_default.png" id="5_gyuvn"]
+
+[sub_resource type="Gradient" id="Gradient_50anp"]
+offsets = PackedFloat32Array(0, 0.653846, 1)
+colors = PackedColorArray(0.984314, 0, 0.345098, 0.54902, 0.384314, 0.576471, 1, 0.556863, 0.392157, 0.847059, 0.592157, 0.552941)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nledq"]
+gradient = SubResource("Gradient_50anp")
+width = 10
+height = 10
+fill_from = Vector2(0.55, 0)
+fill_to = Vector2(1, 0.45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8ycg"]
+atlas = ExtResource("5_gyuvn")
+region = Rect2(201, 73, 46, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cpes"]
+atlas = ExtResource("5_gyuvn")
+region = Rect2(968, 328, 47, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pkrh"]
+atlas = ExtResource("5_gyuvn")
+region = Rect2(648, 648, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q260t"]
+atlas = ExtResource("5_gyuvn")
+region = Rect2(328, 264, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgpwp"]
+atlas = ExtResource("5_gyuvn")
+region = Rect2(392, 584, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65fpc"]
+atlas = ExtResource("5_gyuvn")
+region = Rect2(328, 200, 48, 48)
+
+[node name="StartScreen" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_wrw5x")
+
+[node name="ColorRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.497
+anchor_right = 0.5
+anchor_bottom = 0.497
+offset_left = -2353.0
+offset_top = -1506.76
+offset_right = 2193.0
+offset_bottom = 1204.24
+texture = SubResource("GradientTexture2D_nledq")
+
+[node name="paused" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -221.0
+offset_top = -428.0
+offset_right = 226.0
+offset_bottom = -261.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 96
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+process_mode = 3
+light_mask = 1023
+layout_mode = 1
+anchors_preset = -1
+offset_left = 133.0
+offset_top = 475.0
+offset_right = 733.0
+offset_bottom = 595.0
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 2
+action_mode = 0
+button_mask = 7
+text = "start"
+flat = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Button"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -60.0
+offset_right = 300.0
+offset_bottom = 60.0
+texture = ExtResource("2_oc7jr")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Label" type="Label" parent="Button/NinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.494
+anchor_top = 0.825
+anchor_right = 0.494
+anchor_bottom = 0.825
+offset_left = -270.4
+offset_top = -80.0
+offset_right = 269.6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "Start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="."]
+process_mode = 3
+light_mask = 1023
+layout_mode = 1
+anchors_preset = -1
+offset_left = 133.0
+offset_top = 645.0
+offset_right = 733.0
+offset_bottom = 765.0
+mouse_default_cursor_shape = 2
+action_mode = 0
+button_mask = 7
+text = "close"
+flat = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CloseButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -60.0
+offset_right = 300.0
+offset_bottom = 60.0
+texture = ExtResource("3_lyq4t")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Label" type="Label" parent="CloseButton/NinePatchRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.492
+anchor_top = 0.5
+anchor_right = 0.492
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 64
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 800.0
+offset_right = 728.0
+offset_bottom = 865.0
+max_value = 2.0
+step = 0.05
+value = 0.5
+script = ExtResource("4_g5rtw")
+audio_bus_name = "SFX"
+
+[node name="Label" type="Label" parent="HSlider"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -15.0
+offset_right = 240.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 32
+text = "Sound Effects"
+
+[node name="HSlider2" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 867.0
+offset_right = 728.0
+offset_bottom = 932.0
+max_value = 2.0
+step = 0.05
+value = 0.5
+script = ExtResource("4_g5rtw")
+audio_bus_name = "Music"
+
+[node name="Label" type="Label" parent="HSlider2"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -15.0
+offset_right = 240.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 32
+text = "Music"
+
+[node name="how to play" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 1.0
+anchor_top = 0.037
+anchor_right = 1.0
+anchor_bottom = 0.037
+offset_left = -1133.0
+offset_top = 411.04
+offset_right = 7.0
+offset_bottom = 1039.04
+
+[node name="RichTextLabel" type="RichTextLabel" parent="how to play"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1067.0
+offset_top = -595.0
+offset_right = -18.0
+offset_bottom = -6.10352e-05
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "HOW TO PLAY:
+Dodge the red    and touch the green    !
+Abilities:
+       your bread and butter basic attack
+       spin to win, increases speed!
+       high damage lunge
+       ranged attack on a short cooldown
+       heavy attack, immunity but long recovery
+       roll forward with short immunity
+    
+"
+
+[node name="ColorRect" type="ColorRect" parent="how to play/RichTextLabel"]
+layout_mode = 0
+offset_left = 331.0
+offset_top = 75.0
+offset_right = 364.0
+offset_bottom = 108.0
+color = Color(1, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="how to play/RichTextLabel"]
+layout_mode = 0
+offset_left = 856.0
+offset_top = 75.0
+offset_right = 888.0
+offset_bottom = 109.0
+color = Color(0, 1, 0, 1)
+
+[node name="VBoxContainer" type="VFlowContainer" parent="how to play/RichTextLabel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 189.0
+offset_right = 50.0
+offset_bottom = 543.0
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="how to play/RichTextLabel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_bottom = 3
+
+[node name="TextureRect" type="TextureRect" parent="how to play/RichTextLabel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_a8ycg")
+
+[node name="MarginContainer2" type="MarginContainer" parent="how to play/RichTextLabel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_bottom = 3
+
+[node name="TextureRect" type="TextureRect" parent="how to play/RichTextLabel/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_8cpes")
+
+[node name="MarginContainer3" type="MarginContainer" parent="how to play/RichTextLabel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_bottom = 3
+
+[node name="TextureRect" type="TextureRect" parent="how to play/RichTextLabel/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_7pkrh")
+
+[node name="MarginContainer4" type="MarginContainer" parent="how to play/RichTextLabel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_bottom = 3
+
+[node name="TextureRect" type="TextureRect" parent="how to play/RichTextLabel/VBoxContainer/MarginContainer4"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_q260t")
+
+[node name="MarginContainer5" type="MarginContainer" parent="how to play/RichTextLabel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_bottom = 3
+
+[node name="TextureRect" type="TextureRect" parent="how to play/RichTextLabel/VBoxContainer/MarginContainer5"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_tgpwp")
+
+[node name="MarginContainer6" type="MarginContainer" parent="how to play/RichTextLabel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 3
+
+[node name="TextureRect" type="TextureRect" parent="how to play/RichTextLabel/VBoxContainer/MarginContainer6"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_65fpc")
+
+[connection signal="gui_input" from="Button/NinePatchRect" to="." method="_on_nine_patch_rect_gui_input"]
+[connection signal="gui_input" from="CloseButton/NinePatchRect" to="." method="_on_nine_patch_rect_gui_input"]
+[connection signal="value_changed" from="HSlider" to="HSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="HSlider2" to="HSlider2" method="_on_value_changed"]

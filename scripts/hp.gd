@@ -6,7 +6,7 @@ signal health_depleted()
 var block_taking_damage: bool = false
 
 @export var maxHealth: int = 100
-var currentHealth: int = 100
+var currentHealth: int = maxHealth
 
 func take_damage(amount: int) -> void:
 	if block_taking_damage:

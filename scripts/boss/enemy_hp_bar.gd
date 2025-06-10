@@ -4,11 +4,11 @@ extends ProgressBar
 var max_health: int = 100;
 
 func _ready() -> void:
-	var health = get_tree().root.get_node("Main/Enemy/enemy_health")
+	var health = get_node("../../Enemy/enemy_health")
 	health.connect("health_changed", on_health_changed)
 	health.connect("health_depleted", self.hide)
 	max_health = health.maxHealth
-	self.value = 100
+	self.value = max_health
 
 func on_health_changed(new_health: int) -> void:
 	self.show()

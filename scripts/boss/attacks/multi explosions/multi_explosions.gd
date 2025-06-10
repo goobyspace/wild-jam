@@ -11,7 +11,6 @@ extends BossAttack
 @export var damage: int = 10
 @export var scale: float = 10.0
 
-
 @export var top_parent: Node3D
 
 var explosions = []

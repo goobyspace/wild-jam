@@ -22,7 +22,7 @@ func activate() -> void:
 
 func do_damage() -> void:
 	if not player:
-		get_tree().root.get_node("Main/Player/player_health").take_damage(damage)
+		get_tree().root.get_node("LevelController/Main/Player/player_health").take_damage(damage)
 
 func _on_body_entered(body: Node) -> void:
 	check_node(body)

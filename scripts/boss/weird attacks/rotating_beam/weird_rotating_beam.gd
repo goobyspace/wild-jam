@@ -56,10 +56,8 @@ func attack() -> bool:
 	return true
 
 func do_audio() -> void:
-	print("hey!")
 	if audio_player and audio_track:
 		audio_track.loop = true
-		print("sup!")
 		audio_player.play_audio(audio_track, volume_db, audio_start)
 		var original_volume = audio_player.volume_db
 		await get_tree().create_timer(active_time - audio_fade_duration).timeout

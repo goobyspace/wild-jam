@@ -3,10 +3,8 @@ extends Node
 @export var cooldown_bars: Control
 @export var cooldown_button: PackedScene
 
-@export var player: CharacterBody3D
-
 func _ready() -> void:
-	var attack_controller = player.find_child("attack_controller")
+	var attack_controller = get_tree().root.get_node("LevelController/Main/Player/attack_controller")
 	var abilities = attack_controller.abilities
 
 	for ability in abilities:

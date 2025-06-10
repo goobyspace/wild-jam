@@ -35,7 +35,7 @@ func _ready() -> void:
 		push_error("Thunder mesh is not assigned in the Thunderstrike ability.")
 		return
 
-	hp = get_tree().root.get_node("Main/Player/player_health");
+	hp = get_node("./../../player_health");
 
 	material = thunder.get_surface_override_material(0) as StandardMaterial3D
 	omni_light = thunder.get_node("OmniLight3D")
